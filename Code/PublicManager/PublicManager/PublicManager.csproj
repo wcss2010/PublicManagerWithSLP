@@ -163,6 +163,8 @@
     <Compile Include="ComboBoxObject.cs" />
     <Compile Include="DB\ConnectionManager.cs" />
     <Compile Include="DB\Entitys\Catalog.cs" />
+    <Compile Include="DB\Entitys\LocalUnit.cs" />
+    <Compile Include="DB\Entitys\Project.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="MainConfig.cs" />
     <Compile Include="Modules\BaseDBImporter.cs" />
@@ -187,8 +189,37 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\ModuleWithNoUIConfig\ModuleMainForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Modules\Module_A\ModuleMainForm.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\DBImporter.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.Designer.cs">
+      <DependentUpon>ImporterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_A\PkgImporter\MainView.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.Designer.cs">
+      <DependentUpon>ReporterModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\ModuleMainForm.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\DBImporter.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.Designer.cs">
+      <DependentUpon>ImporterWithAllForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.Designer.cs">
+      <DependentUpon>ImporterWithSelectedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\PkgImporter\MainView.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.Designer.cs">
+      <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\TreeViewWithSearch.cs">
       <SubType>UserControl</SubType>
@@ -235,6 +266,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.resx">
+      <DependentUpon>ImporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_A\PkgImporter\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_A\PkgImporter\ReporterModuleController.resx">
+      <DependentUpon>ReporterModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.resx">
+      <DependentUpon>ImporterWithAllForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.resx">
+      <DependentUpon>ImporterWithSelectedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\ReporterModuleController.resx">
+      <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\TreeViewWithSearch.resx">
       <DependentUpon>TreeViewWithSearch.cs</DependentUpon>

@@ -30,7 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnToA = new System.Windows.Forms.Button();
+            this.btnToB = new System.Windows.Forms.Button();
+            this.lblUnitA = new System.Windows.Forms.Label();
+            this.btnSetUnitA = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,24 +48,66 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // btnToA
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("仿宋", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(0, 329);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(816, 80);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "正在载入，请等待......";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnToA.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnToA.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnToA.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnToA.ForeColor = System.Drawing.Color.Black;
+            this.btnToA.Location = new System.Drawing.Point(399, 363);
+            this.btnToA.Name = "btnToA";
+            this.btnToA.Size = new System.Drawing.Size(194, 47);
+            this.btnToA.TabIndex = 1;
+            this.btnToA.Text = "归口管理部门入口";
+            this.btnToA.UseVisualStyleBackColor = false;
+            this.btnToA.Click += new System.EventHandler(this.btnToA_Click);
+            // 
+            // btnToB
+            // 
+            this.btnToB.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnToB.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnToB.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnToB.ForeColor = System.Drawing.Color.Black;
+            this.btnToB.Location = new System.Drawing.Point(196, 363);
+            this.btnToB.Name = "btnToB";
+            this.btnToB.Size = new System.Drawing.Size(197, 47);
+            this.btnToB.TabIndex = 1;
+            this.btnToB.Text = "军队主管部门入口";
+            this.btnToB.UseVisualStyleBackColor = false;
+            this.btnToB.Click += new System.EventHandler(this.btnToB_Click);
+            // 
+            // lblUnitA
+            // 
+            this.lblUnitA.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblUnitA.ForeColor = System.Drawing.Color.Red;
+            this.lblUnitA.Location = new System.Drawing.Point(443, 429);
+            this.lblUnitA.Name = "lblUnitA";
+            this.lblUnitA.Size = new System.Drawing.Size(368, 30);
+            this.lblUnitA.TabIndex = 0;
+            this.lblUnitA.Text = "...";
+            this.lblUnitA.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnSetUnitA
+            // 
+            this.btnSetUnitA.Location = new System.Drawing.Point(599, 380);
+            this.btnSetUnitA.Name = "btnSetUnitA";
+            this.btnSetUnitA.Size = new System.Drawing.Size(88, 30);
+            this.btnSetUnitA.TabIndex = 1;
+            this.btnSetUnitA.TabStop = true;
+            this.btnSetUnitA.Text = "设置所属单位";
+            this.btnSetUnitA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnSetUnitA.Click += new System.EventHandler(this.btnSetUnitA_Click);
             // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(816, 409);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(816, 467);
+            this.Controls.Add(this.lblUnitA);
+            this.Controls.Add(this.btnToB);
+            this.Controls.Add(this.btnSetUnitA);
+            this.Controls.Add(this.btnToA);
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -81,6 +126,9 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnToA;
+        private System.Windows.Forms.Button btnToB;
+        private System.Windows.Forms.Label lblUnitA;
+        private System.Windows.Forms.LinkLabel btnSetUnitA;
     }
 }
