@@ -29,11 +29,12 @@ namespace PublicManager
             MainConfig.loadConfig();
 
             //加载皮肤
-            if (MainConfig.Config.StringDict.ContainsKey("当前皮肤"))
-            {
-                string skinName = MainConfig.Config.StringDict["当前皮肤"];
-                DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(string.IsNullOrEmpty(skinName) ? "Office 2010 Blue" : skinName);
-            }
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Office 2010 Blue");
+            //if (MainConfig.Config.StringDict.ContainsKey("当前皮肤"))
+            //{
+            //    string skinName = MainConfig.Config.StringDict["当前皮肤"];
+            //    DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(string.IsNullOrEmpty(skinName) ? "Office 2010 Blue" : skinName);
+            //}
             if (MainConfig.Config.StringDict.ContainsKey("皮肤颜色1"))
             {
                 int colorVal = int.Parse(MainConfig.Config.StringDict["皮肤颜色1"]);
