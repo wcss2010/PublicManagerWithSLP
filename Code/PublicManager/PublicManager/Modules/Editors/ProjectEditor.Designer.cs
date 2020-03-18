@@ -50,6 +50,7 @@
             this.txtDutyUnitNormalName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.txtDutyUnitAddress = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbxDutyUnit2 = new System.Windows.Forms.ComboBox();
@@ -69,7 +70,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtProjectMasterName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtDutyUnitAddress = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -108,7 +108,8 @@
             // 
             this.panel1.Controls.Add(this.txtProjectName);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(3, 8);
+            this.panel1.Location = new System.Drawing.Point(3, 20);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(943, 29);
             this.panel1.TabIndex = 0;
@@ -140,7 +141,8 @@
             // 
             this.panel2.Controls.Add(this.txtProjectTopic);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(3, 43);
+            this.panel2.Location = new System.Drawing.Point(3, 67);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(943, 29);
             this.panel2.TabIndex = 1;
@@ -177,7 +179,8 @@
             this.panel3.Controls.Add(this.label17);
             this.panel3.Controls.Add(this.txtSecretYears);
             this.panel3.Controls.Add(this.label16);
-            this.panel3.Location = new System.Drawing.Point(3, 78);
+            this.panel3.Location = new System.Drawing.Point(3, 114);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(943, 29);
             this.panel3.TabIndex = 2;
@@ -278,7 +281,8 @@
             // 
             this.panel5.Controls.Add(this.txtDutyUnitName);
             this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(3, 113);
+            this.panel5.Location = new System.Drawing.Point(3, 161);
+            this.panel5.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(943, 29);
             this.panel5.TabIndex = 4;
@@ -310,7 +314,8 @@
             // 
             this.panel6.Controls.Add(this.txtDutyUnitNormalName);
             this.panel6.Controls.Add(this.label6);
-            this.panel6.Location = new System.Drawing.Point(3, 148);
+            this.panel6.Location = new System.Drawing.Point(3, 208);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(943, 29);
             this.panel6.TabIndex = 5;
@@ -344,10 +349,22 @@
             this.panel7.Controls.Add(this.label8);
             this.panel7.Controls.Add(this.label7);
             this.panel7.Controls.Add(this.cbxDutyUnit2);
-            this.panel7.Location = new System.Drawing.Point(3, 183);
+            this.panel7.Location = new System.Drawing.Point(3, 255);
+            this.panel7.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(943, 29);
             this.panel7.TabIndex = 6;
+            // 
+            // txtDutyUnitAddress
+            // 
+            this.txtDutyUnitAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDutyUnitAddress.Font = new System.Drawing.Font("仿宋", 12F);
+            this.txtDutyUnitAddress.Location = new System.Drawing.Point(155, 0);
+            this.txtDutyUnitAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDutyUnitAddress.Name = "txtDutyUnitAddress";
+            this.txtDutyUnitAddress.ReadOnly = true;
+            this.txtDutyUnitAddress.Size = new System.Drawing.Size(399, 26);
+            this.txtDutyUnitAddress.TabIndex = 17;
             // 
             // label8
             // 
@@ -421,7 +438,8 @@
             this.panel8.Controls.Add(this.label13);
             this.panel8.Controls.Add(this.txtDutyUnitContact);
             this.panel8.Controls.Add(this.label9);
-            this.panel8.Location = new System.Drawing.Point(3, 218);
+            this.panel8.Location = new System.Drawing.Point(3, 302);
+            this.panel8.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(943, 27);
             this.panel8.TabIndex = 7;
@@ -505,7 +523,8 @@
             this.panel10.Controls.Add(this.label14);
             this.panel10.Controls.Add(this.txtProjectMasterName);
             this.panel10.Controls.Add(this.label4);
-            this.panel10.Location = new System.Drawing.Point(3, 251);
+            this.panel10.Location = new System.Drawing.Point(3, 347);
+            this.panel10.Margin = new System.Windows.Forms.Padding(3, 15, 3, 3);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(943, 29);
             this.panel10.TabIndex = 9;
@@ -611,17 +630,6 @@
             this.label4.TabIndex = 34;
             this.label4.Text = "项目负责人：";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtDutyUnitAddress
-            // 
-            this.txtDutyUnitAddress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDutyUnitAddress.Font = new System.Drawing.Font("仿宋", 12F);
-            this.txtDutyUnitAddress.Location = new System.Drawing.Point(155, 0);
-            this.txtDutyUnitAddress.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDutyUnitAddress.Name = "txtDutyUnitAddress";
-            this.txtDutyUnitAddress.ReadOnly = true;
-            this.txtDutyUnitAddress.Size = new System.Drawing.Size(399, 26);
-            this.txtDutyUnitAddress.TabIndex = 17;
             // 
             // ProjectEditor
             // 

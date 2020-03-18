@@ -37,10 +37,12 @@
             this.btnOpenDecompressDir = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDir = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rpbLoad = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpbLoad = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
+            this.rpgExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnExportTo = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,9 +56,10 @@
             this.btnImportAll,
             this.btnImportWithSelected,
             this.btnOpenMasterDir,
-            this.btnOpenDecompressDir});
+            this.btnOpenDecompressDir,
+            this.btnExportTo});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 9;
+            this.rcTopBar.MaxItemId = 10;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -115,9 +118,10 @@
             this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rpgDir,
             this.rpgElse,
-            this.rpbLoad});
+            this.rpbLoad,
+            this.rpgExport});
             this.rpMaster.Name = "rpMaster";
-            this.rpMaster.Text = "论证报告书";
+            this.rpMaster.Text = "战略先导计划书";
             // 
             // rpgDir
             // 
@@ -126,13 +130,6 @@
             this.rpgDir.Name = "rpgDir";
             this.rpgDir.Text = "目录";
             // 
-            // rpbLoad
-            // 
-            this.rpbLoad.ItemLinks.Add(this.btnImportAll);
-            this.rpbLoad.ItemLinks.Add(this.btnImportWithSelected);
-            this.rpbLoad.Name = "rpbLoad";
-            this.rpbLoad.Text = "导入";
-            // 
             // rpgElse
             // 
             this.rpgElse.ItemLinks.Add(this.btnOpenMasterDir);
@@ -140,9 +137,30 @@
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "打开";
             // 
+            // rpbLoad
+            // 
+            this.rpbLoad.ItemLinks.Add(this.btnImportAll);
+            this.rpbLoad.ItemLinks.Add(this.btnImportWithSelected);
+            this.rpbLoad.Name = "rpbLoad";
+            this.rpbLoad.Text = "导入";
+            // 
             // sfdExport
             // 
             this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
+            // 
+            // rpgExport
+            // 
+            this.rpgExport.ItemLinks.Add(this.btnExportTo);
+            this.rpgExport.Name = "rpgExport";
+            this.rpgExport.Text = "导出";
+            // 
+            // btnExportTo
+            // 
+            this.btnExportTo.Caption = "导出Excel";
+            this.btnExportTo.Id = 9;
+            this.btnExportTo.LargeGlyph = global::PublicManager.Properties.Resources.export;
+            this.btnExportTo.Name = "btnExportTo";
+            this.btnExportTo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportTo_ItemClick);
             // 
             // ReporterModuleController
             // 
@@ -172,5 +190,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
         private DevExpress.XtraBars.BarButtonItem btnOpenMasterDir;
         private DevExpress.XtraBars.BarButtonItem btnOpenDecompressDir;
+        private DevExpress.XtraBars.BarButtonItem btnExportTo;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgExport;
     }
 }
