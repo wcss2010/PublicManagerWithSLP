@@ -76,7 +76,7 @@ namespace PublicReporter
                              }")
                              .CreateObject("*");
             string dataDir = script.getDataDir();
-            string docFile = Path.Combine(dataDir, "论证报告.doc");
+            string docFile = Path.Combine(dataDir, "战略先导计划.doc");
             DateTime dtDoc = DateTime.MinValue;
             if (File.Exists(docFile))
             {

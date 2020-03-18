@@ -102,9 +102,9 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                         {
                             string decompressDir = MainConfig.Config.StringDict["论证报告解压目录"];
                             string catalogNumber = ConnectionManager.Context.table("Catalog").where("CatalogID='" + catalogId + "'").select("CatalogNumber").getValue<string>("");
-                            if (File.Exists(Path.Combine(decompressDir, Path.Combine(catalogNumber, "论证报告.doc"))))
+                            if (File.Exists(Path.Combine(decompressDir, Path.Combine(catalogNumber, "战略先导计划.doc"))))
                             {
-                                Process.Start(Path.Combine(decompressDir, Path.Combine(catalogNumber, "论证报告.doc")));
+                                Process.Start(Path.Combine(decompressDir, Path.Combine(catalogNumber, "战略先导计划.doc")));
                             }
                         }
                     }
