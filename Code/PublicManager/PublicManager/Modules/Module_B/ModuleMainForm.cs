@@ -35,11 +35,6 @@ namespace PublicManager.Modules.Module_B
             base.initModules();
 
             ModuleDict["数据包汇总"] = new PkgImporter.ReporterModuleController();
-            ModuleDict["数据编辑"] = new DataManager.ModuleController();
-            ModuleDict["专业类别维护"] = new DictManager.ModuleController();
-            ModuleDict["数据导出"] = new DataExport.ModuleController();
-            ModuleDict["项目审核"] = new ProjectState.ModuleController();
-            ModuleDict["数据包编辑"] = new PackageEditor.ModuleController();
         }
 
         protected override void initUI()

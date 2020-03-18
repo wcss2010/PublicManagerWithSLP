@@ -189,35 +189,53 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_A\ModuleMainForm.cs" />
+    <Compile Include="Modules\Module_A\ModuleMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_A\PkgImporter\DBImporter.cs" />
-    <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.Designer.cs">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_A\PkgImporter\MainView.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Module_A\PkgImporter\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\ModuleMainForm.cs" />
+    <Compile Include="Modules\Module_B\ModuleMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\DBImporter.cs" />
-    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.Designer.cs">
       <DependentUpon>ImporterWithAllForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.Designer.cs">
       <DependentUpon>ImporterWithSelectedForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\PkgImporter\MainView.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
