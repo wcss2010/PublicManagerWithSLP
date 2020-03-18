@@ -23,7 +23,7 @@ namespace PublicManager
             base.OnLoad(e);
 
             Top = Screen.PrimaryScreen.Bounds.Height * 5;
-            Modules.ModuleWithUIConfig.ModuleMainForm form = new Modules.ModuleWithUIConfig.ModuleMainForm();
+            Modules.ModuleWithNoUIConfig.ModuleMainForm form = new Modules.ModuleWithNoUIConfig.ModuleMainForm();
             form.FormClosing += form_FormClosing;
             form.Show();
         }

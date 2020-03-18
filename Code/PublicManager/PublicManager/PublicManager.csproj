@@ -187,9 +187,6 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\ModuleWithUIConfig\ModuleMainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Modules\ModuleWithNoUIConfig\ModuleMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
