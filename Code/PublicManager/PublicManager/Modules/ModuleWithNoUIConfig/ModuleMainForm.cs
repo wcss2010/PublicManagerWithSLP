@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace PublicManager.Modules.ModuleWithNoUIConfig
 {
-    public class ModuleMainForm : BaseModuleMainFormWithUIConfig
+    public class ModuleMainForm : BaseModuleMainFormWithNoUIConfig
     {
         public ModuleMainForm()
             : base()
