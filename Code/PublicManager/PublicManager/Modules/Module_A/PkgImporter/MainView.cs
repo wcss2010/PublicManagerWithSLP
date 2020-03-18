@@ -104,9 +104,9 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                     //显示链接提示框
                     try
                     {
-                        if (MainConfig.Config.StringDict.ContainsKey("论证报告解压目录"))
+                        if (MainConfig.Config.StringDict.ContainsKey("先导解压目录"))
                         {
-                            string decompressDir = MainConfig.Config.StringDict["论证报告解压目录"];
+                            string decompressDir = MainConfig.Config.StringDict["先导解压目录"];
                             string catalogNumber = ConnectionManager.Context.table("Catalog").where("CatalogID='" + catalogId + "'").select("CatalogNumber").getValue<string>("");
                             if (File.Exists(Path.Combine(decompressDir, Path.Combine(catalogNumber, "战略先导计划.doc"))))
                             {

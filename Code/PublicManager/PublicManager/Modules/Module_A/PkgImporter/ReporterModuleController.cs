@@ -42,14 +42,14 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         /// </summary>
         private void updateDirectoryHint()
         {
-            if (MainConfig.Config.StringDict.ContainsKey("论证报告总目录"))
+            if (MainConfig.Config.StringDict.ContainsKey("先导总目录"))
             {
-                totalDir = MainConfig.Config.StringDict["论证报告总目录"];
+                totalDir = MainConfig.Config.StringDict["先导总目录"];
             }
 
-            if (MainConfig.Config.StringDict.ContainsKey("论证报告解压目录"))
+            if (MainConfig.Config.StringDict.ContainsKey("先导解压目录"))
             {
-                decompressDir = MainConfig.Config.StringDict["论证报告解压目录"];
+                decompressDir = MainConfig.Config.StringDict["先导解压目录"];
             }
 
             StatusLabelControl.Caption = "主目录:" + totalDir + ",解压目录:" + decompressDir;
@@ -78,7 +78,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             fbdFolderSelect.SelectedPath = totalDir == "(未设置)" ? string.Empty : totalDir;
             if (fbdFolderSelect.ShowDialog() == DialogResult.OK)
             {
-                if (fbdFolderSelect.SelectedPath == MainConfig.Config.StringDict["论证报告解压目录"])
+                if (fbdFolderSelect.SelectedPath == MainConfig.Config.StringDict["先导解压目录"])
                 {
                     MessageBox.Show("对不起，总目录和解压目录不能是一个目录！");
                 }
@@ -86,7 +86,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 {
                     totalDir = fbdFolderSelect.SelectedPath;
 
-                    MainConfig.Config.StringDict["论证报告总目录"] = totalDir;
+                    MainConfig.Config.StringDict["先导总目录"] = totalDir;
                     MainConfig.saveConfig();
                 }
 
@@ -99,7 +99,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             fbdFolderSelect.SelectedPath = decompressDir == "(未设置)" ? string.Empty : decompressDir;
             if (fbdFolderSelect.ShowDialog() == DialogResult.OK)
             {
-                if (fbdFolderSelect.SelectedPath == MainConfig.Config.StringDict["论证报告总目录"])
+                if (fbdFolderSelect.SelectedPath == MainConfig.Config.StringDict["先导总目录"])
                 {
                     MessageBox.Show("对不起，总目录和解压目录不能是一个目录！");
                 }
@@ -107,7 +107,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 {
                     decompressDir = fbdFolderSelect.SelectedPath;
 
-                    MainConfig.Config.StringDict["论证报告解压目录"] = decompressDir;
+                    MainConfig.Config.StringDict["先导解压目录"] = decompressDir;
                     MainConfig.saveConfig();
                 }
 
@@ -131,7 +131,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         {
             try
             {
-                System.Diagnostics.Process.Start(MainConfig.Config.StringDict["论证报告总目录"]);
+                System.Diagnostics.Process.Start(MainConfig.Config.StringDict["先导总目录"]);
             }
             catch (Exception ex) { }
         }
@@ -140,7 +140,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         {
             try
             {
-                System.Diagnostics.Process.Start(MainConfig.Config.StringDict["论证报告解压目录"]);
+                System.Diagnostics.Process.Start(MainConfig.Config.StringDict["先导解压目录"]);
             }
             catch (Exception ex) { }
         }
