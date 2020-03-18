@@ -189,6 +189,10 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.cs" />
+    <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.Designer.cs">
+      <DependentUpon>DutyUnitForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Module_A\ModuleMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +214,10 @@
     </Compile>
     <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.cs" />
+    <Compile Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.Designer.cs">
+      <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Module_B\ModuleMainForm.cs">
       <SubType>Form</SubType>
@@ -285,6 +293,9 @@
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.resx">
+      <DependentUpon>DutyUnitForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.resx">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Module_A\PkgImporter\ReporterModuleController.resx">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.resx">
+      <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.resx">
       <DependentUpon>ImporterWithAllForm.cs</DependentUpon>
