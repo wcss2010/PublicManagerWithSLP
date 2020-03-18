@@ -16,6 +16,9 @@ namespace PublicManager
         public WelcomeForm()
         {
             InitializeComponent();
+
+            //初始化数据库
+            PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + System.IO.Path.Combine(Application.StartupPath, "static.db"));
         }
 
         protected override void OnLoad(EventArgs e)

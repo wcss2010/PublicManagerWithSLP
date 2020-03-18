@@ -49,43 +49,10 @@ namespace PublicManager.Modules.Module_A
         {
             base.initUI();
 
-            //加载责任单位与专业类型映射选项
-            if (MainConfig.Config.ObjectDict.ContainsKey("责任单位与专业类别映射"))
-            {
-                try
-                {
-                    dutyUnitToProfessonLinks = new List<string>();
-                    Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位与专业类别映射"];
-                    foreach (string s in teams)
-                    {
-                        dutyUnitToProfessonLinks.Add(s);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    System.Console.WriteLine(ex.ToString());
-                }
-            }
+            Text = "战略先导汇总系统";
 
-            LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
-            Text = "归口管理部门(" + lu.LocalUnitName + ")汇总系统";
+            treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总" });
             
-            if (string.IsNullOrEmpty(lu.LocalUnitID))
-            {
-                treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据编辑", "数据导出", "数据包编辑" });
-            }
-            else
-            {
-                if (DutyUnitToProfessonLinks.Contains(lu.LocalUnitName))
-                {
-                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据编辑", "数据导出", "数据包编辑" });
-                }
-                else
-                {
-                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "数据编辑", "数据导出", "数据包编辑" });
-                }
-            }
-
             treeListObj.MouseClick += treeListObj_MouseClick;
             firstPage = appendPage("数据汇总", PublicManager.Properties.Resources.Mail_32x32);
             firstPage.ControlContainer.Controls.Add(treeListObj);
