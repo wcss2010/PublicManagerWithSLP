@@ -18,32 +18,32 @@ namespace PublicManager.DB.Entitys
             query.set("ProjectID", ProjectID);
             query.set("CatalogID", CatalogID);
             query.set("ProjectName", ProjectName);
-            query.set("StudyDest", StudyDest);
-            query.set("StudyContent", StudyContent);
-            query.set("WillResult", WillResult);
-            query.set("StudyTime", StudyTime);
-            query.set("StudyMoney", StudyMoney);
-            query.set("ProjectSort", ProjectSort);
-            query.set("ProfessionID", ProfessionID);
-            query.set("LastProfessionName", LastProfessionName);
-            query.set("DutyUnit", DutyUnit);
-            query.set("NextUnit", NextUnit);
-            query.set("Memo", Memo);
-            query.set("Worker", Worker);
-            query.set("WorkerCardID", WorkerCardID);
-            query.set("WorkerSex", WorkerSex);
-            query.set("WorkerNation", WorkerNation);
-            query.set("WorkerBirthday", WorkerBirthday);
-            query.set("WorkerTelephone", WorkerTelephone);
-            query.set("WorkerMobilephone", WorkerMobilephone);
-            query.set("SectionJobCateGory", SectionJobCateGory);
-            query.set("AllStudyUnit", AllStudyUnit);
-            query.set("RequestMoney", RequestMoney);
-            query.set("TaskCompleteTime", TaskCompleteTime);
-            query.set("IsPrivateProject", IsPrivateProject);
-            query.set("ProfessionSort", ProfessionSort);
-            query.set("ProjectCheckState", ProjectCheckState);
-            query.set("ProjectStateReason", ProjectStateReason);
+            query.set("ProjectTopic", ProjectTopic);
+            query.set("ProjectDirection", ProjectDirection);
+            query.set("ProjectSecretLevel", ProjectSecretLevel);
+            query.set("ProjectMasterName", ProjectMasterName);
+            query.set("ProjectMasterSex", ProjectMasterSex);
+            query.set("ProjectMasterBirthday", ProjectMasterBirthday);
+            query.set("ProjectMasterJob", ProjectMasterJob);
+            query.set("ProjectMasterTelephone", ProjectMasterTelephone);
+            query.set("ProjectMasterMobilephone", ProjectMasterMobilephone);
+            query.set("TeamContactName", TeamContactName);
+            query.set("TeamContactSex", TeamContactSex);
+            query.set("TeamContactBirthday", TeamContactBirthday);
+            query.set("TeamContactJob", TeamContactJob);
+            query.set("TeamContactTelephone", TeamContactTelephone);
+            query.set("TeamContactMobilephone", TeamContactMobilephone);
+            query.set("TeamContactAddress", TeamContactAddress);
+            query.set("UnitName", UnitName);
+            query.set("UnitRealName", UnitRealName);
+            query.set("UnitAddress", UnitAddress);
+            query.set("UnitType2", UnitType2);
+            query.set("UnitContact", UnitContact);
+            query.set("UnitContactJob", UnitContactJob);
+            query.set("UnitContactPhone", UnitContactPhone);
+            query.set("TotalTime", TotalTime);
+            query.set("TotalMoney", TotalMoney);
+            query.set("RequestTime", RequestTime);
 
             return query;
         }
@@ -51,64 +51,64 @@ namespace PublicManager.DB.Entitys
         public string ProjectID { get; set; }
         public string CatalogID { get; set; }
         public string ProjectName { get; set; }
-        public string StudyDest { get; set; }
-        public string StudyContent { get; set; }
-        public string WillResult { get; set; }
-        public decimal StudyTime { get; set; }
-        public decimal StudyMoney { get; set; }
-        public string ProjectSort { get; set; }
-        public string ProfessionID { get; set; }
-        public string LastProfessionName { get; set; }
-        public string DutyUnit { get; set; }
-        public string NextUnit { get; set; }
-        public string Memo { get; set; }
-        public string Worker { get; set; }
-        public string WorkerCardID { get; set; }
-        public string WorkerSex { get; set; }
-        public string WorkerNation { get; set; }
-        public DateTime WorkerBirthday { get; set; }
-        public string WorkerTelephone { get; set; }
-        public string WorkerMobilephone { get; set; }
-        public string SectionJobCateGory { get; set; }
-        public string AllStudyUnit { get; set; }
-        public decimal RequestMoney { get; set; }
-        public DateTime TaskCompleteTime { get; set; }
-        public string IsPrivateProject { get; set; }
-        public decimal ProfessionSort { get; set; }
-        public string ProjectCheckState { get; set; }
-        public string ProjectStateReason { get; set; }
+        public string ProjectTopic { get; set; }
+        public string ProjectDirection { get; set; }
+        public string ProjectSecretLevel { get; set; }
+        public string ProjectMasterName { get; set; }
+        public string ProjectMasterSex { get; set; }
+        public DateTime ProjectMasterBirthday { get; set; }
+        public string ProjectMasterJob { get; set; }
+        public string ProjectMasterTelephone { get; set; }
+        public string ProjectMasterMobilephone { get; set; }
+        public string TeamContactName { get; set; }
+        public string TeamContactSex { get; set; }
+        public DateTime TeamContactBirthday { get; set; }
+        public string TeamContactJob { get; set; }
+        public string TeamContactTelephone { get; set; }
+        public string TeamContactMobilephone { get; set; }
+        public string TeamContactAddress { get; set; }
+        public string UnitName { get; set; }
+        public string UnitRealName { get; set; }
+        public string UnitAddress { get; set; }
+        public string UnitType2 { get; set; }
+        public string UnitContact { get; set; }
+        public string UnitContactJob { get; set; }
+        public string UnitContactPhone { get; set; }
+        public int TotalTime { get; set; }
+        public decimal TotalMoney { get; set; }
+        public DateTime RequestTime { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
             ProjectID = source("ProjectID").value<string>("");
             CatalogID = source("CatalogID").value<string>("");
             ProjectName = source("ProjectName").value<string>("");
-            StudyDest = source("StudyDest").value<string>("");
-            StudyContent = source("StudyContent").value<string>("");
-            WillResult = source("WillResult").value<string>("");
-            StudyTime = source("StudyTime").value<decimal>(0);
-            StudyMoney = source("StudyMoney").value<decimal>(0);
-            ProjectSort = source("ProjectSort").value<string>("");
-            ProfessionID = source("ProfessionID").value<string>("");
-            LastProfessionName = source("LastProfessionName").value<string>("");
-            DutyUnit = source("DutyUnit").value<string>("");
-            NextUnit = source("NextUnit").value<string>("");
-            Memo = source("Memo").value<string>("");
-            Worker = source("Worker").value<string>("");
-            WorkerCardID = source("WorkerCardID").value<string>("");
-            WorkerSex = source("WorkerSex").value<string>("");
-            WorkerNation = source("WorkerNation").value<string>("");
-            WorkerBirthday = source("WorkerBirthday").value<DateTime>(DateTime.Now);
-            WorkerTelephone = source("WorkerTelephone").value<string>("");
-            WorkerMobilephone = source("WorkerMobilephone").value<string>("");
-            SectionJobCateGory = source("SectionJobCateGory").value<string>("");
-            AllStudyUnit = source("AllStudyUnit").value<string>("");
-            RequestMoney = source("RequestMoney").value<decimal>(0);
-            TaskCompleteTime = source("TaskCompleteTime").value<DateTime>(DateTime.Now);
-            IsPrivateProject = source("IsPrivateProject").value<string>("");
-            ProfessionSort = source("ProfessionSort").value<decimal>(0);
-            ProjectCheckState = source("ProjectCheckState").value<string>("");
-            ProjectStateReason = source("ProjectStateReason").value<string>("");
+            ProjectTopic = source("ProjectTopic").value<string>("");
+            ProjectDirection = source("ProjectDirection").value<string>("");
+            ProjectSecretLevel = source("ProjectSecretLevel").value<string>("");
+            ProjectMasterName = source("ProjectMasterName").value<string>("");
+            ProjectMasterSex = source("ProjectMasterSex").value<string>("");
+            ProjectMasterBirthday = source("ProjectMasterBirthday").value<DateTime>(DateTime.Now);
+            ProjectMasterJob = source("ProjectMasterJob").value<string>("");
+            ProjectMasterTelephone = source("ProjectMasterTelephone").value<string>("");
+            ProjectMasterMobilephone = source("ProjectMasterMobilephone").value<string>("");
+            TeamContactName = source("TeamContactName").value<string>("");
+            TeamContactSex = source("TeamContactSex").value<string>("");
+            TeamContactBirthday = source("TeamContactBirthday").value<DateTime>(DateTime.Now);
+            TeamContactJob = source("TeamContactJob").value<string>("");
+            TeamContactTelephone = source("TeamContactTelephone").value<string>("");
+            TeamContactMobilephone = source("TeamContactMobilephone").value<string>("");
+            TeamContactAddress = source("TeamContactAddress").value<string>("");
+            UnitName = source("UnitName").value<string>("");
+            UnitRealName = source("UnitRealName").value<string>("");
+            UnitAddress = source("UnitAddress").value<string>("");
+            UnitType2 = source("UnitType2").value<string>("");
+            UnitContact = source("UnitContact").value<string>("");
+            UnitContactJob = source("UnitContactJob").value<string>("");
+            UnitContactPhone = source("UnitContactPhone").value<string>("");
+            TotalTime = source("TotalTime").value<int>(0);
+            TotalMoney = source("TotalMoney").value<decimal>(0);
+            RequestTime = source("RequestTime").value<DateTime>(DateTime.Now);
         }
 
         public override Noear.Weed.IBinder clone()
