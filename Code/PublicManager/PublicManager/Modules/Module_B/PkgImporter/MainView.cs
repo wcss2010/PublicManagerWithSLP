@@ -307,37 +307,4 @@ namespace PublicManager.Modules.Module_B.PkgImporter
             }
         }
     }
-
-    /// <summary>
-    /// 项目类别
-    /// </summary>
-    public class ProjectSortObject
-    {
-        public ProjectSortObject()
-        {
-            Text = string.Empty;
-            InfoMin = 80;
-            InfoMax = 150;
-            TableMin = 5;
-            TableMax = 10;
-            Money = 100;
-        }
-
-        public string Text { get; set; }
-
-        public int InfoMin { get; set; }
-
-        public int InfoMax { get; set; }
-
-        public int TableMin { get; set; }
-
-        public int TableMax { get; set; }
-
-        public decimal Money { get; set; }
-
-        public override string ToString()
-        {
-            return Text;
-        }
-    }
 }

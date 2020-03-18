@@ -183,13 +183,21 @@
     <Compile Include="Modules\DataGridViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\Editors\ProjectEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Editors\ProjectEditor.Designer.cs">
+      <DependentUpon>ProjectEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\MainMenuController.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.cs" />
+    <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.Designer.cs">
       <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </Compile>
@@ -215,7 +223,9 @@
     <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.cs" />
+    <Compile Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.Designer.cs">
       <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </Compile>
@@ -289,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\BaseModuleMainFormWithUIConfig.resx">
       <DependentUpon>BaseModuleMainFormWithUIConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Editors\ProjectEditor.resx">
+      <DependentUpon>ProjectEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
