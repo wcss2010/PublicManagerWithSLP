@@ -71,6 +71,8 @@
             this.txtProjectMasterName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnOpenWord = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -83,6 +85,7 @@
             this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTimes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalMoneys)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -101,7 +104,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 55);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(909, 511);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(909, 477);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -643,12 +646,34 @@
             this.label18.Text = "基本信息";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnOpenWord);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 532);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(909, 34);
+            this.panel4.TabIndex = 3;
+            // 
+            // btnOpenWord
+            // 
+            this.btnOpenWord.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnOpenWord.Location = new System.Drawing.Point(828, 0);
+            this.btnOpenWord.Name = "btnOpenWord";
+            this.btnOpenWord.Size = new System.Drawing.Size(81, 34);
+            this.btnOpenWord.TabIndex = 0;
+            this.btnOpenWord.Text = "打开文档";
+            this.btnOpenWord.UseVisualStyleBackColor = true;
+            this.btnOpenWord.Click += new System.EventHandler(this.btnOpenWord_Click);
+            // 
             // ProjectEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.label18);
+            this.DoubleBuffered = true;
             this.Name = "ProjectEditor";
             this.Size = new System.Drawing.Size(909, 566);
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -671,6 +696,7 @@
             this.panel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTimes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalMoneys)).EndInit();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -720,6 +746,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDutyUnitAddress;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnOpenWord;
 
     }
 }

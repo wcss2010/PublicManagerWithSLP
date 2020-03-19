@@ -8,11 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PublicManager.DB.Entitys;
+using System.IO;
+using System.Diagnostics;
+using PublicManager.DB;
 
 namespace PublicManager.Modules.Editors
 {
     public partial class ProjectEditor : XtraUserControl
     {
+        private Project projectObj;
         public ProjectEditor()
         {
             InitializeComponent();
@@ -20,6 +24,8 @@ namespace PublicManager.Modules.Editors
 
         public void loadData(Project proj)
         {
+            projectObj = proj;
+
             if (proj != null)
             {
                 txtProjectName.Text = proj.ProjectName;
@@ -69,6 +75,23 @@ namespace PublicManager.Modules.Editors
             {
                 txtSecretYears.Enabled = false;
             }
+        }
+
+        private void btnOpenWord_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MainConfig.Config.StringDict.ContainsKey("先导解压目录"))
+                {
+                    string decompressDir = MainConfig.Config.StringDict["先导解压目录"];
+                    string catalogNumber = ConnectionManager.Context.table("Catalog").where("CatalogID='" + projectObj.CatalogID + "'").select("CatalogNumber").getValue<string>("");
+                    if (File.Exists(Path.Combine(decompressDir, Path.Combine(catalogNumber, "战略先导计划.doc"))))
+                    {
+                        Process.Start(Path.Combine(decompressDir, Path.Combine(catalogNumber, "战略先导计划.doc")));
+                    }
+                }
+            }
+            catch (Exception ex) { }
         }
     }
 }
