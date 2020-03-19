@@ -182,8 +182,8 @@
             this.nbcLeftTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nbcLeftTree.Location = new System.Drawing.Point(0, 0);
             this.nbcLeftTree.Name = "nbcLeftTree";
-            this.nbcLeftTree.OptionsNavPane.ExpandedWidth = 176;
-            this.nbcLeftTree.Size = new System.Drawing.Size(176, 542);
+            this.nbcLeftTree.OptionsNavPane.ExpandedWidth = 126;
+            this.nbcLeftTree.Size = new System.Drawing.Size(126, 542);
             this.nbcLeftTree.TabIndex = 2;
             this.nbcLeftTree.Text = "navBarControl1";
             this.nbcLeftTree.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
@@ -195,7 +195,7 @@
             this.plRightContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plRightContent.Location = new System.Drawing.Point(0, 0);
             this.plRightContent.Name = "plRightContent";
-            this.plRightContent.Size = new System.Drawing.Size(1178, 542);
+            this.plRightContent.Size = new System.Drawing.Size(1228, 542);
             this.plRightContent.TabIndex = 3;
             // 
             // splitContainerControl1
@@ -208,11 +208,11 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.plRightContent);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1359, 542);
-            this.splitContainerControl1.SplitterPosition = 176;
+            this.splitContainerControl1.SplitterPosition = 126;
             this.splitContainerControl1.TabIndex = 6;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // BaseModuleMainForm
+            // BaseModuleMainFormWithUIConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,7 +221,7 @@
             this.Controls.Add(this.rsbStatusBar);
             this.Controls.Add(this.rcTopBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "BaseModuleMainForm";
+            this.Name = "BaseModuleMainFormWithUIConfig";
             this.Ribbon = this.rcTopBar;
             this.StatusBar = this.rsbStatusBar;
             this.Text = "XXXX系统";

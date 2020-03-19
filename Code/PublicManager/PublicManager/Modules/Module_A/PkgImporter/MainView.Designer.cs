@@ -44,7 +44,7 @@
             this.tvUnitAndProject.Location = new System.Drawing.Point(0, 0);
             this.tvUnitAndProject.Margin = new System.Windows.Forms.Padding(4);
             this.tvUnitAndProject.Name = "tvUnitAndProject";
-            this.tvUnitAndProject.Size = new System.Drawing.Size(425, 684);
+            this.tvUnitAndProject.Size = new System.Drawing.Size(246, 684);
             this.tvUnitAndProject.TabIndex = 0;
             // 
             // splitContainer1
@@ -61,7 +61,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.plContent);
             this.splitContainer1.Size = new System.Drawing.Size(1276, 684);
-            this.splitContainer1.SplitterDistance = 425;
+            this.splitContainer1.SplitterDistance = 246;
             this.splitContainer1.TabIndex = 1;
             // 
             // plContent
@@ -69,7 +69,7 @@
             this.plContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plContent.Location = new System.Drawing.Point(0, 0);
             this.plContent.Name = "plContent";
-            this.plContent.Size = new System.Drawing.Size(847, 684);
+            this.plContent.Size = new System.Drawing.Size(1026, 684);
             this.plContent.TabIndex = 0;
             // 
             // MainView
