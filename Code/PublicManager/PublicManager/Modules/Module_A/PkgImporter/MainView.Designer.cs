@@ -31,10 +31,13 @@
             this.tvUnitAndProject = new PublicManager.Modules.TreeViewWithSearch();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.plContent = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tvUnitAndProject
@@ -44,7 +47,7 @@
             this.tvUnitAndProject.Location = new System.Drawing.Point(0, 0);
             this.tvUnitAndProject.Margin = new System.Windows.Forms.Padding(4);
             this.tvUnitAndProject.Name = "tvUnitAndProject";
-            this.tvUnitAndProject.Size = new System.Drawing.Size(246, 684);
+            this.tvUnitAndProject.Size = new System.Drawing.Size(246, 653);
             this.tvUnitAndProject.TabIndex = 0;
             // 
             // splitContainer1
@@ -56,6 +59,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.tvUnitAndProject);
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer1.Panel2
             // 
@@ -72,6 +76,26 @@
             this.plContent.Size = new System.Drawing.Size(1026, 684);
             this.plContent.TabIndex = 0;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 653);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(246, 31);
+            this.panel1.TabIndex = 1;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDelete.Location = new System.Drawing.Point(0, 0);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(246, 31);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "删除选中项";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -83,6 +107,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -92,6 +117,8 @@
         private TreeViewWithSearch tvUnitAndProject;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel plContent;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnDelete;
 
 
 

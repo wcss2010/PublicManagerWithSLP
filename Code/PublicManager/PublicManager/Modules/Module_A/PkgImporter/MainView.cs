@@ -70,6 +70,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter
 
         public void updateCatalogs()
         {
+            tvUnitAndProject.ContentTreeView.Nodes.Clear();
+
             foreach (string unitS in unitList)
             {
                 TreeNode parentNode = new TreeNode(unitS);
@@ -83,6 +85,19 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 }
 
                 tvUnitAndProject.ContentTreeView.Nodes.Add(parentNode);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (tvUnitAndProject.ContentTreeView.SelectedNode != null && tvUnitAndProject.ContentTreeView.SelectedNode.Tag is Project)
+            {
+                Project proj = (Project)tvUnitAndProject.ContentTreeView.SelectedNode.Tag;
+                if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    new DBImporter().deleteProject(proj.CatalogID);
+                    updateCatalogs();
+                }
             }
         }
     }
