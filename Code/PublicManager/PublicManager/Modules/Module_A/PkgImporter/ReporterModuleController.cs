@@ -251,7 +251,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                         cells.Add(p.ProjectDirection);
 
                         //保密等级
-                        cells.Add(p.ProjectSecretLevel);
+                        cells.Add(getSecretLevelString(p.ProjectSecretLevel));
 
                         //项目负责人
                         cells.Add(p.ProjectMasterName);
@@ -347,6 +347,37 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 {
                     MessageBox.Show("对不起，导出失败！Ex:" + ex.ToString());
                 }
+            }
+        }
+
+        private object getSecretLevelString(string secretStr)
+        {
+            if (secretStr != null)
+            {
+                if (secretStr.StartsWith("公开"))
+                {
+                    return "公开";
+                }
+                else if (secretStr.StartsWith("内部"))
+                {
+                    return "内部★注意保管";
+                }
+                else if (secretStr.StartsWith("秘密"))
+                {
+                    return secretStr.Replace(MainConfig.rowFlag, "★") + "年";
+                }
+                else if (secretStr.StartsWith("机密"))
+                {
+                    return secretStr.Replace(MainConfig.rowFlag, "★") + "年";
+                }
+                else
+                {
+                    return "公开";
+                }
+            }
+            else
+            {
+                return "公开";
             }
         }
 
