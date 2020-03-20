@@ -359,9 +359,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="managers.ico" />
-    <Content Include="ReportPlugins\temp.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\export3.png" />
     <None Include="Resources\export2.png" />
     <None Include="Resources\export.png" />
