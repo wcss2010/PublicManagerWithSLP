@@ -41,6 +41,12 @@ namespace PublicManager.Modules.Editors
                         txtSecretYears.Value = decimal.Parse(tttt[1]);
                         cbxSecretLevel_SelectedIndexChanged(cbxSecretLevel, new EventArgs());
                     }
+                    else
+                    {
+                        cbxSecretLevel.SelectedItem = proj.ProjectSecretLevel;
+                        txtSecretYears.Value = 0;
+                        cbxSecretLevel_SelectedIndexChanged(cbxSecretLevel, new EventArgs());
+                    }
                 }
                 else
                 {
