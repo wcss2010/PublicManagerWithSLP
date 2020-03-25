@@ -35,6 +35,7 @@
             this.chID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcIgnoreList)).BeginInit();
@@ -101,6 +102,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.simpleButton1);
             this.panelControl2.Controls.Add(this.btnOK);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl2.Location = new System.Drawing.Point(0, 463);
@@ -117,6 +119,16 @@
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "导入";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.simpleButton1.Location = new System.Drawing.Point(2, 2);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(91, 34);
+            this.simpleButton1.TabIndex = 1;
+            this.simpleButton1.Text = "全选/全不选";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // ImporterForm
             // 
@@ -150,5 +162,6 @@
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private System.Windows.Forms.ListView lvErrorList;
         private System.Windows.Forms.ColumnHeader chID;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

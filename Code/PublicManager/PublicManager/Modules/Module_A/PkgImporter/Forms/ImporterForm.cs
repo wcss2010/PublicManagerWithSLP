@@ -417,5 +417,17 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             //刷新替换列表
             reloadReplaceList();
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            if (tlTestA.Nodes.Count >= 1)
+            {
+                bool nowValue = !tlTestA.Nodes[0].Checked;
+                foreach (TreeNode tn in tlTestA.Nodes)
+                {
+                    tn.Checked = nowValue;
+                }
+            }
+        }
     }
 }
