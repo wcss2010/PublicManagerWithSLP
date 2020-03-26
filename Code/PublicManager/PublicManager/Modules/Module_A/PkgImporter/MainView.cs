@@ -28,29 +28,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
-            DataHelper.getSubjectList();
-
-            if (MainConfig.Config.ObjectDict.ContainsKey("责任单位"))
-            {
-                try
-                {
-                    unitList = new List<string>();
-
-                    Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位"];
-                    foreach (string s in teams)
-                    {
-                        unitList.Add(s);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    System.Console.WriteLine(ex.ToString());
-                }
-            }
-
+            unitList = DataHelper.getUnitList();
             tvUnitAndProject.ContentTreeView.AfterSelect += ContentTreeView_AfterSelect;
-
             updateCatalogs();
         }
 
@@ -78,12 +57,25 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             {
                 TreeNode parentNode = new TreeNode(unitS);
 
+                Dictionary<string, TreeNode> unitParentDict = new Dictionary<string, TreeNode>();
                 List<Project> projectList = ConnectionManager.Context.table("Project").where("UnitType2='" + unitS + "'").select("*").getList<Project>(new Project());
                 foreach (Project proj in projectList)
                 {
-                    TreeNode subNode = new TreeNode(proj.ProjectName);
-                    subNode.Tag = proj;
-                    parentNode.Nodes.Add(subNode);
+                    TreeNode smallUnitNode = null;
+                    if (unitParentDict.ContainsKey(proj.UnitName))
+                    {
+                        smallUnitNode = unitParentDict[proj.UnitName];
+                    }
+                    else
+                    {
+                        unitParentDict[proj.UnitName] = new TreeNode(proj.UnitName);
+                        smallUnitNode = unitParentDict[proj.UnitName];
+                        parentNode.Nodes.Add(smallUnitNode);
+                    }
+
+                    TreeNode subObj = new TreeNode(proj.ProjectName);
+                    subObj.Tag = proj;
+                    smallUnitNode.Nodes.Add(subObj);
                 }
 
                 tvUnitAndProject.ContentTreeView.Nodes.Add(parentNode);
