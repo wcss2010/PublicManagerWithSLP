@@ -29,6 +29,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         {
             base.OnLoad(e);
 
+            DataHelper.getSubjectList();
+
             if (MainConfig.Config.ObjectDict.ContainsKey("责任单位"))
             {
                 try

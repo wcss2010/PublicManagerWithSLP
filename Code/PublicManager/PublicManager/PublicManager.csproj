@@ -196,6 +196,7 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Module_A\DataHelper.cs" />
     <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.cs">
       <SubType>Form</SubType>
     </Compile>
