@@ -35,9 +35,9 @@ namespace PublicManager.Modules.Module_A
         /// 主题方向字典
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, string[]> getSubjectList()
+        public static Dictionary<string, List<string>> getSubjectList()
         {
-            Dictionary<string, string[]> results = new Dictionary<string, string[]>();
+            Dictionary<string, List<string>> results = new Dictionary<string, List<string>>();
             if (MainConfig.Config.ObjectDict.ContainsKey("主题方向"))
             {
                 try
@@ -51,7 +51,7 @@ namespace PublicManager.Modules.Module_A
                         {
                             dddd.Add(s);
                         }
-                        results[dd.Key] = dddd.ToArray();
+                        results[dd.Key] = dddd;
                     }
                 }
                 catch (Exception ex)

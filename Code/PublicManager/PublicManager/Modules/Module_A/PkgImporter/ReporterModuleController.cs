@@ -65,7 +65,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             tc.Dock = DockStyle.Fill;
             DisplayControl.Controls.Add(tc);
 
-            tc.updateCatalogs();
+            tc.updateTreeViews();
         }
 
         public override void stop()

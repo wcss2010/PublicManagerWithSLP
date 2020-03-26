@@ -19,6 +19,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
     public partial class MainView : XtraUserControl
     {
         List<string> unitList = new List<string>();
+        private Dictionary<string, List<string>> subjectDict = new Dictionary<string, List<string>>();
 
         public MainView()
         {
@@ -29,8 +30,82 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         {
             base.OnLoad(e);
             unitList = DataHelper.getUnitList();
+            subjectDict = DataHelper.getSubjectList();
             tvUnitAndProject.ContentTreeView.AfterSelect += ContentTreeView_AfterSelect;
-            updateCatalogs();
+            tvUnitAndProject2.ContentTreeView.AfterSelect += ContentTreeView2_AfterSelect;
+            updateTreeViews();
+        }
+
+        public void updateTreeViews()
+        {
+            updateUnitTreeView();
+            updateSubjectTreeView();
+        }
+
+        private void updateSubjectTreeView()
+        {
+            #region 创建根节点
+            tvUnitAndProject2.ContentTreeView.Nodes.Clear();
+            Dictionary<string, TreeNode> nodeDict = new Dictionary<string, TreeNode>();
+            foreach (KeyValuePair<string, List<string>> kvp in subjectDict)
+            {
+                TreeNode firstNode = new TreeNode(kvp.Key);
+                nodeDict[kvp.Key] = firstNode;
+                tvUnitAndProject2.ContentTreeView.Nodes.Add(nodeDict[kvp.Key]);
+
+                foreach (string subs in kvp.Value)
+                {
+                    TreeNode secondNode = new TreeNode(subs);
+                    nodeDict[kvp.Key + "****" + subs] = secondNode;
+                    firstNode.Nodes.Add(secondNode);
+                }
+            }
+            nodeDict["其它"] = new TreeNode("其它");
+            tvUnitAndProject2.ContentTreeView.Nodes.Add(nodeDict["其它"]);
+            #endregion
+
+            List<Project> projList = ConnectionManager.Context.table("Project").select("*").getList<Project>(new Project());
+            foreach (Project proj in projList)
+            {
+                TreeNode topicNode = null;
+                string directionKey = string.Empty;
+                if (nodeDict.ContainsKey(proj.ProjectTopic))
+                {
+                    //正常主题
+                    topicNode = nodeDict[proj.ProjectTopic];
+                    directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                }
+                else
+                {
+                    //其它主题
+                    proj.ProjectTopic = "其它";
+                    topicNode = nodeDict[proj.ProjectTopic];
+                    directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                }
+
+                if (nodeDict.ContainsKey(directionKey))
+                {
+                    //有
+                    TreeNode projectNode = new TreeNode(proj.ProjectName);
+                    projectNode.Tag = proj;
+
+                    nodeDict[directionKey].Nodes.Add(projectNode);
+                }
+                else
+                {
+                    //没有
+                    TreeNode projectNode = new TreeNode(proj.ProjectName);
+                    projectNode.Tag = proj;
+
+                    nodeDict[directionKey] = new TreeNode(proj.ProjectDirection);
+                    nodeDict[directionKey].Nodes.Add(projectNode);
+                }
+            }
+        }
+
+        void ContentTreeView2_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+        
         }
 
         void ContentTreeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -78,7 +153,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
         }
 
-        public void updateCatalogs()
+        public void updateUnitTreeView()
         {
             tvUnitAndProject.ContentTreeView.Nodes.Clear();
 
@@ -119,7 +194,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     new DBImporter().deleteProject(proj.CatalogID);
-                    updateCatalogs();
+                    updateTreeViews();
                 }
             }
         }

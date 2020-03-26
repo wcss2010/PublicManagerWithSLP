@@ -175,7 +175,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                         try
                         {
                             //刷新Catalog列表
-                            mainView.updateCatalogs();
+                            mainView.updateTreeViews();
 
                             //关闭进度窗口
                             pf.Close();
