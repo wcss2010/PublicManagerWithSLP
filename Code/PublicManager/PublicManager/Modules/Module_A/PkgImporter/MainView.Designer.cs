@@ -30,30 +30,32 @@
         {
             this.tcPages = new System.Windows.Forms.TabControl();
             this.tpUnitPage = new System.Windows.Forms.TabPage();
-            this.tpSubjectAndDirectionPage = new System.Windows.Forms.TabPage();
-            this.scUnitPage2 = new System.Windows.Forms.SplitContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDelete2 = new System.Windows.Forms.Button();
-            this.plContent2 = new System.Windows.Forms.Panel();
-            this.lblHint2 = new System.Windows.Forms.Label();
             this.scUnitPage = new System.Windows.Forms.SplitContainer();
+            this.tvUnitAndProject = new PublicManager.Modules.TreeViewWithSearch();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.plContent = new System.Windows.Forms.Panel();
             this.lblHint = new System.Windows.Forms.Label();
+            this.tpSubjectAndDirectionPage = new System.Windows.Forms.TabPage();
+            this.scUnitPage2 = new System.Windows.Forms.SplitContainer();
             this.tvUnitAndProject2 = new PublicManager.Modules.TreeViewWithSearch();
-            this.tvUnitAndProject = new PublicManager.Modules.TreeViewWithSearch();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDelete2 = new System.Windows.Forms.Button();
+            this.plContent2 = new System.Windows.Forms.Panel();
+            this.lblHint2 = new System.Windows.Forms.Label();
             this.tcPages.SuspendLayout();
             this.tpUnitPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scUnitPage)).BeginInit();
+            this.scUnitPage.Panel1.SuspendLayout();
+            this.scUnitPage.Panel2.SuspendLayout();
+            this.scUnitPage.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tpSubjectAndDirectionPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scUnitPage2)).BeginInit();
             this.scUnitPage2.Panel1.SuspendLayout();
             this.scUnitPage2.Panel2.SuspendLayout();
             this.scUnitPage2.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scUnitPage)).BeginInit();
-            this.scUnitPage.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcPages
@@ -78,35 +80,11 @@
             this.tpUnitPage.Text = "单位项目列表";
             this.tpUnitPage.UseVisualStyleBackColor = true;
             // 
-            // tpSubjectAndDirectionPage
+            // scUnitPage
             // 
-            this.tpSubjectAndDirectionPage.Controls.Add(this.scUnitPage2);
-            this.tpSubjectAndDirectionPage.Location = new System.Drawing.Point(4, 23);
-            this.tpSubjectAndDirectionPage.Name = "tpSubjectAndDirectionPage";
-            this.tpSubjectAndDirectionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSubjectAndDirectionPage.Size = new System.Drawing.Size(1268, 657);
-            this.tpSubjectAndDirectionPage.TabIndex = 1;
-            this.tpSubjectAndDirectionPage.Text = "主题方向与项目列表";
-            this.tpSubjectAndDirectionPage.UseVisualStyleBackColor = true;
-            // 
-            // scUnitPage2
-            // 
-            this.scUnitPage2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scUnitPage2.Location = new System.Drawing.Point(3, 3);
-            this.scUnitPage2.Name = "scUnitPage2";
-            // 
-            // scUnitPage2.Panel1
-            // 
-            this.scUnitPage2.Panel1.Controls.Add(this.tvUnitAndProject2);
-            this.scUnitPage2.Panel1.Controls.Add(this.panel2);
-            // 
-            // scUnitPage2.Panel2
-            // 
-            this.scUnitPage2.Panel2.Controls.Add(this.plContent2);
-            this.scUnitPage2.Panel2.Controls.Add(this.lblHint2);
-            this.scUnitPage2.Size = new System.Drawing.Size(1262, 651);
-            this.scUnitPage2.SplitterDistance = 243;
-            this.scUnitPage2.TabIndex = 2;
+            this.scUnitPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scUnitPage.Location = new System.Drawing.Point(3, 3);
+            this.scUnitPage.Name = "scUnitPage";
             // 
             // scUnitPage.Panel1
             // 
@@ -119,54 +97,17 @@
             this.scUnitPage.Panel2.Controls.Add(this.lblHint);
             this.scUnitPage.Size = new System.Drawing.Size(1262, 651);
             this.scUnitPage.SplitterDistance = 243;
-            this.scUnitPage.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnDelete2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 620);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(243, 31);
-            this.panel2.TabIndex = 1;
-            // 
-            // btnDelete2
-            // 
-            this.btnDelete2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete2.Location = new System.Drawing.Point(0, 0);
-            this.btnDelete2.Name = "btnDelete2";
-            this.btnDelete2.Size = new System.Drawing.Size(243, 31);
-            this.btnDelete2.TabIndex = 0;
-            this.btnDelete2.Text = "删除选中项";
-            this.btnDelete2.UseVisualStyleBackColor = true;
-            // 
-            // plContent2
-            // 
-            this.plContent2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.plContent2.Location = new System.Drawing.Point(0, 37);
-            this.plContent2.Name = "plContent2";
-            this.plContent2.Size = new System.Drawing.Size(1015, 614);
-            this.plContent2.TabIndex = 0;
-            // 
-            // lblHint2
-            // 
-            this.lblHint2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblHint2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblHint2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHint2.Location = new System.Drawing.Point(0, 0);
-            this.lblHint2.Name = "lblHint2";
-            this.lblHint2.Size = new System.Drawing.Size(1015, 37);
-            this.lblHint2.TabIndex = 1;
-            this.lblHint2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // scUnitPage
-            // 
-            this.scUnitPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scUnitPage.Location = new System.Drawing.Point(3, 3);
-            this.scUnitPage.Name = "scUnitPage";
-            this.scUnitPage.Size = new System.Drawing.Size(1262, 651);
-            this.scUnitPage.SplitterDistance = 243;
             this.scUnitPage.TabIndex = 1;
+            // 
+            // tvUnitAndProject
+            // 
+            this.tvUnitAndProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvUnitAndProject.Font = new System.Drawing.Font("仿宋", 12F);
+            this.tvUnitAndProject.Location = new System.Drawing.Point(0, 0);
+            this.tvUnitAndProject.Margin = new System.Windows.Forms.Padding(4);
+            this.tvUnitAndProject.Name = "tvUnitAndProject";
+            this.tvUnitAndProject.Size = new System.Drawing.Size(243, 620);
+            this.tvUnitAndProject.TabIndex = 0;
             // 
             // panel1
             // 
@@ -207,6 +148,36 @@
             this.lblHint.TabIndex = 1;
             this.lblHint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tpSubjectAndDirectionPage
+            // 
+            this.tpSubjectAndDirectionPage.Controls.Add(this.scUnitPage2);
+            this.tpSubjectAndDirectionPage.Location = new System.Drawing.Point(4, 23);
+            this.tpSubjectAndDirectionPage.Name = "tpSubjectAndDirectionPage";
+            this.tpSubjectAndDirectionPage.Padding = new System.Windows.Forms.Padding(3);
+            this.tpSubjectAndDirectionPage.Size = new System.Drawing.Size(1268, 657);
+            this.tpSubjectAndDirectionPage.TabIndex = 1;
+            this.tpSubjectAndDirectionPage.Text = "主题方向与项目列表";
+            this.tpSubjectAndDirectionPage.UseVisualStyleBackColor = true;
+            // 
+            // scUnitPage2
+            // 
+            this.scUnitPage2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scUnitPage2.Location = new System.Drawing.Point(3, 3);
+            this.scUnitPage2.Name = "scUnitPage2";
+            // 
+            // scUnitPage2.Panel1
+            // 
+            this.scUnitPage2.Panel1.Controls.Add(this.tvUnitAndProject2);
+            this.scUnitPage2.Panel1.Controls.Add(this.panel2);
+            // 
+            // scUnitPage2.Panel2
+            // 
+            this.scUnitPage2.Panel2.Controls.Add(this.plContent2);
+            this.scUnitPage2.Panel2.Controls.Add(this.lblHint2);
+            this.scUnitPage2.Size = new System.Drawing.Size(1262, 651);
+            this.scUnitPage2.SplitterDistance = 243;
+            this.scUnitPage2.TabIndex = 2;
+            // 
             // tvUnitAndProject2
             // 
             this.tvUnitAndProject2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -217,15 +188,44 @@
             this.tvUnitAndProject2.Size = new System.Drawing.Size(243, 620);
             this.tvUnitAndProject2.TabIndex = 0;
             // 
-            // tvUnitAndProject
+            // panel2
             // 
-            this.tvUnitAndProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvUnitAndProject.Font = new System.Drawing.Font("仿宋", 12F);
-            this.tvUnitAndProject.Location = new System.Drawing.Point(0, 0);
-            this.tvUnitAndProject.Margin = new System.Windows.Forms.Padding(4);
-            this.tvUnitAndProject.Name = "tvUnitAndProject";
-            this.tvUnitAndProject.Size = new System.Drawing.Size(243, 620);
-            this.tvUnitAndProject.TabIndex = 0;
+            this.panel2.Controls.Add(this.btnDelete2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 620);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(243, 31);
+            this.panel2.TabIndex = 1;
+            // 
+            // btnDelete2
+            // 
+            this.btnDelete2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDelete2.Location = new System.Drawing.Point(0, 0);
+            this.btnDelete2.Name = "btnDelete2";
+            this.btnDelete2.Size = new System.Drawing.Size(243, 31);
+            this.btnDelete2.TabIndex = 0;
+            this.btnDelete2.Text = "删除选中项";
+            this.btnDelete2.UseVisualStyleBackColor = true;
+            this.btnDelete2.Click += new System.EventHandler(this.btnDelete2_Click);
+            // 
+            // plContent2
+            // 
+            this.plContent2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.plContent2.Location = new System.Drawing.Point(0, 37);
+            this.plContent2.Name = "plContent2";
+            this.plContent2.Size = new System.Drawing.Size(1015, 614);
+            this.plContent2.TabIndex = 0;
+            // 
+            // lblHint2
+            // 
+            this.lblHint2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblHint2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblHint2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHint2.Location = new System.Drawing.Point(0, 0);
+            this.lblHint2.Name = "lblHint2";
+            this.lblHint2.Size = new System.Drawing.Size(1015, 37);
+            this.lblHint2.TabIndex = 1;
+            this.lblHint2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainView
             // 
@@ -236,15 +236,17 @@
             this.Size = new System.Drawing.Size(1276, 684);
             this.tcPages.ResumeLayout(false);
             this.tpUnitPage.ResumeLayout(false);
+            this.scUnitPage.Panel1.ResumeLayout(false);
+            this.scUnitPage.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.scUnitPage)).EndInit();
+            this.scUnitPage.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.tpSubjectAndDirectionPage.ResumeLayout(false);
             this.scUnitPage2.Panel1.ResumeLayout(false);
             this.scUnitPage2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scUnitPage2)).EndInit();
             this.scUnitPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.scUnitPage)).EndInit();
-            this.scUnitPage.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

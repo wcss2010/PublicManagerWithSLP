@@ -64,6 +64,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             tvUnitAndProject2.ContentTreeView.Nodes.Add(nodeDict["其它"]);
             #endregion
 
+            #region 创建子节点
             List<Project> projList = ConnectionManager.Context.table("Project").select("*").getList<Project>(new Project());
             foreach (Project proj in projList)
             {
@@ -99,13 +100,49 @@ namespace PublicManager.Modules.Module_A.PkgImporter
 
                     nodeDict[directionKey] = new TreeNode(proj.ProjectDirection);
                     nodeDict[directionKey].Nodes.Add(projectNode);
+                    topicNode.Nodes.Add(nodeDict[directionKey]);
+                }
+            }
+            #endregion
+
+            foreach (KeyValuePair<string, TreeNode> kvp in nodeDict)
+            {
+                if (kvp.Key.Contains("****"))
+                {
+                    kvp.Value.ExpandAll();
                 }
             }
         }
 
         void ContentTreeView2_AfterSelect(object sender, TreeViewEventArgs e)
         {
-        
+            if (e.Node.Tag != null)
+            {
+                //显示项目信息
+                if (e.Node.Tag is Project)
+                {
+                    #region 显示数据
+                    plContent2.Controls.Clear();
+                    ProjectEditor pe = new ProjectEditor();
+                    pe.loadData((Project)e.Node.Tag);
+                    pe.Dock = DockStyle.Fill;
+                    plContent2.Controls.Add(pe);
+                    #endregion
+
+                    lblHint2.Text = "数量:1,金额:" + ((Project)e.Node.Tag).TotalMoney;
+                }
+            }
+            else
+            {
+                //显示数量及金额
+                int projCount = 0;
+                decimal projMoneyCount = 0;
+
+                //统计数量
+                countMoneyAndCount(e.Node, ref projCount, ref projMoneyCount);
+
+                lblHint2.Text = "数量:" + projCount + ",金额:" + projMoneyCount;
+            }
         }
 
         void ContentTreeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -191,6 +228,19 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             if (tvUnitAndProject.ContentTreeView.SelectedNode != null && tvUnitAndProject.ContentTreeView.SelectedNode.Tag is Project)
             {
                 Project proj = (Project)tvUnitAndProject.ContentTreeView.SelectedNode.Tag;
+                if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    new DBImporter().deleteProject(proj.CatalogID);
+                    updateTreeViews();
+                }
+            }
+        }
+
+        private void btnDelete2_Click(object sender, EventArgs e)
+        {
+            if (tvUnitAndProject2.ContentTreeView.SelectedNode != null && tvUnitAndProject2.ContentTreeView.SelectedNode.Tag is Project)
+            {
+                Project proj = (Project)tvUnitAndProject2.ContentTreeView.SelectedNode.Tag;
                 if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     new DBImporter().deleteProject(proj.CatalogID);
