@@ -134,6 +134,9 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
             else
             {
+                plContent.Controls.Clear();
+                plContent2.Controls.Clear();
+
                 //显示数量及金额
                 int projCount = 0;
                 decimal projMoneyCount = 0;
@@ -165,6 +168,9 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
             else
             {
+                plContent.Controls.Clear();
+                plContent2.Controls.Clear();
+
                 //显示数量及金额
                 int projCount = 0;
                 decimal projMoneyCount = 0;
