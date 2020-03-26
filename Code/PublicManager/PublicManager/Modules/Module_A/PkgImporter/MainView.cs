@@ -37,15 +37,44 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         {
             if (e.Node.Tag != null)
             {
+                //显示项目信息
                 if (e.Node.Tag is Project)
                 {
+                    #region 显示数据
                     plContent.Controls.Clear();
-
                     ProjectEditor pe = new ProjectEditor();
                     pe.loadData((Project)e.Node.Tag);
                     pe.Dock = DockStyle.Fill;
                     plContent.Controls.Add(pe);
+                    #endregion
+
+                    lblHint.Text = "数量:1,金额:" + ((Project)e.Node.Tag).TotalMoney;
                 }
+            }
+            else
+            {
+                //显示数量及金额
+                int projCount = 0;
+                decimal projMoneyCount = 0;
+
+                //统计数量
+                countMoneyAndCount(e.Node, ref projCount, ref projMoneyCount);
+
+                lblHint.Text = "数量:" + projCount + ",金额:" + projMoneyCount;
+            }
+        }
+
+        private void countMoneyAndCount(TreeNode treeNodess, ref int projCount, ref decimal projMoneyCount)
+        {
+            if (treeNodess.Tag is Project)
+            {
+                Project proj = (Project)treeNodess.Tag;
+                projCount++;
+                projMoneyCount += proj.TotalMoney;
+            }
+            foreach (TreeNode tnnnn in treeNodess.Nodes)
+            {
+                countMoneyAndCount(tnnnn, ref projCount, ref projMoneyCount);
             }
         }
 
