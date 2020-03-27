@@ -103,5 +103,32 @@ namespace PublicManager.Modules
 
             return catalog;
         }
+
+        /// <summary>
+        /// 执行一条SQL
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        protected virtual Noear.Weed.DbQuery newSql(Noear.Weed.DbContext context, string sql)
+        {
+            Noear.Weed.DbQuery query = context.sql(sql, new object[] { });
+            return query.onCommandBuilt((cmd) =>
+            {
+                cmd.tag = "table" + DateTime.Now.Ticks;
+                cmd.isLog = true;
+            });
+        }
+
+        /// <summary>
+        /// 如果值为空，则使用初始值
+        /// </summary>
+        /// <param name="val"></param>
+        /// <param name="defaultString"></param>
+        /// <returns></returns>
+        protected virtual T getValueWithDefault<T>(T val, T defaultVal)
+        {
+            return val != null ? (T)Convert.ChangeType(val.ToString(), typeof(T)) : defaultVal;
+        }
     }
 }
