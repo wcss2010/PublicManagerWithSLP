@@ -22,6 +22,11 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
         public void report(string cnt)
         {
+            if (IsDisposed)
+            {
+                return;
+            }
+
             lblContent.Text = cnt;
             Application.DoEvents();
         }
