@@ -427,7 +427,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             reloadReplaceList();
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void btnSelectAllOrUnSelectAll_Click(object sender, EventArgs e)
         {
             if (tlTestA.Nodes.Count >= 1)
             {
