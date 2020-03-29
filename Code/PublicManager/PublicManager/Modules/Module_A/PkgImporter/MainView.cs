@@ -254,5 +254,15 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 }
             }
         }
+
+        private void btnExportExcelForSubject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportExcelForUnit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

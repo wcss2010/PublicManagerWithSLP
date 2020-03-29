@@ -200,7 +200,9 @@ namespace PublicManager.Modules.Editors
             projectObj.RequestTime = txtRegisterDate.Value;
 
             //更新数据库
-            projectObj.copyTo(ConnectionManager.Context.table("Project")).where("ID='" + projectObj.ProjectID + "'").update();            
+            projectObj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + projectObj.ProjectID + "'").update();
+
+            MessageBox.Show("保存完成！");
         }
     }
 }

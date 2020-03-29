@@ -105,7 +105,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 55);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(909, 477);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(909, 479);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -637,17 +637,18 @@
             this.panel4.Controls.Add(this.btnOpenWord);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 532);
+            this.panel4.Location = new System.Drawing.Point(0, 534);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(909, 34);
+            this.panel4.Size = new System.Drawing.Size(909, 32);
             this.panel4.TabIndex = 3;
             // 
             // btnOpenWord
             // 
             this.btnOpenWord.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnOpenWord.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenWord.Location = new System.Drawing.Point(747, 0);
             this.btnOpenWord.Name = "btnOpenWord";
-            this.btnOpenWord.Size = new System.Drawing.Size(81, 34);
+            this.btnOpenWord.Size = new System.Drawing.Size(81, 32);
             this.btnOpenWord.TabIndex = 0;
             this.btnOpenWord.Text = "打开文档";
             this.btnOpenWord.UseVisualStyleBackColor = true;
@@ -656,9 +657,10 @@
             // btnSave
             // 
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSave.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(828, 0);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(81, 34);
+            this.btnSave.Size = new System.Drawing.Size(81, 32);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
