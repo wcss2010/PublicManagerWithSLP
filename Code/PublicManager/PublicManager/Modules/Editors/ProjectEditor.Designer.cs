@@ -73,6 +73,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnOpenWord = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -125,7 +126,6 @@
             this.txtProjectName.Location = new System.Drawing.Point(155, 0);
             this.txtProjectName.Margin = new System.Windows.Forms.Padding(4);
             this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.ReadOnly = true;
             this.txtProjectName.Size = new System.Drawing.Size(737, 26);
             this.txtProjectName.TabIndex = 6;
             // 
@@ -158,7 +158,6 @@
             this.txtProjectTopic.Location = new System.Drawing.Point(155, 0);
             this.txtProjectTopic.Margin = new System.Windows.Forms.Padding(4);
             this.txtProjectTopic.Name = "txtProjectTopic";
-            this.txtProjectTopic.ReadOnly = true;
             this.txtProjectTopic.Size = new System.Drawing.Size(737, 26);
             this.txtProjectTopic.TabIndex = 6;
             // 
@@ -196,7 +195,6 @@
             this.txtProjectDirection.Location = new System.Drawing.Point(155, 0);
             this.txtProjectDirection.Margin = new System.Windows.Forms.Padding(4);
             this.txtProjectDirection.Name = "txtProjectDirection";
-            this.txtProjectDirection.ReadOnly = true;
             this.txtProjectDirection.Size = new System.Drawing.Size(386, 26);
             this.txtProjectDirection.TabIndex = 6;
             // 
@@ -229,7 +227,6 @@
             this.cbxSecretLevel.Dock = System.Windows.Forms.DockStyle.Right;
             this.cbxSecretLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxSecretLevel.DropDownWidth = 121;
-            this.cbxSecretLevel.Enabled = false;
             this.cbxSecretLevel.Font = new System.Drawing.Font("仿宋", 12F);
             this.cbxSecretLevel.Items.AddRange(new object[] {
             "公开",
@@ -265,7 +262,6 @@
             0,
             0});
             this.txtSecretYears.Name = "txtSecretYears";
-            this.txtSecretYears.ReadOnly = true;
             this.txtSecretYears.Size = new System.Drawing.Size(59, 26);
             this.txtSecretYears.TabIndex = 13;
             // 
@@ -298,7 +294,6 @@
             this.txtDutyUnitName.Location = new System.Drawing.Point(155, 0);
             this.txtDutyUnitName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDutyUnitName.Name = "txtDutyUnitName";
-            this.txtDutyUnitName.ReadOnly = true;
             this.txtDutyUnitName.Size = new System.Drawing.Size(737, 26);
             this.txtDutyUnitName.TabIndex = 6;
             // 
@@ -331,7 +326,6 @@
             this.txtDutyUnitNormalName.Location = new System.Drawing.Point(155, 0);
             this.txtDutyUnitNormalName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDutyUnitNormalName.Name = "txtDutyUnitNormalName";
-            this.txtDutyUnitNormalName.ReadOnly = true;
             this.txtDutyUnitNormalName.Size = new System.Drawing.Size(737, 26);
             this.txtDutyUnitNormalName.TabIndex = 6;
             // 
@@ -366,7 +360,6 @@
             this.txtDutyUnitAddress.Location = new System.Drawing.Point(155, 0);
             this.txtDutyUnitAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtDutyUnitAddress.Name = "txtDutyUnitAddress";
-            this.txtDutyUnitAddress.ReadOnly = true;
             this.txtDutyUnitAddress.Size = new System.Drawing.Size(373, 26);
             this.txtDutyUnitAddress.TabIndex = 17;
             // 
@@ -398,7 +391,6 @@
             // 
             this.cbxDutyUnit2.Dock = System.Windows.Forms.DockStyle.Right;
             this.cbxDutyUnit2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxDutyUnit2.Enabled = false;
             this.cbxDutyUnit2.Font = new System.Drawing.Font("仿宋", 12F);
             this.cbxDutyUnit2.FormattingEnabled = true;
             this.cbxDutyUnit2.Items.AddRange(new object[] {
@@ -455,7 +447,6 @@
             this.txtDutyUnitContactJob.Location = new System.Drawing.Point(725, 0);
             this.txtDutyUnitContactJob.Margin = new System.Windows.Forms.Padding(4);
             this.txtDutyUnitContactJob.Name = "txtDutyUnitContactJob";
-            this.txtDutyUnitContactJob.ReadOnly = true;
             this.txtDutyUnitContactJob.Size = new System.Drawing.Size(167, 26);
             this.txtDutyUnitContactJob.TabIndex = 37;
             // 
@@ -478,7 +469,6 @@
             this.txtDutyUnitContactTelephone.Location = new System.Drawing.Point(421, 0);
             this.txtDutyUnitContactTelephone.Margin = new System.Windows.Forms.Padding(4);
             this.txtDutyUnitContactTelephone.Name = "txtDutyUnitContactTelephone";
-            this.txtDutyUnitContactTelephone.ReadOnly = true;
             this.txtDutyUnitContactTelephone.Size = new System.Drawing.Size(128, 26);
             this.txtDutyUnitContactTelephone.TabIndex = 16;
             // 
@@ -501,7 +491,6 @@
             this.txtDutyUnitContact.Location = new System.Drawing.Point(155, 0);
             this.txtDutyUnitContact.Margin = new System.Windows.Forms.Padding(4);
             this.txtDutyUnitContact.Name = "txtDutyUnitContact";
-            this.txtDutyUnitContact.ReadOnly = true;
             this.txtDutyUnitContact.Size = new System.Drawing.Size(92, 26);
             this.txtDutyUnitContact.TabIndex = 15;
             // 
@@ -537,7 +526,6 @@
             // 
             this.txtRegisterDate.CustomFormat = "yyyy年MM月dd日";
             this.txtRegisterDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRegisterDate.Enabled = false;
             this.txtRegisterDate.Font = new System.Drawing.Font("仿宋", 12F);
             this.txtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtRegisterDate.Location = new System.Drawing.Point(721, 0);
@@ -569,7 +557,6 @@
             0,
             0});
             this.txtTotalTimes.Name = "txtTotalTimes";
-            this.txtTotalTimes.ReadOnly = true;
             this.txtTotalTimes.Size = new System.Drawing.Size(83, 26);
             this.txtTotalTimes.TabIndex = 10;
             // 
@@ -596,9 +583,9 @@
             0,
             0});
             this.txtTotalMoneys.Name = "txtTotalMoneys";
-            this.txtTotalMoneys.ReadOnly = true;
             this.txtTotalMoneys.Size = new System.Drawing.Size(87, 26);
             this.txtTotalMoneys.TabIndex = 10;
+            this.txtTotalMoneys.ValueChanged += new System.EventHandler(this.txtTotalMoneys_ValueChanged);
             // 
             // label14
             // 
@@ -619,7 +606,6 @@
             this.txtProjectMasterName.Location = new System.Drawing.Point(155, 0);
             this.txtProjectMasterName.Margin = new System.Windows.Forms.Padding(4);
             this.txtProjectMasterName.Name = "txtProjectMasterName";
-            this.txtProjectMasterName.ReadOnly = true;
             this.txtProjectMasterName.Size = new System.Drawing.Size(92, 26);
             this.txtProjectMasterName.TabIndex = 35;
             // 
@@ -649,6 +635,7 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.btnOpenWord);
+            this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 532);
             this.panel4.Name = "panel4";
@@ -658,13 +645,24 @@
             // btnOpenWord
             // 
             this.btnOpenWord.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnOpenWord.Location = new System.Drawing.Point(828, 0);
+            this.btnOpenWord.Location = new System.Drawing.Point(747, 0);
             this.btnOpenWord.Name = "btnOpenWord";
             this.btnOpenWord.Size = new System.Drawing.Size(81, 34);
             this.btnOpenWord.TabIndex = 0;
             this.btnOpenWord.Text = "打开文档";
             this.btnOpenWord.UseVisualStyleBackColor = true;
             this.btnOpenWord.Click += new System.EventHandler(this.btnOpenWord_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSave.Location = new System.Drawing.Point(828, 0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(81, 34);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = "保存";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // ProjectEditor
             // 
@@ -748,6 +746,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnOpenWord;
+        private System.Windows.Forms.Button btnSave;
 
     }
 }
