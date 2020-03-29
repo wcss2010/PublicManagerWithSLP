@@ -385,5 +385,10 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         {
             return sourceAddress != null ? sourceAddress.Replace(MainConfig.cellFlag, string.Empty) : string.Empty;
         }
+
+        private void btnExportWordAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }

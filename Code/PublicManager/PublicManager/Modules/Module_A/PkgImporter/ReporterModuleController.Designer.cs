@@ -43,6 +43,8 @@
             this.rpgExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
+            this.rpgWordExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnExportWordAll = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,9 +59,10 @@
             this.btnImportWithSelected,
             this.btnOpenMasterDir,
             this.btnOpenDecompressDir,
-            this.btnExportTo});
+            this.btnExportTo,
+            this.btnExportWordAll});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 10;
+            this.rcTopBar.MaxItemId = 11;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -127,7 +130,8 @@
             this.rpgDir,
             this.rpgElse,
             this.rpbLoad,
-            this.rpgExport});
+            this.rpgExport,
+            this.rpgWordExport});
             this.rpMaster.Name = "rpMaster";
             this.rpMaster.Text = "战略先导计划书";
             // 
@@ -162,6 +166,20 @@
             // 
             this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
             // 
+            // rpgWordExport
+            // 
+            this.rpgWordExport.ItemLinks.Add(this.btnExportWordAll);
+            this.rpgWordExport.Name = "rpgWordExport";
+            this.rpgWordExport.Text = "Word汇总";
+            // 
+            // btnExportWordAll
+            // 
+            this.btnExportWordAll.Caption = "导出所有Word文档";
+            this.btnExportWordAll.Id = 10;
+            this.btnExportWordAll.LargeGlyph = global::PublicManager.Properties.Resources.export3;
+            this.btnExportWordAll.Name = "btnExportWordAll";
+            this.btnExportWordAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportWordAll_ItemClick);
+            // 
             // ReporterModuleController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -192,5 +210,7 @@
         private DevExpress.XtraBars.BarButtonItem btnOpenDecompressDir;
         private DevExpress.XtraBars.BarButtonItem btnExportTo;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgExport;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgWordExport;
+        private DevExpress.XtraBars.BarButtonItem btnExportWordAll;
     }
 }
