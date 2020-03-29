@@ -38,7 +38,7 @@
             this.lblTitle.Font = new System.Drawing.Font("宋体", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(556, 35);
+            this.lblTitle.Size = new System.Drawing.Size(581, 35);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "正在搜索数据包，请等待......";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -50,7 +50,7 @@
             this.lblContent.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblContent.Location = new System.Drawing.Point(0, 35);
             this.lblContent.Name = "lblContent";
-            this.lblContent.Size = new System.Drawing.Size(556, 111);
+            this.lblContent.Size = new System.Drawing.Size(581, 122);
             this.lblContent.TabIndex = 1;
             this.lblContent.Text = "......";
             this.lblContent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -59,7 +59,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 146);
+            this.ClientSize = new System.Drawing.Size(581, 157);
             this.ControlBox = false;
             this.Controls.Add(this.lblContent);
             this.Controls.Add(this.lblTitle);
