@@ -350,7 +350,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
         }
 
-        private object getSecretLevelString(string secretStr)
+        public static object getSecretLevelString(string secretStr)
         {
             if (secretStr != null)
             {
@@ -381,7 +381,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
         }
 
-        private object getAddressString(string sourceAddress)
+        public static object getAddressString(string sourceAddress)
         {
             return sourceAddress != null ? sourceAddress.Replace(MainConfig.cellFlag, string.Empty) : string.Empty;
         }

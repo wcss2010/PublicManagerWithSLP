@@ -255,14 +255,184 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
         }
 
-        private void btnExportExcelForSubject_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnExportExcelForUnit_Click(object sender, EventArgs e)
         {
+            //基本数据
+            DataTable dtBase = new DataTable();
+            #region 输出基本数据
+            //生成列
+            dtBase.Columns.Add("项目名称", typeof(string));
+            dtBase.Columns.Add("项目主题", typeof(string));
+            dtBase.Columns.Add("项目方向", typeof(string));
+            dtBase.Columns.Add("保密等级", typeof(string));
+            dtBase.Columns.Add("项目负责人", typeof(string));
+            dtBase.Columns.Add("项目负责人_性别", typeof(string));
+            dtBase.Columns.Add("项目负责人_出生年月", typeof(string));
+            dtBase.Columns.Add("项目负责人_职务职称", typeof(string));
+            dtBase.Columns.Add("项目负责人_座机", typeof(string));
+            dtBase.Columns.Add("项目负责人_手机", typeof(string));
+            dtBase.Columns.Add("项目组_联系人", typeof(string));
+            dtBase.Columns.Add("项目组联系人性  别", typeof(string));
+            dtBase.Columns.Add("项目组联系人出生年月", typeof(string));
+            dtBase.Columns.Add("项目组联系人职务职称", typeof(string));
+            dtBase.Columns.Add("项目组联系人座  机", typeof(string));
+            dtBase.Columns.Add("项目组联系人手  机", typeof(string));
+            dtBase.Columns.Add("项目组联系人通信地址", typeof(string));
+            dtBase.Columns.Add("责任单位名称", typeof(string));
+            dtBase.Columns.Add("责任单位常用名称", typeof(string));
+            dtBase.Columns.Add("责任单位通信地址", typeof(string));
+            dtBase.Columns.Add("责任单位所属大单位", typeof(string));
+            dtBase.Columns.Add("责任单位联系人", typeof(string));
+            dtBase.Columns.Add("责任单位联系人职务", typeof(string));
+            dtBase.Columns.Add("责任单位联系人电话", typeof(string));
+            dtBase.Columns.Add("总时间", typeof(string));
+            dtBase.Columns.Add("总经费", typeof(string));
+            dtBase.Columns.Add("申报日期", typeof(string));
+            #endregion
 
+            if (tvUnitAndProject.ContentTreeView.SelectedNode != null)
+            {
+                printProjectNode(dtBase, tvUnitAndProject.ContentTreeView.SelectedNode);
+            }
+        }
+
+        private void printProjectNode(DataTable dtBase, TreeNode treeNode)
+        {
+            foreach (TreeNode suba in treeNode.Nodes)
+            {
+                printProjectNode(dtBase, suba);
+            }
+
+            if (treeNode.Tag is Project)
+            {
+                Project p = (Project)treeNode.Tag;
+
+                List<object> cells = new List<object>();
+
+                //项目名称
+                cells.Add(p.ProjectName);
+
+                //项目主题
+                cells.Add(p.ProjectTopic);
+
+                //项目方向
+                cells.Add(p.ProjectDirection);
+
+                //保密等级
+                cells.Add(ReporterModuleController.getSecretLevelString(p.ProjectSecretLevel));
+
+                //项目负责人
+                cells.Add(p.ProjectMasterName);
+
+                //项目负责人性  别
+                cells.Add(p.ProjectMasterSex);
+
+                //项目负责人出生年月
+                cells.Add((p.ProjectMasterBirthday != null ? p.ProjectMasterBirthday : DateTime.Now).ToString("yyyy年MM月dd日"));
+
+                //项目负责人职务职称
+                cells.Add(p.ProjectMasterJob);
+
+                //项目负责人座  机
+                cells.Add(p.ProjectMasterTelephone);
+
+                //项目负责人手  机
+                cells.Add(p.ProjectMasterMobilephone);
+
+                //项目组联系人
+                cells.Add(p.TeamContactName);
+
+                //项目组联系人性  别
+                cells.Add(p.TeamContactSex);
+
+                //项目组联系人出生年月
+                cells.Add((p.TeamContactBirthday != null ? p.TeamContactBirthday : DateTime.Now).ToString("yyyy年MM月dd日"));
+
+                //项目组联系人职务职称
+                cells.Add(p.TeamContactJob);
+
+                //项目组联系人座  机
+                cells.Add(p.TeamContactTelephone);
+
+                //项目组联系人手  机
+                cells.Add(p.TeamContactMobilephone);
+
+                //项目组联系人通信地址
+                cells.Add(ReporterModuleController.getAddressString(p.TeamContactAddress));
+
+                //责任单位名称
+                cells.Add(p.UnitName);
+
+                //责任单位常用名称
+                cells.Add(p.UnitRealName);
+
+                //责任单位通信地址
+                cells.Add(ReporterModuleController.getAddressString(p.UnitAddress));
+
+                //责任单位所属大单位
+                cells.Add(p.UnitType2);
+
+                //责任单位联系人
+                cells.Add(p.UnitContact);
+
+                //责任单位联系人职务
+                cells.Add(p.UnitContactJob);
+
+                //责任单位联系人电话
+                cells.Add(p.UnitContactPhone);
+
+                //总时间
+                cells.Add(p.TotalTime);
+
+                //总经费
+                cells.Add(p.TotalMoney);
+
+                //申报日期
+                cells.Add((p.RequestTime != null ? p.RequestTime : DateTime.Now).ToString("yyyy年MM月dd日"));
+
+                dtBase.Rows.Add(cells.ToArray());
+            }
+        }
+
+        private void btnExportExcelForSubject_Click(object sender, EventArgs e)
+        {
+            //基本数据
+            DataTable dtBase = new DataTable();
+            #region 输出基本数据
+            //生成列
+            dtBase.Columns.Add("项目名称", typeof(string));
+            dtBase.Columns.Add("项目主题", typeof(string));
+            dtBase.Columns.Add("项目方向", typeof(string));
+            dtBase.Columns.Add("保密等级", typeof(string));
+            dtBase.Columns.Add("项目负责人", typeof(string));
+            dtBase.Columns.Add("项目负责人_性别", typeof(string));
+            dtBase.Columns.Add("项目负责人_出生年月", typeof(string));
+            dtBase.Columns.Add("项目负责人_职务职称", typeof(string));
+            dtBase.Columns.Add("项目负责人_座机", typeof(string));
+            dtBase.Columns.Add("项目负责人_手机", typeof(string));
+            dtBase.Columns.Add("项目组_联系人", typeof(string));
+            dtBase.Columns.Add("项目组联系人性  别", typeof(string));
+            dtBase.Columns.Add("项目组联系人出生年月", typeof(string));
+            dtBase.Columns.Add("项目组联系人职务职称", typeof(string));
+            dtBase.Columns.Add("项目组联系人座  机", typeof(string));
+            dtBase.Columns.Add("项目组联系人手  机", typeof(string));
+            dtBase.Columns.Add("项目组联系人通信地址", typeof(string));
+            dtBase.Columns.Add("责任单位名称", typeof(string));
+            dtBase.Columns.Add("责任单位常用名称", typeof(string));
+            dtBase.Columns.Add("责任单位通信地址", typeof(string));
+            dtBase.Columns.Add("责任单位所属大单位", typeof(string));
+            dtBase.Columns.Add("责任单位联系人", typeof(string));
+            dtBase.Columns.Add("责任单位联系人职务", typeof(string));
+            dtBase.Columns.Add("责任单位联系人电话", typeof(string));
+            dtBase.Columns.Add("总时间", typeof(string));
+            dtBase.Columns.Add("总经费", typeof(string));
+            dtBase.Columns.Add("申报日期", typeof(string));
+            #endregion
+
+            if (tvUnitAndProject2.ContentTreeView.SelectedNode != null)
+            {
+                printProjectNode(dtBase, tvUnitAndProject2.ContentTreeView.SelectedNode);
+            }
         }
     }
 }
