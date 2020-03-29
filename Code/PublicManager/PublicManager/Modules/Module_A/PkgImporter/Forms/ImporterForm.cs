@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraTreeList.Nodes;
 using PublicManager.DB;
+using PublicManager.DB.Entitys;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 {
-    public partial class ImporterForm : Form
+    public partial class ImporterForm : RibbonForm
     {
         /// <summary>
         /// 是否需要更新替换字典在改变替换列表中项目状态时
@@ -29,10 +30,13 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         private MainView mainView;
         private LoadingForm lf;
         private bool isImportAll;
+        private SortedList<string, Catalog> catalogDict = new SortedList<string, Catalog>();
 
         public ImporterForm(MainView mv, bool isAll, string sourceDir, string destDir)
         {
             InitializeComponent();
+
+            initCatalogList();
 
             isImportAll = isAll;
             totalDir = sourceDir;
@@ -51,6 +55,19 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             finally
             {
                 lf.Close();
+            }
+        }
+
+        private void initCatalogList()
+        {
+            tlAll.Nodes.Clear();
+            List<Catalog> catalogList = ConnectionManager.Context.table("Catalog").select("*").getList<Catalog>(new Catalog());
+            foreach (Catalog catalogObj in catalogList)
+            {
+                catalogDict[catalogObj.CatalogNumber] = catalogObj;
+
+                TreeNode tn = new TreeNode(catalogObj.CatalogName);
+                tlAll.Nodes.Add(tn);
             }
         }
 
@@ -285,17 +302,14 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             isNeedUpdateDict = false;
 
             //清空替换列表
-            lvErrorList.Items.Clear();
+            tlErrorList.Nodes.Clear();
             //显示替换列表数
             foreach (KeyValuePair<string, bool> kvp in replaceDict)
             {
                 //列表项
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = kvp.Key;
-                lvi.Checked = kvp.Value;
-
-                //向替换列表添加
-                lvErrorList.Items.Add(lvi);
+                TreeNode tn = new TreeNode(kvp.Key);
+                tn.Checked = true;
+                tlErrorList.Nodes.Add(tn);
             }
 
             //解锁替换列表点击CheckBox时更新替换字典的功能
@@ -337,10 +351,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 //读取目录名称中的项目编号
                 string catalogNumber = selected.Text;
 
-                //根据项目编号查询项目数量
-                long projectCount = ConnectionManager.Context.table("Catalog").where("catalognumber='" + catalogNumber + "'").select("count(*)").getValue<long>(0);
                 //判断这个项目是否被导入过
-                if (projectCount >= 1)
+                if (catalogDict.ContainsKey(catalogNumber))
                 {
                     replaceDict[catalogNumber] = true;
                 }
@@ -348,18 +360,6 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
             //刷新替换列表
             reloadReplaceList();
-        }
-
-        private void lvErrorList_ItemChecked(object sender, ItemCheckedEventArgs e)
-        {
-            //改变选择状态
-            if (isNeedUpdateDict)
-            {
-                if (replaceDict.ContainsKey(e.Item.Text))
-                {
-                    replaceDict[e.Item.Text] = e.Item.Checked;
-                }
-            }
         }
 
         /// <summary>
@@ -414,10 +414,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 //读取目录名称中的项目编号
                 string catalogNumber = selected.Text;
 
-                //根据项目编号查询项目数量
-                long projectCount = ConnectionManager.Context.table("Catalog").where("catalognumber='" + catalogNumber + "'").select("count(*)").getValue<long>(0);
                 //判断这个项目是否被导入过
-                if (projectCount >= 1)
+                if (catalogDict.ContainsKey(catalogNumber))
                 {
                     replaceDict[catalogNumber] = true;
                 }
