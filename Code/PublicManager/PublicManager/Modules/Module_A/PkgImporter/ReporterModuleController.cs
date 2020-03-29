@@ -388,7 +388,38 @@ namespace PublicManager.Modules.Module_A.PkgImporter
 
         private void btnExportWordAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (MainConfig.Config.StringDict.ContainsKey("先导解压目录"))
+            {
+                string decompressDir = MainConfig.Config.StringDict["先导解压目录"];
 
+                if (fbdFolderSelect.ShowDialog() == DialogResult.OK)
+                {
+                    List<Catalog> catalogList = ConnectionManager.Context.table("Catalog").select("*").getList<Catalog>(new Catalog());
+                    //生成内容
+                    foreach (Catalog c in catalogList)
+                    {
+                        //项目信息
+                        Project p = ConnectionManager.Context.table("Project").where("CatalogID = '" + c.CatalogID + "'").select("*").getItem<Project>(new Project());
+
+                        string wordFile = Path.Combine(decompressDir, Path.Combine(c.CatalogNumber, "战略先导计划.doc"));
+                        if (File.Exists(wordFile))
+                        {
+                            try
+                            {
+                                string destWordFile = Path.Combine(fbdFolderSelect.SelectedPath, p.ProjectName + "-" + p.UnitName + "-" + p.ProjectMasterName + ".doc");
+
+                                File.Copy(wordFile, destWordFile, true);
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Console.WriteLine(ex.ToString());
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("导出完成！");
+                }
+            }
         }
     }
 }
