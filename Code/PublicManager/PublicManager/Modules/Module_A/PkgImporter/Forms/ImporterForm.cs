@@ -28,11 +28,13 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         private string totalDir;
         private MainView mainView;
         private LoadingForm lf;
+        private bool isImportAll;
 
-        public ImporterForm(MainView mv,bool isImportAll, string sourceDir, string destDir)
+        public ImporterForm(MainView mv, bool isAll, string sourceDir, string destDir)
         {
             InitializeComponent();
 
+            isImportAll = isAll;
             totalDir = sourceDir;
             decompressDir = destDir;
             mainView = mv;
@@ -41,19 +43,14 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             lf.Show();
             Application.DoEvents();
 
-            //刷新子目录列表
-            getFileTree(sourceDir);
-
-            lf.Close();
-
-            //判断是否为全部导入，如果是则选择所有子目录
-            if (isImportAll)
+            try
             {
-                //选择所有子目录
-                foreach (TreeNode tn in tlTestA.Nodes)
-                {
-                    tn.Checked = true;
-                }
+                //刷新子目录列表
+                getFileTree(sourceDir);
+            }
+            finally
+            {
+                lf.Close();
             }
         }
 
@@ -69,11 +66,14 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     {
                         if (ZipTool.isFileInZip(f, new string[] { "static.db" }))
                         {
+                            //报告进度
                             lf.reportPKG(Path.GetFileNameWithoutExtension(f));
 
+                            //创建节点
                             TreeNode tn = new TreeNode();
                             tn.Text = Path.GetFileNameWithoutExtension(f);
                             tn.Name = f;
+                            tn.Checked = isImportAll;
                             tlTestA.Nodes.Add(tn);
                         }
                     }
