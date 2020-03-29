@@ -27,6 +27,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         private string decompressDir;
         private string totalDir;
         private MainView mainView;
+        private LoadingForm lf;
 
         public ImporterForm(MainView mv,bool isImportAll, string sourceDir, string destDir)
         {
@@ -36,8 +37,14 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             decompressDir = destDir;
             mainView = mv;
 
+            lf = new LoadingForm("正在加载申报数据包......");
+            lf.Show();
+            Application.DoEvents();
+
             //刷新子目录列表
             getFileTree(sourceDir);
+
+            lf.Close();
 
             //判断是否为全部导入，如果是则选择所有子目录
             if (isImportAll)
@@ -62,6 +69,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     {
                         if (ZipTool.isFileInZip(f, new string[] { "static.db" }))
                         {
+                            lf.reportPKG(Path.GetFileNameWithoutExtension(f));
+
                             TreeNode tn = new TreeNode();
                             tn.Text = Path.GetFileNameWithoutExtension(f);
                             tn.Name = f;
