@@ -293,6 +293,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             if (tvUnitAndProject.ContentTreeView.SelectedNode != null)
             {
                 printProjectNode(dtBase, tvUnitAndProject.ContentTreeView.SelectedNode);
+                ExcelHelper.ExportToExcel(dtBase, "项目列表");
             }
         }
 
@@ -432,6 +433,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             if (tvUnitAndProject2.ContentTreeView.SelectedNode != null)
             {
                 printProjectNode(dtBase, tvUnitAndProject2.ContentTreeView.SelectedNode);
+                ExcelHelper.ExportToExcel(dtBase, "项目列表");
             }
         }
     }
