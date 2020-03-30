@@ -436,5 +436,20 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 }
             }
         }
+
+        private void btnSelectNotInList_Click(object sender, EventArgs e)
+        {
+            foreach (TreeNode tn in tlTestA.Nodes)
+            {
+                if (catalogDict.ContainsKey(tn.Text))
+                {
+                    tn.Checked = false;
+                }
+                else
+                {
+                    tn.Checked = true;
+                }
+            }
+        }
     }
 }

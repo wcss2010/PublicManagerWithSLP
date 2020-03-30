@@ -48,6 +48,7 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.bsiBottomText = new DevExpress.XtraBars.BarStaticItem();
+            this.btnSelectNotInList = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -142,6 +143,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.btnSelectNotInList);
             this.panelControl2.Controls.Add(this.btnSelectAllOrUnSelectAll);
             this.panelControl2.Controls.Add(this.btnOK);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -257,6 +259,16 @@
             this.bsiBottomText.Name = "bsiBottomText";
             this.bsiBottomText.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
+            // btnSelectNotInList
+            // 
+            this.btnSelectNotInList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSelectNotInList.Location = new System.Drawing.Point(108, 2);
+            this.btnSelectNotInList.Name = "btnSelectNotInList";
+            this.btnSelectNotInList.Size = new System.Drawing.Size(106, 40);
+            this.btnSelectNotInList.TabIndex = 2;
+            this.btnSelectNotInList.Text = "增加选择";
+            this.btnSelectNotInList.Click += new System.EventHandler(this.btnSelectNotInList_Click);
+            // 
             // ImporterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -310,5 +322,6 @@
         private System.Windows.Forms.TreeView tlErrorList;
         private System.Windows.Forms.TreeView tlAll;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private DevExpress.XtraEditors.SimpleButton btnSelectNotInList;
     }
 }
