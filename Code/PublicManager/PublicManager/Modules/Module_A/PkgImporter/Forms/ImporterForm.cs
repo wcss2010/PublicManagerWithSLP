@@ -81,7 +81,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 {
                     if (f.EndsWith(".zip"))
                     {
-                        if (ZipTool.isFileInZip(f, new string[] { "static.db" }))
+                        if (isFileInZip(f))
                         {
                             //报告进度
                             lf.reportPKG(Path.GetFileNameWithoutExtension(f));
@@ -107,6 +107,19 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 }
             }
             catch (Exception ex) { }
+        }
+
+        private bool isFileInZip(string f)
+        {
+            try
+            {
+                List<string> sss = ZipTool.getFileListInZip(f);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+            }
+            return false;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
