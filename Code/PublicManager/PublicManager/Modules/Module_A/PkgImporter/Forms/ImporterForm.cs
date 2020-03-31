@@ -139,24 +139,25 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 {
                     if (fileList.Count >= 2)
                     {
-                        int rightCountt = 2;
+                        bool isHaveFiles = false;
+                        bool isHaveStaticDB = false;
                         foreach (string ss in fileList)
                         {
                             if (ss != null)
                             {
                                 if (ss.Trim().ToLower().StartsWith("files/"))
                                 {
-                                    rightCountt--;
+                                    isHaveFiles = true;
                                 }
                                 else if (ss.Trim().ToLower().Equals("static.db"))
                                 {
-                                    rightCountt--;
+                                    isHaveStaticDB = true;
                                 }
                             }
                         }
 
                         //判断文件或目录是否存在
-                        rightPkg = rightCountt == 0;
+                        rightPkg = isHaveFiles && isHaveStaticDB;
                     }
                     else
                     {
