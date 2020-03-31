@@ -239,47 +239,51 @@ namespace PublicManager
         }
 
         /// <summary>
-        /// 检查压缩包内是否包括指定文件
+        /// 获得文件与目录列表
         /// </summary>
         /// <param name="zipFile"></param>
-        /// <param name="subFiles"></param>
         /// <returns></returns>
-        public static bool isFileInZip(string zipFile, string[] subFiles)
+        public static List<string> getFileListInZip(string zipFile)
         {
-            bool isFileIn = false;
-
-            if (subFiles != null && File.Exists(zipFile))
+            List<string> results = new List<string>();
+            if (File.Exists(zipFile))
             {
-                ZipFile zfe = new ZipFile(zipFile);
+                ZipFile zfObj = null;
                 try
                 {
-                    foreach (ZipEntry theEntry in zfe)
+                    zfObj = new ZipFile(zipFile);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("对不起，压缩文件(" + zipFile + ")读取失败！Ex:" + ex.ToString());
+                }
+
+                try
+                {
+                    foreach (ZipEntry theEntry in zfObj)
                     {
                         if (theEntry.IsFile)
                         {
-                            foreach (string subF in subFiles)
-                            {
-                                if (theEntry.Name != null && theEntry.Name.EndsWith(subF))
-                                {
-                                    isFileIn = true;
-                                    break;
-                                }
-                            }
-
-                            if (isFileIn)
-                            {
-                                break;
-                            }
+                            //文件
+                            results.Add(theEntry.Name);
+                        }
+                        else if (theEntry.IsDirectory)
+                        {
+                            //目录
+                            results.Add(theEntry.Name);
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    throw new Exception("对不起，压缩文件(" + zipFile + ")读取失败！Ex:" + ex.ToString());
+                }
                 finally
                 {
-                    zfe.Close();
+                    zfObj.Close();
                 }
             }
-
-            return isFileIn;
+            return results;
         }
     }
 }
