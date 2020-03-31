@@ -145,7 +145,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                         {
                             if (ss != null)
                             {
-                                if (ss.Trim().ToLower().StartsWith("files/"))
+                                if (ss.Trim().ToLower().StartsWith("files/") || ss.Trim().ToLower().StartsWith("files\\"))
                                 {
                                     isHaveFiles = true;
                                 }
