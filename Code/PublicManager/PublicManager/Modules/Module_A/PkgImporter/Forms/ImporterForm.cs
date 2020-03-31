@@ -130,7 +130,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             catch (Exception ex)
             {
                 rightPkg = false;
-                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")不是Zip包或已损环！请检查！");
+                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")不是Zip包或已损坏！请检查！");
             }
 
             if (rightPkg)
@@ -158,6 +158,20 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
                         //判断文件或目录是否存在
                         rightPkg = isHaveFiles && isHaveStaticDB;
+
+                        if (rightPkg == false)
+                        {
+                            if (isHaveFiles == false)
+                            {
+                                rightPkg = false;
+                                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")内部的根目录下不存在Files目录！请检查！");
+                            }
+                            if (isHaveStaticDB == false)
+                            {
+                                rightPkg = false;
+                                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")内部的根目录下不存在Static.db文件！请检查！");
+                            }
+                        }
                     }
                     else
                     {
