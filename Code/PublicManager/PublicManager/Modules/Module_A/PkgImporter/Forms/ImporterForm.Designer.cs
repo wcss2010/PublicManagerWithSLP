@@ -36,6 +36,7 @@
             this.gcIgnoreList = new DevExpress.XtraEditors.GroupControl();
             this.tlErrorList = new System.Windows.Forms.TreeView();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.btnSelectNotInList = new DevExpress.XtraEditors.SimpleButton();
             this.btnSelectAllOrUnSelectAll = new DevExpress.XtraEditors.SimpleButton();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.rcTopBar = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -48,7 +49,6 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.bsiBottomText = new DevExpress.XtraBars.BarStaticItem();
-            this.btnSelectNotInList = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -151,6 +151,16 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1103, 44);
             this.panelControl2.TabIndex = 5;
+            // 
+            // btnSelectNotInList
+            // 
+            this.btnSelectNotInList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSelectNotInList.Location = new System.Drawing.Point(108, 2);
+            this.btnSelectNotInList.Name = "btnSelectNotInList";
+            this.btnSelectNotInList.Size = new System.Drawing.Size(106, 40);
+            this.btnSelectNotInList.TabIndex = 2;
+            this.btnSelectNotInList.Text = "增量选择";
+            this.btnSelectNotInList.Click += new System.EventHandler(this.btnSelectNotInList_Click);
             // 
             // btnSelectAllOrUnSelectAll
             // 
@@ -258,16 +268,6 @@
             this.bsiBottomText.Id = 12;
             this.bsiBottomText.Name = "bsiBottomText";
             this.bsiBottomText.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // btnSelectNotInList
-            // 
-            this.btnSelectNotInList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSelectNotInList.Location = new System.Drawing.Point(108, 2);
-            this.btnSelectNotInList.Name = "btnSelectNotInList";
-            this.btnSelectNotInList.Size = new System.Drawing.Size(106, 40);
-            this.btnSelectNotInList.TabIndex = 2;
-            this.btnSelectNotInList.Text = "增加选择";
-            this.btnSelectNotInList.Click += new System.EventHandler(this.btnSelectNotInList_Click);
             // 
             // ImporterForm
             // 
