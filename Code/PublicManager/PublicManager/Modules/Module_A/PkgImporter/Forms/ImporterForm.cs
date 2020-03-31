@@ -283,9 +283,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                         index++;
                         //申报文件名
                         string zipName = importFileNameList[index].ToString();
-                        List<string> messageList = null;
                         pf.reportProgress(progressVal, zipName + "_开始解压");
-                        bool returnContent = unZipFile(zipFile, zipName, out messageList);
+                        bool returnContent = unZipFile(zipFile, zipName);
                         if (returnContent)
                         {
                             //报告进度
@@ -344,67 +343,81 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         /// <param name="zipName">ZIP名称</param>
         /// <param name="outList">输入错误信息</param>
         /// <returns></returns>
-        private bool unZipFile(string pkgZipFile, string zipName, out List<string> outList)
+        private bool unZipFile(string pkgZipFile, string zipName)
         {
-            outList = new List<string>();
-            //生成路径字段
-            string unZipDir = System.IO.Path.Combine(decompressDir, zipName);
-            //删除旧的目录
+            bool rightUnZip = true;
+
+            //生成解压目录
+            string unZipDir = Path.Combine(decompressDir, zipName);
+
+            //测试目标目录是否可写
             try
             {
-                Directory.Delete(unZipDir, true);
+                //尝试删除目录
+                if (Directory.Exists(unZipDir))
+                {
+                    Directory.Delete(unZipDir, true);
+                }
+
+                //尝试创建目录
+                Directory.CreateDirectory(unZipDir);
+
+                //尝试写入一个Test文件
+                File.WriteAllText(Path.Combine(unZipDir, "test.txt"), "测试写入权限！");
             }
-            catch (Exception ex) { }
-            //申报主文件夹创建
-            Directory.CreateDirectory(unZipDir);
+            catch (Exception ex)
+            {
+                rightUnZip = false;
+                writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")的解压目录(" + unZipDir + ")中有文件正在使用或无写入权限！请检查！");
+            }
 
             BaseModuleMainFormWithNoUIConfig.writeLog("开始解析__" + zipName);
-            
-            //判断是否存在申报包
-            if (pkgZipFile != null && pkgZipFile.EndsWith(".zip"))
-            {
-                BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "的解包操作，开始ZIP文件解压");
 
-                //解压这个包
-                new ZipTool().UnZipFile(pkgZipFile, unZipDir, string.Empty, true);
-                //校验文件信息
-                string[] foldersValidata = MainConfig.Config.StringDict["报告验证_目录"].Split(',');
-                int foldersLen = foldersValidata.Length;
-                string[] filesValidata = MainConfig.Config.StringDict["报告验证_文件"].Split(',');
-                int filesLen = filesValidata.Length;
-                for (int i = 0; i < foldersLen; i++)
-                {
-                    if (!System.IO.Directory.Exists(Path.Combine(unZipDir, foldersValidata[i])))
-                    {
-                        BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "的解包操作，" + foldersValidata[i] + "文件夹不存在");
-                        outList.Add(foldersValidata[i] + "文件夹 不存在");
-                    }
-                }
-                for (int i = 0; i < filesLen; i++)
-                {
-                    if (!File.Exists(Path.Combine(unZipDir, filesValidata[i])))
-                    {
-                        BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "的解包操作，" + filesValidata[i] + "不存在");
-                        outList.Add(filesValidata[i] + " 不存在");
-                    }
-                }
-                BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "的解包操作，结束ZIP文件解压");
-            }
-            else
+            //判断前面的检查是否成功
+            if (rightUnZip)
             {
-                BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "没有找到ZIP文件");
-                outList.Add("没有找到ZIP文件");
+                //判断是否存在申报包
+                if (pkgZipFile != null && pkgZipFile.EndsWith(".zip") && File.Exists(pkgZipFile))
+                {
+                    BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "的解包操作，开始ZIP文件解压");
+
+                    try
+                    {
+                        //解压这个包
+                        new ZipTool().UnZipFile(pkgZipFile, unZipDir, string.Empty, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        rightUnZip = false;
+                        writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
+                    }
+
+                    //判断解压是否成功
+                    rightUnZip = Directory.Exists(Path.Combine(unZipDir, "Files")) && File.Exists(Path.Combine(unZipDir, "static.db"));
+                    if (rightUnZip == false)
+                    {
+                        writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
+                    }
+                    
+                    //判断数据结构是否正确
+                    rightUnZip = new DBImporter().isRightDB(Path.Combine(unZipDir, "static.db"));
+                    if (rightUnZip == false)
+                    {
+                        writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")内的DB文件不是有效的数据结构！请检查！");
+                    }
+
+                    BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "的解包操作，结束ZIP文件解压");
+                }
+                else
+                {
+                    rightUnZip = false;
+                    writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")没有找到！请检查！");
+                }
             }
 
             BaseModuleMainFormWithNoUIConfig.writeLog("结束解析__" + zipName);
-            if (outList.Count == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+            return rightUnZip;
         }
 
         /// <summary>
