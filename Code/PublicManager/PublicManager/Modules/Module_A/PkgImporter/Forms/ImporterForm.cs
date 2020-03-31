@@ -303,8 +303,16 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     catch (Exception ex)
                     {
                         BaseModuleMainFormWithNoUIConfig.writeLog(ex.ToString());
+
+                        writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + zipFile + ")导入时出错！请检查！Ex:" + ex.ToString());
                     }
                 }
+
+                try
+                {
+                    System.Diagnostics.Process.Start(logFilePath);
+                }
+                catch (Exception ex) { }
 
                 //检查是否已创建句柄，并调用委托执行UI方法
                 if (pf.IsHandleCreated)
