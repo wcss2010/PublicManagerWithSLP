@@ -16,6 +16,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 {
     public partial class ImporterForm : RibbonForm
     {
+        private string logFilePath = string.Empty;
+
         /// <summary>
         /// 是否需要更新替换字典在改变替换列表中项目状态时
         /// </summary>
@@ -36,6 +38,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         {
             InitializeComponent();
 
+            logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "战略先导汇总-" + DateTime.Now.ToString("yyyy_MM_dd") + "导入日志.log");
+            
             initCatalogList();
 
             isImportAll = isAll;
@@ -81,7 +85,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 {
                     if (f.EndsWith(".zip"))
                     {
-                        if (isFileInZip(f))
+                        if (isRightRequestZip(f))
                         {
                             //报告进度
                             lf.reportPKG(Path.GetFileNameWithoutExtension(f));
@@ -109,17 +113,99 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             catch (Exception ex) { }
         }
 
-        private bool isFileInZip(string f)
+        /// <summary>
+        /// 是否为正确的申报包
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
+        private bool isRightRequestZip(string f)
         {
+            bool rightPkg = true;
+
+            List<string> fileList = null;
             try
             {
-                List<string> sss = ZipTool.getFileListInZip(f);
+                fileList = ZipTool.getFileListInZip(f);
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine(ex.ToString());
+                rightPkg = false;
+                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")不是Zip包或已损环！请检查！");
             }
-            return false;
+
+            if (rightPkg)
+            {
+                if (fileList != null)
+                {
+                    if (fileList.Count >= 2)
+                    {
+                        int rightCountt = 2;
+                        foreach (string ss in fileList)
+                        {
+                            if (ss != null)
+                            {
+                                if (ss.Trim().ToLower().StartsWith("files/"))
+                                {
+                                    rightCountt--;
+                                }
+                                else if (ss.Trim().ToLower().Equals("static.db"))
+                                {
+                                    rightCountt--;
+                                }
+                            }
+                        }
+
+                        //判断文件或目录是否存在
+                        rightPkg = rightCountt == 0;
+                    }
+                    else
+                    {
+                        rightPkg = false;
+                        writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")不是有效的申报包！请检查！");
+                    }
+                }
+                else
+                {
+                    rightPkg = false;
+                    writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")没有获取到文件列表！请检查！");
+                }
+            }
+
+            return rightPkg;
+        }
+
+        /// <summary>
+        /// 写日志
+        /// </summary>
+        /// <param name="logFile"></param>
+        /// <param name="level"></param>
+        /// <param name="logTxt"></param>
+        public static void writeImportLog(string logFile, string level, string logTxt)
+        {
+            System.IO.FileStream fs = null;
+            System.IO.StreamWriter sw = null;
+            try
+            {
+                fs = new System.IO.FileStream(logFile, System.IO.FileMode.Append);
+                sw = new System.IO.StreamWriter(fs, System.Text.Encoding.Default);
+
+                sw.WriteLine("(" + DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss") + ",," + level + "):" + logTxt);
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Close();
+                }
+
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
