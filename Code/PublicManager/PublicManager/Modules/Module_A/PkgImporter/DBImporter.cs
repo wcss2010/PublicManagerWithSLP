@@ -93,5 +93,10 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             //ConnectionManager.Context.table("Moneys").where("CatalogID='" + catalogID + "'").delete();
             //ConnectionManager.Context.table("Professions").where("CatalogID='" + catalogID + "'").delete();
         }
+
+        protected override bool isExistsTables(DbContext context)
+        {
+            return false;
+        }
     }
 }

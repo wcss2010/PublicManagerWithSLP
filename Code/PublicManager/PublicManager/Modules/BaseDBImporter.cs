@@ -130,5 +130,44 @@ namespace PublicManager.Modules
         {
             return val != null ? (T)Convert.ChangeType(val.ToString(), typeof(T)) : defaultVal;
         }
+
+        /// <summary>
+        /// 判断是否为正确的数据库
+        /// </summary>
+        /// <param name="sourceFile"></param>
+        /// <returns></returns>
+        public bool isRightDB(string sourceFile)
+        {
+            //SQLite数据库工厂
+            System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
+
+            //NDEY数据库连接
+            Noear.Weed.DbContext context = new Noear.Weed.DbContext("main", "Data Source = " + sourceFile, factory);
+            //是否在执入后执行查询（主要针对Sqlite）
+            context.IsSupportSelectIdentityAfterInsert = false;
+            //是否在Dispose后执行GC用于解决Dispose后无法删除的问题（主要针对Sqlite）
+            context.IsSupportGCAfterDispose = true;
+
+            try
+            {
+                return isExistsTables(context);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return false;
+            }
+            finally
+            {
+                factory.Dispose();
+                context.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// 判断是否存在需要的表格
+        /// </summary>
+        /// <param name="context"></param>
+        protected abstract bool isExistsTables(Noear.Weed.DbContext context);
     }
 }
