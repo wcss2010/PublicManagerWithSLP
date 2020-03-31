@@ -392,18 +392,26 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                         writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
                     }
 
-                    //判断解压是否成功
-                    rightUnZip = Directory.Exists(Path.Combine(unZipDir, "Files")) && File.Exists(Path.Combine(unZipDir, "static.db"));
-                    if (rightUnZip == false)
+                    //判断前面的检查是否成功
+                    if (rightUnZip)
                     {
-                        writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
-                    }
-                    
-                    //判断数据结构是否正确
-                    rightUnZip = new DBImporter().isRightDB(Path.Combine(unZipDir, "static.db"));
-                    if (rightUnZip == false)
-                    {
-                        writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")内的DB文件不是有效的数据结构！请检查！");
+                        //判断解压是否成功
+                        rightUnZip = Directory.Exists(Path.Combine(unZipDir, "Files")) && File.Exists(Path.Combine(unZipDir, "static.db"));
+                        if (rightUnZip == false)
+                        {
+                            writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
+                        }
+
+                        //判断前面的检查是否成功
+                        if (rightUnZip)
+                        {
+                            //判断数据结构是否正确
+                            rightUnZip = new DBImporter().isRightDB(Path.Combine(unZipDir, "static.db"));
+                            if (rightUnZip == false)
+                            {
+                                writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")内的DB文件不是有效的数据结构！请检查！");
+                            }
+                        }
                     }
 
                     BaseModuleMainFormWithNoUIConfig.writeLog("项目" + zipName + "的解包操作，结束ZIP文件解压");
