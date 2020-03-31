@@ -96,7 +96,22 @@ namespace PublicManager.Modules.Module_A.PkgImporter
 
         protected override bool isExistsTables(DbContext context)
         {
-            return false;
+            try
+            {
+                DataItem diProject = context.table("Projects").select("*").getDataItem();
+                if (diProject != null && diProject.count() >= 1 && !string.IsNullOrEmpty(diProject.getString("ProjectName")))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
