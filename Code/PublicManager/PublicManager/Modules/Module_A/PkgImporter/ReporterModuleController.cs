@@ -241,6 +241,11 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                         //项目信息
                         Project p = ConnectionManager.Context.table("Project").where("CatalogID = '" + c.CatalogID + "'").select("*").getItem<Project>(new Project());
 
+                        if (p == null || string.IsNullOrEmpty(p.ProjectName) || string.IsNullOrEmpty(p.ProjectMasterName) || string.IsNullOrEmpty(p.UnitName))
+                        {
+                            continue;
+                        }
+
                         //项目名称
                         cells.Add(p.ProjectName);
 

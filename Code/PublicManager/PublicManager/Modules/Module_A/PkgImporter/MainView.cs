@@ -308,6 +308,11 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             {
                 Project p = (Project)treeNode.Tag;
 
+                if (p == null || string.IsNullOrEmpty(p.ProjectName) || string.IsNullOrEmpty(p.ProjectMasterName) || string.IsNullOrEmpty(p.UnitName))
+                {
+                    return;
+                }
+
                 List<object> cells = new List<object>();
 
                 //项目名称
