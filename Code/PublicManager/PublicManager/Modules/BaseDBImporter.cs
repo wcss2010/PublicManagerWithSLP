@@ -52,7 +52,7 @@ namespace PublicManager.Modules
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine(ex.ToString());
+                BaseModuleMainFormWithNoUIConfig.writeLog(ex.ToString());
                 return string.Empty;
             }
             finally
@@ -154,7 +154,7 @@ namespace PublicManager.Modules
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine(ex.ToString());
+                BaseModuleMainFormWithNoUIConfig.writeLog(ex.ToString());
                 return false;
             }
             finally
