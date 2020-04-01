@@ -269,6 +269,25 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             //项目方向
             cells.Add(projObj.ProjectDirection);
 
+            //研究目标
+            cells.Add(projObj.WorkDest);
+
+            //研究内容列表
+            StringBuilder subjectNameBuilder = new StringBuilder();
+            List<Subject> subjectList = ConnectionManager.Context.table("Subject").where("ProjectID='" + projObj.ProjectID + "'").select("*").getList<Subject>(new Subject());
+            if (subjectList != null)
+            {
+                foreach (Subject subObj in subjectList)
+                {
+                    subjectNameBuilder.Append(subObj.SubjectName != null ? subObj.SubjectName : string.Empty).Append(";");
+                }
+                if (subjectNameBuilder.Length >= 1)
+                {
+                    subjectNameBuilder.Remove(0, 1);
+                }
+            }
+            cells.Add(subjectNameBuilder.ToString());
+
             //保密等级
             cells.Add(ReporterModuleController.getSecretLevelString(projObj.ProjectSecretLevel));
 
@@ -357,6 +376,8 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             dtBase.Columns.Add("项目名称", typeof(string));
             dtBase.Columns.Add("项目主题", typeof(string));
             dtBase.Columns.Add("项目方向", typeof(string));
+            dtBase.Columns.Add("研究目标", typeof(string));
+            dtBase.Columns.Add("研究内容", typeof(string));
             dtBase.Columns.Add("保密等级", typeof(string));
             dtBase.Columns.Add("项目负责人", typeof(string));
             dtBase.Columns.Add("项目负责人_性别", typeof(string));
