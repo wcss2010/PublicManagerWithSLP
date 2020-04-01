@@ -318,6 +318,17 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
                 try
                 {
+                    if (pf.IsHandleCreated)
+                    {
+                        pf.Invoke(new MethodInvoker(delegate()
+                        {
+                            try
+                            {
+                                pf.Visible = false;
+                            }
+                            catch (Exception ex) { }
+                        }));
+                    }
                     exportExcelTo(checkedList);
                 }
                 catch (Exception ex) { }
