@@ -102,9 +102,11 @@ namespace PublicManager
             List<Subject> subjectList = ConnectionManager.Context.table("Subject").where("ProjectID='" + projObj.ProjectID + "'").select("*").getList<Subject>(new Subject());
             if (subjectList != null)
             {
+                int subjectIndex = 0;
                 foreach (Subject subObj in subjectList)
                 {
-                    subjectNameBuilder.AppendLine(subObj.SubjectName != null ? subObj.SubjectName : string.Empty);
+                    subjectIndex++;
+                    subjectNameBuilder.Append(subjectIndex).Append(".").Append(subObj.SubjectName != null ? subObj.SubjectName : string.Empty).AppendLine();
                 }
             }
             cells.Add(subjectNameBuilder.ToString());
@@ -207,12 +209,12 @@ namespace PublicManager
             dtBase.Columns.Add("项目负责人_座机", typeof(string));
             dtBase.Columns.Add("项目负责人_手机", typeof(string));
             dtBase.Columns.Add("项目组_联系人", typeof(string));
-            dtBase.Columns.Add("项目组联系人性  别", typeof(string));
-            dtBase.Columns.Add("项目组联系人出生年月", typeof(string));
-            dtBase.Columns.Add("项目组联系人职务职称", typeof(string));
-            dtBase.Columns.Add("项目组联系人座  机", typeof(string));
-            dtBase.Columns.Add("项目组联系人手  机", typeof(string));
-            dtBase.Columns.Add("项目组联系人通信地址", typeof(string));
+            dtBase.Columns.Add("项目组_联系人_性别", typeof(string));
+            dtBase.Columns.Add("项目组_联系人_出生年月", typeof(string));
+            dtBase.Columns.Add("项目组_联系人_职务职称", typeof(string));
+            dtBase.Columns.Add("项目组_联系人_座机", typeof(string));
+            dtBase.Columns.Add("项目组_联系人_手机", typeof(string));
+            dtBase.Columns.Add("项目组_联系人_通信地址", typeof(string));
             dtBase.Columns.Add("责任单位名称", typeof(string));
             dtBase.Columns.Add("责任单位常用名称", typeof(string));
             dtBase.Columns.Add("责任单位通信地址", typeof(string));
