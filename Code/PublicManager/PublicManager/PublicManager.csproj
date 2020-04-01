@@ -165,6 +165,7 @@
     <Compile Include="DB\Entitys\Catalog.cs" />
     <Compile Include="DB\Entitys\LocalUnit.cs" />
     <Compile Include="DB\Entitys\Project.cs" />
+    <Compile Include="DB\Entitys\Subject.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="MainConfig.cs" />
     <Compile Include="Modules\BaseDBImporter.cs" />

@@ -1,4 +1,5 @@
-﻿using Noear.Weed;
+﻿using Aspose.Words;
+using Noear.Weed;
 using PublicManager.DB;
 using PublicManager.DB.Entitys;
 using System;
@@ -199,10 +200,93 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                     proj.RequestTime = diProject.get("RequestTime") != null ? DateTime.Parse(diProject.get("RequestTime").ToString()) : DateTime.Now;
                 }
                 catch (Exception ex) { }
-                
+
+                try
+                {
+                    string workDestDocFile = System.IO.Path.Combine(filesDir, "研究目标.doc");
+                    string workDestDestTxtFile = System.IO.Path.Combine(filesDir, "研究目标.txt");
+                    Document doc = new Document(workDestDocFile);
+                    doc.Save(workDestDestTxtFile);
+                    proj.WorkDest = System.IO.File.ReadAllText(workDestDestTxtFile);
+                }
+                catch (Exception ex) { }
+
                 proj.copyTo(ConnectionManager.Context.table("Project")).insert();
                 #endregion
-                
+
+                #region 导入课题
+                DataList dlSubjects = localContext.table("Subjects").select("*").getDataList();
+                foreach (DataItem diSubject in dlSubjects.getRows())
+                {
+                    Subject subjectObj = new Subject();
+                    subjectObj.SubjectID = Guid.NewGuid().ToString();
+                    subjectObj.CatalogID = proj.CatalogID;
+                    subjectObj.ProjectID = proj.ProjectID;
+
+                    try
+                    {
+                        subjectObj.SubjectName = diSubject.get("SubjectName") != null ? diSubject.get("SubjectName").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.SecretLevel = diSubject.get("SecretLevel") != null ? diSubject.get("SecretLevel").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.TotalTime = int.Parse(diSubject.get("TotalTime") != null ? diSubject.get("TotalTime").ToString() : string.Empty);
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.TotalMoney = decimal.Parse(diSubject.get("TotalMoney") != null ? diSubject.get("TotalMoney").ToString() : string.Empty);
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.UnitName = diSubject.get("UnitName") != null ? diSubject.get("UnitName").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.UnitAddress = diSubject.get("UnitAddress") != null ? diSubject.get("UnitAddress").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.UnitType2 = diSubject.get("UnitType2") != null ? diSubject.get("UnitType2").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.UnitContact = diSubject.get("UnitContact") != null ? diSubject.get("UnitContact").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.UnitContactJob = diSubject.get("UnitContactJob") != null ? diSubject.get("UnitContactJob").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    try
+                    {
+                        subjectObj.UnitContactPhone = diSubject.get("UnitContactPhone") != null ? diSubject.get("UnitContactPhone").ToString() : string.Empty;
+                    }
+                    catch (Exception ex) { }
+
+                    subjectObj.copyTo(ConnectionManager.Context.table("Subject")).insert();
+                }
+                #endregion
+
                 return catalog.CatalogID;
             }
             else
