@@ -45,6 +45,7 @@ namespace PublicManager
             {
                 data.TableName = sheetName;
                 ExcelBuilder eb = new ExcelBuilder();
+                eb.WorkBookObj = new XSSFWorkbook();
                 eb.initStyles();
                 eb.writeTheSheet(data);
                 eb.saveWorkbookToFile(excelFile);
