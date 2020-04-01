@@ -16,17 +16,15 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 {
     public partial class ImporterForm : RibbonForm
     {
-        private string errorlogFilePath = string.Empty;
+        public static string errorlogFilePath = string.Empty;
 
-        /// <summary>
-        /// 是否需要更新替换字典在改变替换列表中项目状态时
-        /// </summary>
-        private bool isNeedUpdateDict = true;
+        private bool isLoading = false;
 
         /// <summary>
         /// 替换字典，用于表示哪些项目可以替换(Key=项目ID,Value=是否替换)
         /// </summary>
-        private Dictionary<string, bool> replaceDict = new Dictionary<string, bool>();
+        private List<string> replaceList = new List<string>();
+
         private string decompressDir;
         private string totalDir;
         private MainView mainView;
@@ -47,6 +45,9 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             decompressDir = destDir;
             mainView = mv;
 
+            //正在刷新树停止更新替换列表
+            isLoading = true;
+
             lf = new LoadingForm("正在加载申报数据包......");
             lf.Show();
             Application.DoEvents();
@@ -60,6 +61,10 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             {
                 lf.Close();
             }
+
+            //刷新替换列表
+            isLoading = false;
+            reloadReplaceList();
 
             if (isAll)
             {
@@ -246,66 +251,31 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //需要替换的申报包列表
-            List<string> importList = new List<string>();
-            List<string> importFileNameList = new List<string>();
-
-            #region 查的需要导入的路径
-            foreach (TreeNode tn in tlTestA.Nodes)
-            {
-                //判断是否被选中
-                if (tn.Checked)
-                {
-                    //读取目录名称中的项目编号
-                    string projectNumber = tn.Text;
-
-                    //判断是否需要替换
-                    if (replaceDict.ContainsKey(projectNumber))
-                    {
-                        //需要替换
-
-                        //判断是否替换这个项目
-                        if (replaceDict[projectNumber])
-                        {
-                            //需要替换，添加到ImportList列表中
-                            importList.Add(Path.Combine(tn.Name, ""));
-                            importFileNameList.Add(tn.Text);
-                        }
-                        else
-                        {
-                            //不需要替换
-                            continue;
-                        }
-                    }
-                    else
-                    {
-                        //不需要替换
-                        importList.Add(Path.Combine(tn.Name, ""));
-                        importFileNameList.Add(tn.Text);
-                    }
-                }
-            }
-            #endregion
+            //获得选择列表
+            List<TreeNode> checkedList = getCheckedNodeList();
 
             //开始导入
             ProgressForm pf = new ProgressForm();
             pf.Show();
-            pf.run(importList.Count, 0, new EventHandler(delegate(object senders, EventArgs ee)
+            pf.run(checkedList.Count, 0, new EventHandler(delegate(object senders, EventArgs ee)
             {
                 //进度数值
                 int progressVal = 0;
-                int index = -1;
+
                 //导入
-                foreach (string zipFile in importList)
+                foreach (TreeNode currentNode in checkedList)
                 {
+                    //项目名称及文件路径
+                    string zipName = currentNode.Text;
+                    string zipFile = currentNode.Name;
+
                     try
                     {
                         progressVal++;
-                        index++;
-                        //申报文件名
-                        string zipName = importFileNameList[index].ToString();
+                        
                         pf.reportProgress(progressVal, zipName + "_开始解压");
                         bool returnContent = unZipFile(zipFile, zipName);
+
                         if (returnContent)
                         {
                             //报告进度
@@ -324,7 +294,6 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     catch (Exception ex)
                     {
                         BaseModuleMainFormWithNoUIConfig.writeLog(ex.ToString());
-
                         writeImportLog(errorlogFilePath, "错误", "对不起，压缩文件(" + zipFile + ")导入时出错！请检查！Ex:" + ex.ToString());
                     }
                 }
@@ -332,6 +301,12 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 try
                 {
                     System.Diagnostics.Process.Start(errorlogFilePath);
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    exportExcelTo(checkedList);
                 }
                 catch (Exception ex) { }
 
@@ -363,6 +338,11 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     Close();
                 }
             }));            
+        }
+
+        private void exportExcelTo(List<TreeNode> checkedList)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -462,66 +442,29 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         /// </summary>
         private void reloadReplaceList()
         {
-            //锁定替换列表点击CheckBox时更新替换字典的功能
-            isNeedUpdateDict = false;
+            if (isLoading)
+            {
+                return;
+            }
 
             //清空替换列表
             tlErrorList.Nodes.Clear();
-            //显示替换列表数
-            foreach (KeyValuePair<string, bool> kvp in replaceDict)
-            {
-                //列表项
-                TreeNode tn = new TreeNode(kvp.Key);
-                tn.Checked = true;
-                tlErrorList.Nodes.Add(tn);
-            }
 
-            //解锁替换列表点击CheckBox时更新替换字典的功能
-            isNeedUpdateDict = true;
+            //显示在列表中的项
+            List<TreeNode> checkedList = getCheckedNodeList();
+            foreach (TreeNode checkedNode in checkedList)
+            {
+                if (catalogDict.ContainsKey(checkedNode.Text))
+                {
+                    TreeNode tn = new TreeNode(checkedNode.Text);
+                    tn.Checked = true;
+                    tlErrorList.Nodes.Add(tn);
+                }
+            }
         }
 
         private void tlTestA_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            List<TreeNode> checkedList = getCheckedNodeList();
-
-            //移除不需要选项
-            List<string> delList = new List<string>();
-            foreach (KeyValuePair<string, bool> kvp in replaceDict)
-            {
-                bool needRemove = true;
-
-                foreach (TreeNode selected in checkedList)
-                {
-                    if (selected.Text == kvp.Key)
-                    {
-                        needRemove = false;
-                        break;
-                    }
-                }
-
-                if (needRemove)
-                {
-                    delList.Add(kvp.Key);
-                }
-            }
-            foreach (string s in delList)
-            {
-                replaceDict.Remove(s);
-            }
-
-            //检查需要添加的选项
-            foreach (TreeNode selected in checkedList)
-            {
-                //读取目录名称中的项目编号
-                string catalogNumber = selected.Text;
-
-                //判断这个项目是否被导入过
-                if (catalogDict.ContainsKey(catalogNumber))
-                {
-                    replaceDict[catalogNumber] = true;
-                }
-            }
-
+        {   
             //刷新替换列表
             reloadReplaceList();
         }
@@ -545,44 +488,13 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
         private void tlTestA_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            List<TreeNode> checkedList = getCheckedNodeList();
-
-            //移除不需要选项
-            List<string> delList = new List<string>();
-            foreach (KeyValuePair<string, bool> kvp in replaceDict)
+            if (e.Node.Checked)
             {
-                bool needRemove = true;
-
-                foreach (TreeNode selected in checkedList)
-                {
-                    if (selected.Text == kvp.Key)
-                    {
-                        needRemove = false;
-                        break;
-                    }
-                }
-
-                if (needRemove)
-                {
-                    delList.Add(kvp.Key);
-                }
+                e.Node.BackColor = Color.Orange;
             }
-            foreach (string s in delList)
+            else
             {
-                replaceDict.Remove(s);
-            }
-
-            //检查需要添加的选项
-            foreach (TreeNode selected in checkedList)
-            {
-                //读取目录名称中的项目编号
-                string catalogNumber = selected.Text;
-
-                //判断这个项目是否被导入过
-                if (catalogDict.ContainsKey(catalogNumber))
-                {
-                    replaceDict[catalogNumber] = true;
-                }
+                e.Node.BackColor = Color.Transparent;
             }
 
             //刷新替换列表

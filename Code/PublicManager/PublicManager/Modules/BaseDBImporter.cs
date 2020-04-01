@@ -52,6 +52,7 @@ namespace PublicManager.Modules
             }
             catch (Exception ex)
             {
+                PublicManager.Modules.Module_A.PkgImporter.Forms.ImporterForm.writeImportLog(PublicManager.Modules.Module_A.PkgImporter.Forms.ImporterForm.errorlogFilePath, "错误", "对不起，压缩文件(" + sourceFile + ")导入时出错！请检查！Ex:" + ex.ToString());
                 BaseModuleMainFormWithNoUIConfig.writeLog(ex.ToString());
                 return string.Empty;
             }
@@ -154,6 +155,7 @@ namespace PublicManager.Modules
             }
             catch (Exception ex)
             {
+                PublicManager.Modules.Module_A.PkgImporter.Forms.ImporterForm.writeImportLog(PublicManager.Modules.Module_A.PkgImporter.Forms.ImporterForm.errorlogFilePath, "错误", "对不起，压缩文件(" + sourceFile + ")导入时出错！请检查！Ex:" + ex.ToString());
                 BaseModuleMainFormWithNoUIConfig.writeLog(ex.ToString());
                 return false;
             }
