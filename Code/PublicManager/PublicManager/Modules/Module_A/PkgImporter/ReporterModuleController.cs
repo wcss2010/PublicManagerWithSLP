@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using PublicManager.DB;
 using PublicManager.DB.Entitys;
 using System.IO;
+using System.Diagnostics;
 
 namespace PublicManager.Modules.Module_A.PkgImporter
 {
@@ -235,6 +236,12 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                     }
 
                     MessageBox.Show("导出完成！");
+
+                    try
+                    {
+                        Process.Start(fbdFolderSelect.SelectedPath);
+                    }
+                    catch (Exception ex) { }
                 }
             }
         }
@@ -378,5 +385,94 @@ namespace PublicManager.Modules.Module_A.PkgImporter
 
             return dtBase;
         }
+
+        private void btnExportWordWithSubject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (MainConfig.Config.StringDict.ContainsKey("先导解压目录"))
+            {
+                string decompressDir = MainConfig.Config.StringDict["先导解压目录"];
+
+                if (fbdFolderSelect.ShowDialog() == DialogResult.OK)
+                {
+                    string baseDir = fbdFolderSelect.SelectedPath;
+
+                    List<CPNode> catalogList = new List<CPNode>();
+                    foreach (TreeNode firstNode in tc.SubjectTreeViewList.Nodes)
+                    {
+                        createSubjectWordDirs(baseDir, firstNode, catalogList);
+                    }
+
+                    foreach (CPNode cpObj in catalogList)
+                    {
+                        //项目信息
+                        Project projObj = cpObj.ProjectObj;
+                        Catalog catalogObj = cpObj.CatalogObj;
+
+                        string wordFile = Path.Combine(decompressDir, Path.Combine(catalogObj.CatalogNumber, "战略先导计划.doc"));
+                        if (File.Exists(wordFile))
+                        {
+                            try
+                            {
+                                string destWordFile = Path.Combine(cpObj.BaseDir, projObj.ProjectName + "-" + projObj.UnitName + "-" + projObj.ProjectMasterName + ".doc");
+
+                                File.Copy(wordFile, destWordFile, true);
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Console.WriteLine(ex.ToString());
+                            }
+                        }
+                    }
+
+                    MessageBox.Show("导出完成！");
+                    try
+                    {
+                        Process.Start(baseDir);
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+        }
+
+        private void createSubjectWordDirs(string baseDir, TreeNode parentNode, List<CPNode> catalogList)
+        {
+            if (parentNode.Tag is Project)
+            {
+                Project projObj = (Project)parentNode.Tag;
+                Catalog catalogObj = ConnectionManager.Context.table("Catalog").where("CatalogID='" + projObj.CatalogID+ "'").select("*").getItem<Catalog>(new Catalog());
+                if (string.IsNullOrEmpty(catalogObj.CatalogID))
+                {
+                    return;
+                }
+                else
+                {
+                    CPNode cpNodeObj = new CPNode();
+                    cpNodeObj.BaseDir = baseDir;
+                    cpNodeObj.CatalogObj = catalogObj;
+                    cpNodeObj.ProjectObj = projObj;
+                    catalogList.Add(cpNodeObj);
+                }
+            }
+            else
+            {
+                foreach (TreeNode sub in parentNode.Nodes)
+                {
+                    string currentDir = Path.Combine(baseDir, sub.Text);
+                    try
+                    {
+                        Directory.CreateDirectory(currentDir);
+                    }
+                    catch (Exception ex) { }
+                    createSubjectWordDirs(currentDir, sub, catalogList);
+                }
+            }
+        }
+    }
+
+    public class CPNode
+    {
+        public string BaseDir { get; set; }
+        public Catalog CatalogObj { get; set; }
+        public Project ProjectObj { get; set; }
     }
 }

@@ -18,6 +18,22 @@ namespace PublicManager.Modules.Module_A.PkgImporter
 {
     public partial class MainView : XtraUserControl
     {
+        public TreeView UnitTreeViewList
+        {
+            get
+            {
+                return tvUnitAndProject.ContentTreeView;
+            }
+        }
+
+        public TreeView SubjectTreeViewList
+        {
+            get
+            {
+                return tvUnitAndProject2.ContentTreeView;
+            }
+        }
+
         List<string> unitList = new List<string>();
         private Dictionary<string, List<string>> subjectDict = new Dictionary<string, List<string>>();
 

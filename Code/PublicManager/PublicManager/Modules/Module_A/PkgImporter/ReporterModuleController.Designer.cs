@@ -45,6 +45,7 @@
             this.rpgWordExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
+            this.btnExportWordWithSubject = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,9 +61,10 @@
             this.btnOpenMasterDir,
             this.btnOpenDecompressDir,
             this.btnExportTo,
-            this.btnExportWordAll});
+            this.btnExportWordAll,
+            this.btnExportWordWithSubject});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 11;
+            this.rcTopBar.MaxItemId = 12;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -173,12 +175,21 @@
             // rpgWordExport
             // 
             this.rpgWordExport.ItemLinks.Add(this.btnExportWordAll);
+            this.rpgWordExport.ItemLinks.Add(this.btnExportWordWithSubject);
             this.rpgWordExport.Name = "rpgWordExport";
             this.rpgWordExport.Text = "Word汇总";
             // 
             // sfdExport
             // 
             this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
+            // 
+            // btnExportWordWithSubject
+            // 
+            this.btnExportWordWithSubject.Caption = "按主题导出所有Word文档";
+            this.btnExportWordWithSubject.Id = 11;
+            this.btnExportWordWithSubject.LargeGlyph = global::PublicManager.Properties.Resources.export3;
+            this.btnExportWordWithSubject.Name = "btnExportWordWithSubject";
+            this.btnExportWordWithSubject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportWordWithSubject_ItemClick);
             // 
             // ReporterModuleController
             // 
@@ -212,5 +223,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgExport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgWordExport;
         private DevExpress.XtraBars.BarButtonItem btnExportWordAll;
+        private DevExpress.XtraBars.BarButtonItem btnExportWordWithSubject;
     }
 }
