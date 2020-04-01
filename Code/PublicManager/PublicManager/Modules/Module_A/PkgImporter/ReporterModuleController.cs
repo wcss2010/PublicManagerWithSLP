@@ -148,37 +148,9 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         private void btnExportTo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //基本数据
-            DataTable dtBase = new DataTable();
-            #region 输出基本数据
-            //生成列
-            dtBase.Columns.Add("项目名称", typeof(string));
-            dtBase.Columns.Add("项目主题", typeof(string));
-            dtBase.Columns.Add("项目方向", typeof(string));
-            dtBase.Columns.Add("保密等级", typeof(string));
-            dtBase.Columns.Add("项目负责人", typeof(string));
-            dtBase.Columns.Add("项目负责人_性别", typeof(string));
-            dtBase.Columns.Add("项目负责人_出生年月", typeof(string));
-            dtBase.Columns.Add("项目负责人_职务职称", typeof(string));
-            dtBase.Columns.Add("项目负责人_座机", typeof(string));
-            dtBase.Columns.Add("项目负责人_手机", typeof(string));
-            dtBase.Columns.Add("项目组_联系人", typeof(string));
-            dtBase.Columns.Add("项目组联系人性  别", typeof(string));
-            dtBase.Columns.Add("项目组联系人出生年月", typeof(string));
-            dtBase.Columns.Add("项目组联系人职务职称", typeof(string));
-            dtBase.Columns.Add("项目组联系人座  机", typeof(string));
-            dtBase.Columns.Add("项目组联系人手  机", typeof(string));
-            dtBase.Columns.Add("项目组联系人通信地址", typeof(string));
-            dtBase.Columns.Add("责任单位名称", typeof(string));
-            dtBase.Columns.Add("责任单位常用名称", typeof(string));
-            dtBase.Columns.Add("责任单位通信地址", typeof(string));
-            dtBase.Columns.Add("责任单位所属大单位", typeof(string));
-            dtBase.Columns.Add("责任单位联系人", typeof(string));
-            dtBase.Columns.Add("责任单位联系人职务", typeof(string));
-            dtBase.Columns.Add("责任单位联系人电话", typeof(string));
-            dtBase.Columns.Add("总时间", typeof(string));
-            dtBase.Columns.Add("总经费", typeof(string));
-            dtBase.Columns.Add("申报日期", typeof(string));
+            DataTable dtBase = getProjectExcelDataTable();
 
+            #region 输出基本数据
             List<Catalog> catalogList = ConnectionManager.Context.table("Catalog").select("*").getList<Catalog>(new Catalog());
 
             //生成内容
@@ -364,6 +336,47 @@ namespace PublicManager.Modules.Module_A.PkgImporter
 
             //添加进表格
             dtData.Rows.Add(cells.ToArray());
+        }
+
+        /// <summary>
+        /// 创建Excel项目数据表
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable getProjectExcelDataTable()
+        {
+            DataTable dtBase = new DataTable();
+            #region 创建列
+            //生成列
+            dtBase.Columns.Add("项目名称", typeof(string));
+            dtBase.Columns.Add("项目主题", typeof(string));
+            dtBase.Columns.Add("项目方向", typeof(string));
+            dtBase.Columns.Add("保密等级", typeof(string));
+            dtBase.Columns.Add("项目负责人", typeof(string));
+            dtBase.Columns.Add("项目负责人_性别", typeof(string));
+            dtBase.Columns.Add("项目负责人_出生年月", typeof(string));
+            dtBase.Columns.Add("项目负责人_职务职称", typeof(string));
+            dtBase.Columns.Add("项目负责人_座机", typeof(string));
+            dtBase.Columns.Add("项目负责人_手机", typeof(string));
+            dtBase.Columns.Add("项目组_联系人", typeof(string));
+            dtBase.Columns.Add("项目组联系人性  别", typeof(string));
+            dtBase.Columns.Add("项目组联系人出生年月", typeof(string));
+            dtBase.Columns.Add("项目组联系人职务职称", typeof(string));
+            dtBase.Columns.Add("项目组联系人座  机", typeof(string));
+            dtBase.Columns.Add("项目组联系人手  机", typeof(string));
+            dtBase.Columns.Add("项目组联系人通信地址", typeof(string));
+            dtBase.Columns.Add("责任单位名称", typeof(string));
+            dtBase.Columns.Add("责任单位常用名称", typeof(string));
+            dtBase.Columns.Add("责任单位通信地址", typeof(string));
+            dtBase.Columns.Add("责任单位所属大单位", typeof(string));
+            dtBase.Columns.Add("责任单位联系人", typeof(string));
+            dtBase.Columns.Add("责任单位联系人职务", typeof(string));
+            dtBase.Columns.Add("责任单位联系人电话", typeof(string));
+            dtBase.Columns.Add("总时间", typeof(string));
+            dtBase.Columns.Add("总经费", typeof(string));
+            dtBase.Columns.Add("申报日期", typeof(string));
+            #endregion
+
+            return dtBase;
         }
     }
 }

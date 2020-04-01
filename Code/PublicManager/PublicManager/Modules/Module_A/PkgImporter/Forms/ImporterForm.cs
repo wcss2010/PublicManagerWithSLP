@@ -342,7 +342,22 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
         private void exportExcelTo(List<TreeNode> checkedList)
         {
-            
+            if (isImportAll)
+            {
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("需要将增量导入的项目导出到Excel吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    foreach (TreeNode tnn in checkedList)
+                    {
+                        string catalogNumber = tnn.Text;
+                        Project projObj = ConnectionManager.Context.table("Project").where("CatalogID in (select CatalogID from Catalog where CatalogNumber = '" + catalogNumber + "')").select("*").getItem<Project>(new Project());
+
+                    }
+                }
+            }
         }
 
         /// <summary>
