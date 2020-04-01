@@ -51,6 +51,13 @@ namespace PublicManager
                 eb.WorkBookObj = new XSSFWorkbook();
                 eb.initStyles();
                 eb.writeTheSheet(data);
+
+                //处理研究目标和研究内容列表的宽度问题
+                ISheet sheetObj = eb.WorkBookObj.GetSheetAt(0);
+                sheetObj.SetColumnWidth(0, 60 * 256 + 200);
+                sheetObj.SetColumnWidth(3, 60 * 256 + 200);
+                sheetObj.SetColumnWidth(4, 60 * 256 + 200);
+
                 eb.saveWorkbookToFile(excelFile);
 
                 MessageBox.Show("导出数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
