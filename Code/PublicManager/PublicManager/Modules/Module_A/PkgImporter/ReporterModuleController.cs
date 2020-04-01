@@ -434,7 +434,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
         }
 
-        private void createSubjectWordDirs(string baseDir, TreeNode parentNode, List<CPNode> catalogList)
+        private void createSubjectWordDirs(string parentDir, TreeNode parentNode, List<CPNode> catalogList)
         {
             if (parentNode.Tag is Project)
             {
@@ -447,7 +447,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 else
                 {
                     CPNode cpNodeObj = new CPNode();
-                    cpNodeObj.BaseDir = baseDir;
+                    cpNodeObj.BaseDir = parentDir;
                     cpNodeObj.CatalogObj = catalogObj;
                     cpNodeObj.ProjectObj = projObj;
                     catalogList.Add(cpNodeObj);
@@ -455,14 +455,15 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
             else
             {
+                string currentDir = Path.Combine(parentDir, parentNode.Text);
+                try
+                {
+                    Directory.CreateDirectory(currentDir);
+                }
+                catch (Exception ex) { }
+
                 foreach (TreeNode sub in parentNode.Nodes)
                 {
-                    string currentDir = Path.Combine(baseDir, sub.Text);
-                    try
-                    {
-                        Directory.CreateDirectory(currentDir);
-                    }
-                    catch (Exception ex) { }
                     createSubjectWordDirs(currentDir, sub, catalogList);
                 }
             }
