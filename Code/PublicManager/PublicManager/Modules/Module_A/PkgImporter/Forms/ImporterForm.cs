@@ -342,7 +342,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
         private void exportExcelTo(List<TreeNode> checkedList)
         {
-            throw new NotImplementedException();
+            
         }
 
         /// <summary>
@@ -490,7 +490,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         {
             if (e.Node.Checked)
             {
-                e.Node.BackColor = Color.Orange;
+                e.Node.BackColor = Color.OrangeRed;
             }
             else
             {
