@@ -30,16 +30,12 @@
         {
             this.scUnitPage = new System.Windows.Forms.SplitContainer();
             this.tvUnitAndProject = new PublicManager.Modules.TreeViewWithSearch();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.plContent = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblHint = new System.Windows.Forms.Label();
             this.btnExportExcelForUnit = new System.Windows.Forms.Button();
             this.scUnitPage2 = new System.Windows.Forms.SplitContainer();
             this.tvUnitAndProject2 = new PublicManager.Modules.TreeViewWithSearch();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDelete2 = new System.Windows.Forms.Button();
             this.plContent2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnExportExcelForSubject = new System.Windows.Forms.Button();
@@ -47,17 +43,16 @@
             this.xtcPages = new DevExpress.XtraTab.XtraTabControl();
             this.tpUnitPage = new DevExpress.XtraTab.XtraTabPage();
             this.tpSubjectAndDirectionPage = new DevExpress.XtraTab.XtraTabPage();
+            this.btnDelAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.scUnitPage)).BeginInit();
             this.scUnitPage.Panel1.SuspendLayout();
             this.scUnitPage.Panel2.SuspendLayout();
             this.scUnitPage.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scUnitPage2)).BeginInit();
             this.scUnitPage2.Panel1.SuspendLayout();
             this.scUnitPage2.Panel2.SuspendLayout();
             this.scUnitPage2.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtcPages)).BeginInit();
             this.xtcPages.SuspendLayout();
@@ -74,7 +69,6 @@
             // scUnitPage.Panel1
             // 
             this.scUnitPage.Panel1.Controls.Add(this.tvUnitAndProject);
-            this.scUnitPage.Panel1.Controls.Add(this.panel1);
             // 
             // scUnitPage.Panel2
             // 
@@ -91,30 +85,8 @@
             this.tvUnitAndProject.Location = new System.Drawing.Point(0, 0);
             this.tvUnitAndProject.Margin = new System.Windows.Forms.Padding(4);
             this.tvUnitAndProject.Name = "tvUnitAndProject";
-            this.tvUnitAndProject.Size = new System.Drawing.Size(244, 624);
+            this.tvUnitAndProject.Size = new System.Drawing.Size(244, 655);
             this.tvUnitAndProject.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 624);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 31);
-            this.panel1.TabIndex = 1;
-            this.panel1.Visible = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete.Location = new System.Drawing.Point(0, 0);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(244, 31);
-            this.btnDelete.TabIndex = 0;
-            this.btnDelete.Text = "删除选中项";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Visible = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // plContent
             // 
@@ -127,6 +99,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.lblHint);
+            this.panel3.Controls.Add(this.btnDelAll);
             this.panel3.Controls.Add(this.btnExportExcelForUnit);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -141,7 +114,7 @@
             this.lblHint.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHint.Location = new System.Drawing.Point(0, 0);
             this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(947, 30);
+            this.lblHint.Size = new System.Drawing.Size(872, 30);
             this.lblHint.TabIndex = 1;
             this.lblHint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -165,7 +138,6 @@
             // scUnitPage2.Panel1
             // 
             this.scUnitPage2.Panel1.Controls.Add(this.tvUnitAndProject2);
-            this.scUnitPage2.Panel1.Controls.Add(this.panel2);
             // 
             // scUnitPage2.Panel2
             // 
@@ -182,30 +154,8 @@
             this.tvUnitAndProject2.Location = new System.Drawing.Point(0, 0);
             this.tvUnitAndProject2.Margin = new System.Windows.Forms.Padding(4);
             this.tvUnitAndProject2.Name = "tvUnitAndProject2";
-            this.tvUnitAndProject2.Size = new System.Drawing.Size(244, 624);
+            this.tvUnitAndProject2.Size = new System.Drawing.Size(244, 655);
             this.tvUnitAndProject2.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnDelete2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 624);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(244, 31);
-            this.panel2.TabIndex = 1;
-            this.panel2.Visible = false;
-            // 
-            // btnDelete2
-            // 
-            this.btnDelete2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete2.Location = new System.Drawing.Point(0, 0);
-            this.btnDelete2.Name = "btnDelete2";
-            this.btnDelete2.Size = new System.Drawing.Size(244, 31);
-            this.btnDelete2.TabIndex = 0;
-            this.btnDelete2.Text = "删除选中项";
-            this.btnDelete2.UseVisualStyleBackColor = true;
-            this.btnDelete2.Visible = false;
-            this.btnDelete2.Click += new System.EventHandler(this.btnDelete2_Click);
             // 
             // plContent2
             // 
@@ -273,6 +223,17 @@
             this.tpSubjectAndDirectionPage.Size = new System.Drawing.Size(1270, 655);
             this.tpSubjectAndDirectionPage.Text = "主题方向与项目列表";
             // 
+            // btnDelAll
+            // 
+            this.btnDelAll.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDelAll.Location = new System.Drawing.Point(872, 0);
+            this.btnDelAll.Name = "btnDelAll";
+            this.btnDelAll.Size = new System.Drawing.Size(75, 30);
+            this.btnDelAll.TabIndex = 3;
+            this.btnDelAll.Text = "删除项目";
+            this.btnDelAll.UseVisualStyleBackColor = true;
+            this.btnDelAll.Click += new System.EventHandler(this.btnDelAll_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -284,13 +245,11 @@
             this.scUnitPage.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scUnitPage)).EndInit();
             this.scUnitPage.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.scUnitPage2.Panel1.ResumeLayout(false);
             this.scUnitPage2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scUnitPage2)).EndInit();
             this.scUnitPage2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtcPages)).EndInit();
             this.xtcPages.ResumeLayout(false);
@@ -305,13 +264,9 @@
         private TreeViewWithSearch tvUnitAndProject;
         private System.Windows.Forms.SplitContainer scUnitPage;
         private System.Windows.Forms.Panel plContent;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblHint;
         private System.Windows.Forms.SplitContainer scUnitPage2;
         private TreeViewWithSearch tvUnitAndProject2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnDelete2;
         private System.Windows.Forms.Panel plContent2;
         private System.Windows.Forms.Label lblHint2;
         private DevExpress.XtraTab.XtraTabControl xtcPages;
@@ -321,6 +276,7 @@
         private System.Windows.Forms.Button btnExportExcelForUnit;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnExportExcelForSubject;
+        private System.Windows.Forms.Button btnDelAll;
 
 
 

@@ -239,32 +239,6 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (tvUnitAndProject.ContentTreeView.SelectedNode != null && tvUnitAndProject.ContentTreeView.SelectedNode.Tag is Project)
-            {
-                Project proj = (Project)tvUnitAndProject.ContentTreeView.SelectedNode.Tag;
-                if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    new DBImporter().deleteProject(proj.CatalogID);
-                    updateTreeViews();
-                }
-            }
-        }
-
-        private void btnDelete2_Click(object sender, EventArgs e)
-        {
-            if (tvUnitAndProject2.ContentTreeView.SelectedNode != null && tvUnitAndProject2.ContentTreeView.SelectedNode.Tag is Project)
-            {
-                Project proj = (Project)tvUnitAndProject2.ContentTreeView.SelectedNode.Tag;
-                if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    new DBImporter().deleteProject(proj.CatalogID);
-                    updateTreeViews();
-                }
-            }
-        }
-
         private void btnExportExcelForUnit_Click(object sender, EventArgs e)
         {
             //基本数据
@@ -302,6 +276,40 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             {
                 printProjectNode(dtBase, tvUnitAndProject2.ContentTreeView.SelectedNode);
                 ExcelHelper.ExportToExcel(dtBase, "项目列表");
+            }
+        }
+
+        private void btnDelAll_Click(object sender, EventArgs e)
+        {
+            if (tvUnitAndProject.ContentTreeView.SelectedNode != null)
+            {
+                if (MessageBox.Show("真的要删除吗?", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    DBImporter dii = new DBImporter();
+
+                    List<Catalog> needDeleteCatalogList = new List<Catalog>();
+                    getCatalogListForTreeNode(tvUnitAndProject.ContentTreeView.SelectedNode, needDeleteCatalogList);
+
+                    foreach (Catalog catalogObj in needDeleteCatalogList)
+                    {
+                        dii.deleteProject(catalogObj.CatalogID);
+                    }
+
+                    updateTreeViews();
+                }
+            }
+        }
+
+        private void getCatalogListForTreeNode(TreeNode parentNode, List<Catalog> needDeleteCatalogList)
+        {
+            foreach (TreeNode tn in parentNode.Nodes)
+            {
+                getCatalogListForTreeNode(tn, needDeleteCatalogList);
+            }
+
+            if (parentNode.Tag is Catalog)
+            {
+                needDeleteCatalogList.Add(((Catalog)parentNode.Tag));
             }
         }
     }
