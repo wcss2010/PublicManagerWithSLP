@@ -287,10 +287,10 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 {
                     DBImporter dii = new DBImporter();
 
-                    List<Catalog> needDeleteCatalogList = new List<Catalog>();
+                    List<Project> needDeleteCatalogList = new List<Project>();
                     getCatalogListForTreeNode(tvUnitAndProject.ContentTreeView.SelectedNode, needDeleteCatalogList);
 
-                    foreach (Catalog catalogObj in needDeleteCatalogList)
+                    foreach (Project catalogObj in needDeleteCatalogList)
                     {
                         dii.deleteProject(catalogObj.CatalogID);
                     }
@@ -300,16 +300,16 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             }
         }
 
-        private void getCatalogListForTreeNode(TreeNode parentNode, List<Catalog> needDeleteCatalogList)
+        private void getCatalogListForTreeNode(TreeNode parentNode, List<Project> needDeleteCatalogList)
         {
             foreach (TreeNode tn in parentNode.Nodes)
             {
                 getCatalogListForTreeNode(tn, needDeleteCatalogList);
             }
 
-            if (parentNode.Tag is Catalog)
+            if (parentNode.Tag is Project)
             {
-                needDeleteCatalogList.Add(((Catalog)parentNode.Tag));
+                needDeleteCatalogList.Add(((Project)parentNode.Tag));
             }
         }
     }
