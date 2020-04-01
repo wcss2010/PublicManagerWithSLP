@@ -16,7 +16,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 {
     public partial class ImporterForm : RibbonForm
     {
-        private string logFilePath = string.Empty;
+        private string errorlogFilePath = string.Empty;
 
         /// <summary>
         /// 是否需要更新替换字典在改变替换列表中项目状态时
@@ -38,7 +38,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         {
             InitializeComponent();
 
-            logFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "战略先导汇总-" + DateTime.Now.ToString("yyyy_MM_dd") + "导入日志.log");
+            errorlogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "战略先导汇总-" + DateTime.Now.ToString("yyyy_MM_dd-HH-mm-ss") + "导入日志.log");
             
             initCatalogList();
 
@@ -59,6 +59,15 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             finally
             {
                 lf.Close();
+            }
+
+            if (isAll)
+            {
+                btnSelectNotInList.Visible = false;
+            }
+            else
+            {
+                btnSelectNotInList.Visible = true;
             }
         }
 
@@ -94,7 +103,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                             TreeNode tn = new TreeNode();
                             tn.Text = Path.GetFileNameWithoutExtension(f);
                             tn.Name = f;
-                            tn.Checked = isImportAll;
+                            tn.Checked = isNeedChecked(tn);
                             tlTestA.Nodes.Add(tn);
                         }
                     }
@@ -111,6 +120,18 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 }
             }
             catch (Exception ex) { }
+        }
+
+        private bool isNeedChecked(TreeNode tn)
+        {
+            if (isImportAll)
+            {
+                return isImportAll;
+            }
+            else
+            {
+                return !catalogDict.ContainsKey(tn.Text);
+            }
         }
 
         /// <summary>
@@ -130,7 +151,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             catch (Exception ex)
             {
                 rightPkg = false;
-                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")不是Zip包或已损坏！请检查！");
+                writeImportLog(errorlogFilePath, "错误", "对不起，压缩文件(" + f + ")不是Zip包或已损坏！请检查！");
             }
 
             if (rightPkg)
@@ -164,25 +185,25 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                             if (isHaveFiles == false)
                             {
                                 rightPkg = false;
-                                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")内部的根目录下不存在Files目录！请检查！");
+                                writeImportLog(errorlogFilePath, "错误", "对不起，压缩文件(" + f + ")内部的根目录下不存在Files目录！请检查！");
                             }
                             if (isHaveStaticDB == false)
                             {
                                 rightPkg = false;
-                                writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")内部的根目录下不存在Static.db文件！请检查！");
+                                writeImportLog(errorlogFilePath, "错误", "对不起，压缩文件(" + f + ")内部的根目录下不存在Static.db文件！请检查！");
                             }
                         }
                     }
                     else
                     {
                         rightPkg = false;
-                        writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")不是有效的申报包！请检查！");
+                        writeImportLog(errorlogFilePath, "错误", "对不起，压缩文件(" + f + ")不是有效的申报包！请检查！");
                     }
                 }
                 else
                 {
                     rightPkg = false;
-                    writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + f + ")没有获取到文件列表！请检查！");
+                    writeImportLog(errorlogFilePath, "错误", "对不起，压缩文件(" + f + ")没有获取到文件列表！请检查！");
                 }
             }
 
@@ -304,13 +325,13 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     {
                         BaseModuleMainFormWithNoUIConfig.writeLog(ex.ToString());
 
-                        writeImportLog(logFilePath, "错误", "对不起，压缩文件(" + zipFile + ")导入时出错！请检查！Ex:" + ex.ToString());
+                        writeImportLog(errorlogFilePath, "错误", "对不起，压缩文件(" + zipFile + ")导入时出错！请检查！Ex:" + ex.ToString());
                     }
                 }
 
                 try
                 {
-                    System.Diagnostics.Process.Start(logFilePath);
+                    System.Diagnostics.Process.Start(errorlogFilePath);
                 }
                 catch (Exception ex) { }
 
@@ -376,7 +397,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             catch (Exception ex)
             {
                 rightUnZip = false;
-                writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")的解压目录(" + unZipDir + ")中有文件正在使用或无写入权限！请检查！");
+                writeImportLog(errorlogFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")的解压目录(" + unZipDir + ")中有文件正在使用或无写入权限！请检查！");
             }
 
             BaseModuleMainFormWithNoUIConfig.writeLog("开始解析__" + zipName);
@@ -397,7 +418,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     catch (Exception ex)
                     {
                         rightUnZip = false;
-                        writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
+                        writeImportLog(errorlogFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
                     }
 
                     //判断前面的检查是否成功
@@ -407,7 +428,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                         rightUnZip = Directory.Exists(Path.Combine(unZipDir, "Files")) && File.Exists(Path.Combine(unZipDir, "static.db"));
                         if (rightUnZip == false)
                         {
-                            writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
+                            writeImportLog(errorlogFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")解压失败！请检查！");
                         }
 
                         //判断前面的检查是否成功
@@ -417,7 +438,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                             rightUnZip = new DBImporter().isRightDB(Path.Combine(unZipDir, "static.db"));
                             if (rightUnZip == false)
                             {
-                                writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")内的DB文件不是有效的数据结构！请检查！");
+                                writeImportLog(errorlogFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")内的DB文件不是有效的数据结构！请检查！");
                             }
                         }
                     }
@@ -427,7 +448,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                 else
                 {
                     rightUnZip = false;
-                    writeImportLog(logFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")没有找到！请检查！");
+                    writeImportLog(errorlogFilePath, "错误", "对不起,压缩文件(" + pkgZipFile + ")没有找到！请检查！");
                 }
             }
 

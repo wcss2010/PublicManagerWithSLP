@@ -80,7 +80,7 @@
             this.lblHint.Name = "lblHint";
             this.lblHint.Size = new System.Drawing.Size(78, 28);
             this.lblHint.TabIndex = 0;
-            this.lblHint.Text = "关建字：";
+            this.lblHint.Text = "关键词：";
             this.lblHint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // TreeViewWithSearch

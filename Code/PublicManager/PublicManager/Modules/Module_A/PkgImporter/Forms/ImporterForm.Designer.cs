@@ -49,6 +49,7 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.bsiBottomText = new DevExpress.XtraBars.BarStaticItem();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
@@ -60,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -67,7 +70,7 @@
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 27);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.tlTestA);
+            this.splitContainerControl1.Panel1.Controls.Add(this.groupControl2);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.Text = "Panel2";
@@ -82,9 +85,9 @@
             this.tlTestA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlTestA.FullRowSelect = true;
             this.tlTestA.HideSelection = false;
-            this.tlTestA.Location = new System.Drawing.Point(0, 0);
+            this.tlTestA.Location = new System.Drawing.Point(2, 21);
             this.tlTestA.Name = "tlTestA";
-            this.tlTestA.Size = new System.Drawing.Size(295, 513);
+            this.tlTestA.Size = new System.Drawing.Size(291, 490);
             this.tlTestA.TabIndex = 0;
             this.tlTestA.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tlTestA_AfterCheck);
             this.tlTestA.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tlTestA_AfterSelect);
@@ -269,6 +272,16 @@
             this.bsiBottomText.Name = "bsiBottomText";
             this.bsiBottomText.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.tlTestA);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(295, 513);
+            this.groupControl2.TabIndex = 1;
+            this.groupControl2.Text = "主目录数据包";
+            // 
             // ImporterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -295,6 +308,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,5 +338,6 @@
         private System.Windows.Forms.TreeView tlAll;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         private DevExpress.XtraEditors.SimpleButton btnSelectNotInList;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
     }
 }

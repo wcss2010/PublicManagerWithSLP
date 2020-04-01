@@ -36,15 +36,15 @@
             this.btnOpenMasterDir = new DevExpress.XtraBars.BarButtonItem();
             this.btnOpenDecompressDir = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportTo = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportWordAll = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDir = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpbLoad = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgWordExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
-            this.rpgWordExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnExportWordAll = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +94,7 @@
             // 
             // btnImportWithSelected
             // 
-            this.btnImportWithSelected.Caption = "选择性导入";
+            this.btnImportWithSelected.Caption = "增量导入";
             this.btnImportWithSelected.Id = 4;
             this.btnImportWithSelected.LargeGlyph = global::PublicManager.Properties.Resources.importB;
             this.btnImportWithSelected.Name = "btnImportWithSelected";
@@ -123,6 +123,14 @@
             this.btnExportTo.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportTo.Name = "btnExportTo";
             this.btnExportTo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportTo_ItemClick);
+            // 
+            // btnExportWordAll
+            // 
+            this.btnExportWordAll.Caption = "导出所有Word文档";
+            this.btnExportWordAll.Id = 10;
+            this.btnExportWordAll.LargeGlyph = global::PublicManager.Properties.Resources.export3;
+            this.btnExportWordAll.Name = "btnExportWordAll";
+            this.btnExportWordAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportWordAll_ItemClick);
             // 
             // rpMaster
             // 
@@ -162,23 +170,15 @@
             this.rpgExport.Name = "rpgExport";
             this.rpgExport.Text = "导出";
             // 
-            // sfdExport
-            // 
-            this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
-            // 
             // rpgWordExport
             // 
             this.rpgWordExport.ItemLinks.Add(this.btnExportWordAll);
             this.rpgWordExport.Name = "rpgWordExport";
             this.rpgWordExport.Text = "Word汇总";
             // 
-            // btnExportWordAll
+            // sfdExport
             // 
-            this.btnExportWordAll.Caption = "导出所有Word文档";
-            this.btnExportWordAll.Id = 10;
-            this.btnExportWordAll.LargeGlyph = global::PublicManager.Properties.Resources.export3;
-            this.btnExportWordAll.Name = "btnExportWordAll";
-            this.btnExportWordAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportWordAll_ItemClick);
+            this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
             // 
             // ReporterModuleController
             // 
