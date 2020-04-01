@@ -73,8 +73,18 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 if (nodeDict.ContainsKey(proj.ProjectTopic))
                 {
                     //正常主题
-                    topicNode = nodeDict[proj.ProjectTopic];
-                    directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                    if (subjectDict[proj.ProjectTopic].Contains(proj.ProjectDirection))
+                    {
+                        topicNode = nodeDict[proj.ProjectTopic];
+                        directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                    }
+                    else
+                    {
+                        //其它主题
+                        proj.ProjectTopic = "其它";
+                        topicNode = nodeDict[proj.ProjectTopic];
+                        directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                    }
                 }
                 else
                 {

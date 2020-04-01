@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tvDetail = new TreeViewEx();
+            this.tvDetail = new PublicManager.Modules.TreeViewEx();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtNodeKeys = new System.Windows.Forms.TextBox();
             this.lblHint = new System.Windows.Forms.Label();
@@ -38,10 +38,17 @@
             // tvDetail
             // 
             this.tvDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tvDetail.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
+            this.tvDetail.FocusNodeBackColor = System.Drawing.Color.OrangeRed;
+            this.tvDetail.FocusNodeFontColor = System.Drawing.Color.White;
             this.tvDetail.FullRowSelect = true;
             this.tvDetail.HideSelection = false;
             this.tvDetail.Location = new System.Drawing.Point(0, 28);
             this.tvDetail.Name = "tvDetail";
+            this.tvDetail.NoFocusNodeBackColor = System.Drawing.Color.White;
+            this.tvDetail.NoFocusNodeFontColor = System.Drawing.Color.Black;
+            this.tvDetail.SelectedNodeBackColor = System.Drawing.Color.LightGreen;
+            this.tvDetail.SelectedNodeFontColor = System.Drawing.Color.White;
             this.tvDetail.Size = new System.Drawing.Size(580, 691);
             this.tvDetail.TabIndex = 1;
             // 
@@ -58,7 +65,7 @@
             // txtNodeKeys
             // 
             this.txtNodeKeys.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtNodeKeys.Font = new System.Drawing.Font("仿宋", 12F);
+            this.txtNodeKeys.Font = new System.Drawing.Font("宋体", 12F);
             this.txtNodeKeys.Location = new System.Drawing.Point(78, 0);
             this.txtNodeKeys.Margin = new System.Windows.Forms.Padding(4);
             this.txtNodeKeys.Name = "txtNodeKeys";
@@ -82,7 +89,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tvDetail);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("仿宋", 12F);
+            this.Font = new System.Drawing.Font("宋体", 12F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TreeViewWithSearch";
             this.Size = new System.Drawing.Size(580, 719);
