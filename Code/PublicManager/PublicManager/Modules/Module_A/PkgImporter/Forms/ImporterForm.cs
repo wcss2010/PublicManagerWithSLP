@@ -129,14 +129,26 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 
         private bool isNeedChecked(TreeNode tn)
         {
+            bool results = false;
             if (isImportAll)
             {
-                return isImportAll;
+                results = isImportAll;
             }
             else
             {
-                return !catalogDict.ContainsKey(tn.Text);
+                results = !catalogDict.ContainsKey(tn.Text);
             }
+
+            if (results)
+            {
+                tn.BackColor = Color.OrangeRed;
+            }
+            else
+            {
+                tn.BackColor = Color.Transparent;
+            }
+
+            return results;
         }
 
         /// <summary>

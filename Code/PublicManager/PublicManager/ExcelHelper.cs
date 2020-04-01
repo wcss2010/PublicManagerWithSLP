@@ -261,39 +261,63 @@ namespace PublicManager
                 return;
             }
 
-            IWorkbook workbook = new XSSFWorkbook();
-            ISheet sheet = workbook.CreateSheet(sheetName);
-            IRow rowHead = sheet.CreateRow(0);
+            ExportToExcel(fileDialog.FileName, data, sheetName);
+        }
 
-            //填写表头
-            for (int i = 0; i < data.Columns.Count; i++)
+        /// <summary>
+        /// 写Excel文件
+        /// </summary>
+        /// <param name="excelFile"></param>
+        /// <param name="data"></param>
+        /// <param name="sheetName"></param>
+        public static void ExportToExcel(string excelFile, DataTable data, string sheetName)
+        {
+            try
             {
-                rowHead.CreateCell(i, CellType.String).SetCellValue(data.Columns[i].ColumnName.ToString());
-            }
-            //填写内容
-            for (int i = 0; i < data.Rows.Count; i++)
-            {
-                IRow row = sheet.CreateRow(i + 1);
-                for (int j = 0; j < data.Columns.Count; j++)
+                IWorkbook workbook = new XSSFWorkbook();
+                ISheet sheet = workbook.CreateSheet(sheetName);
+                IRow rowHead = sheet.CreateRow(0);
+
+                //填写表头
+                for (int i = 0; i < data.Columns.Count; i++)
                 {
-                    row.CreateCell(j, CellType.String).SetCellValue(data.Rows[i][j].ToString());
+                    if (data.Columns[i].ColumnName != null)
+                    {
+                        rowHead.CreateCell(i, CellType.String).SetCellValue(data.Columns[i].ColumnName.ToString());
+                    }
                 }
-            }
+                //填写内容
+                for (int i = 0; i < data.Rows.Count; i++)
+                {
+                    IRow row = sheet.CreateRow(i + 1);
+                    for (int j = 0; j < data.Columns.Count; j++)
+                    {
+                        if (data.Rows[i][j] != null)
+                        {
+                            row.CreateCell(j, CellType.String).SetCellValue(data.Rows[i][j].ToString());
+                        }
+                    }
+                }
 
-            for (int i = 0; i < data.Columns.Count; i++)
+                for (int i = 0; i < data.Columns.Count; i++)
+                {
+                    sheet.AutoSizeColumn(i);
+                }
+
+                using (FileStream stream = File.OpenWrite(excelFile))
+                {
+                    workbook.Write(stream);
+                    stream.Close();
+                }
+                MessageBox.Show("导出数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GC.Collect();
+
+                Process.Start(excelFile);
+            }
+            catch (Exception ex)
             {
-                sheet.AutoSizeColumn(i);
+                MessageBox.Show("导出Excel失败！Ex:" + ex.ToString());
             }
-
-            using (FileStream stream = File.OpenWrite(fileDialog.FileName))
-            {
-                workbook.Write(stream);
-                stream.Close();
-            }
-            MessageBox.Show("导出数据成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            GC.Collect();
-
-            Process.Start(fileDialog.FileName);
         }
     }
 }
