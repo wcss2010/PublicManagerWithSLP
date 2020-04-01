@@ -258,7 +258,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         private void btnExportExcelForUnit_Click(object sender, EventArgs e)
         {
             //基本数据
-            DataTable dtBase = ReporterModuleController.getProjectExcelDataTable();
+            DataTable dtBase = ExcelHelper.getProjectExcelDataTable();
 
             if (tvUnitAndProject.ContentTreeView.SelectedNode != null)
             {
@@ -279,14 +279,14 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 Project p = (Project)treeNode.Tag;
 
                 //打印数据
-                ReporterModuleController.printProjectToDataTable(dtBase, p);
+                ExcelHelper.printProjectToDataTable(dtBase, p);
             }
         }
 
         private void btnExportExcelForSubject_Click(object sender, EventArgs e)
         {
             //基本数据
-            DataTable dtBase = ReporterModuleController.getProjectExcelDataTable();
+            DataTable dtBase = ExcelHelper.getProjectExcelDataTable();
 
             if (tvUnitAndProject2.ContentTreeView.SelectedNode != null)
             {

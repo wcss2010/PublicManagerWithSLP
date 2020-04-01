@@ -373,7 +373,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             {
                 string excelFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "增量导入项目.xlsx");
 
-                DataTable dtBase = ReporterModuleController.getProjectExcelDataTable();
+                DataTable dtBase = ExcelHelper.getProjectExcelDataTable();
 
                 foreach (TreeNode tnn in checkedList)
                 {
@@ -381,7 +381,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     Project projObj = ConnectionManager.Context.table("Project").where("CatalogID in (select CatalogID from Catalog where CatalogNumber = '" + catalogNumber + "')").select("*").getItem<Project>(new Project());
 
                     //打印数据
-                    ReporterModuleController.printProjectToDataTable(dtBase, projObj);
+                    ExcelHelper.printProjectToDataTable(dtBase, projObj);
                 }
 
                 //导出Excel
