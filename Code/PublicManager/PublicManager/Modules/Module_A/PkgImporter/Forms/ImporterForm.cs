@@ -37,7 +37,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             InitializeComponent();
 
             errorlogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "战略先导汇总-" + DateTime.Now.ToString("yyyy_MM_dd-HH-mm-ss") + "导入日志.log");
-            
+
             initCatalogList();
 
             isImportAll = isAll;
@@ -284,7 +284,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     try
                     {
                         progressVal++;
-                        
+
                         pf.reportProgress(progressVal, zipName + "_开始解压");
                         bool returnContent = unZipFile(zipFile, zipName);
 
@@ -349,7 +349,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                     //关闭窗口
                     Close();
                 }
-            }));            
+            }));
         }
 
         private void exportExcelTo(List<TreeNode> checkedList)
@@ -360,22 +360,21 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
             }
             else
             {
-                if (MessageBox.Show("需要将增量导入的项目导出到Excel吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                string excelFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "增量导入项目.xlsx");
+
+                DataTable dtBase = ReporterModuleController.getProjectExcelDataTable();
+
+                foreach (TreeNode tnn in checkedList)
                 {
-                    DataTable dtBase = ReporterModuleController.getProjectExcelDataTable();
+                    string catalogNumber = tnn.Text;
+                    Project projObj = ConnectionManager.Context.table("Project").where("CatalogID in (select CatalogID from Catalog where CatalogNumber = '" + catalogNumber + "')").select("*").getItem<Project>(new Project());
 
-                    foreach (TreeNode tnn in checkedList)
-                    {
-                        string catalogNumber = tnn.Text;
-                        Project projObj = ConnectionManager.Context.table("Project").where("CatalogID in (select CatalogID from Catalog where CatalogNumber = '" + catalogNumber + "')").select("*").getItem<Project>(new Project());
-
-                        //打印数据
-                        ReporterModuleController.printProjectToDataTable(dtBase, projObj);
-                    }
-
-                    //导出Excel
-                    ExcelHelper.ExportToExcel(dtBase, "项目列表");
+                    //打印数据
+                    ReporterModuleController.printProjectToDataTable(dtBase, projObj);
                 }
+
+                //导出Excel
+                ExcelHelper.ExportToExcel(excelFile, dtBase, "项目列表");
             }
         }
 
@@ -498,7 +497,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
         }
 
         private void tlTestA_AfterSelect(object sender, TreeViewEventArgs e)
-        {   
+        {
             //刷新替换列表
             reloadReplaceList();
         }
