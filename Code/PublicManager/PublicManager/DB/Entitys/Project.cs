@@ -44,6 +44,8 @@ namespace PublicManager.DB.Entitys
             query.set("TotalTime", TotalTime);
             query.set("TotalMoney", TotalMoney);
             query.set("RequestTime", RequestTime);
+            query.set("WorkDest", WorkDest);
+            query.set("SubjectNameList", SubjectNameList);
 
             return query;
         }
@@ -77,6 +79,8 @@ namespace PublicManager.DB.Entitys
         public int TotalTime { get; set; }
         public decimal TotalMoney { get; set; }
         public DateTime RequestTime { get; set; }
+        public string WorkDest { get; set; }
+        public string SubjectNameList { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
@@ -109,6 +113,8 @@ namespace PublicManager.DB.Entitys
             TotalTime = source("TotalTime").value<int>(0);
             TotalMoney = source("TotalMoney").value<decimal>(0);
             RequestTime = source("RequestTime").value<DateTime>(DateTime.Now);
+            WorkDest = source("WorkDest").value<string>("");
+            SubjectNameList = source("SubjectNameList").value<string>("");
         }
 
         public override Noear.Weed.IBinder clone()
