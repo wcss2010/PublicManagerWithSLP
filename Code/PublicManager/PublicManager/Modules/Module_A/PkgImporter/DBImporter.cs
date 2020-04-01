@@ -44,32 +44,161 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 proj.CatalogID = catalog.CatalogID;
                 proj.ProjectName = catalog.CatalogName;
 
-                proj.ProjectTopic = diProject.get("ProjectTopic") != null ? diProject.get("ProjectTopic").ToString() : string.Empty;
-                proj.ProjectDirection = diProject.get("ProjectDirection") != null ? diProject.get("ProjectDirection").ToString() : string.Empty;
-                proj.ProjectSecretLevel = diProject.get("ProjectSecretLevel") != null ? diProject.get("ProjectSecretLevel").ToString() : string.Empty;
-                proj.ProjectMasterName = diProject.get("ProjectMasterName") != null ? diProject.get("ProjectMasterName").ToString() : string.Empty;
-                proj.ProjectMasterSex = diProject.get("ProjectMasterSex") != null ? diProject.get("ProjectMasterSex").ToString() : string.Empty;
-                proj.ProjectMasterBirthday = diProject.get("ProjectMasterBirthday") != null ? DateTime.Parse(diProject.get("ProjectMasterBirthday").ToString()) : DateTime.Now;
-                proj.ProjectMasterJob = diProject.get("ProjectMasterJob") != null ? diProject.get("ProjectMasterJob").ToString() : string.Empty;
-                proj.ProjectMasterTelephone = diProject.get("ProjectMasterTelephone") != null ? diProject.get("ProjectMasterTelephone").ToString() : string.Empty;
-                proj.ProjectMasterMobilephone = diProject.get("ProjectMasterMobilephone") != null ? diProject.get("ProjectMasterMobilephone").ToString() : string.Empty;
-                proj.TeamContactName = diProject.get("TeamContactName") != null ? diProject.get("TeamContactName").ToString() : string.Empty;
-                proj.TeamContactSex = diProject.get("TeamContactSex") != null ? diProject.get("TeamContactSex").ToString() : string.Empty;
-                proj.TeamContactBirthday = diProject.get("TeamContactBirthday") != null ? DateTime.Parse(diProject.get("TeamContactBirthday").ToString()) : DateTime.Now;
-                proj.TeamContactJob = diProject.get("TeamContactJob") != null ? diProject.get("TeamContactJob").ToString() : string.Empty;
-                proj.TeamContactTelephone = diProject.get("TeamContactTelephone") != null ? diProject.get("TeamContactTelephone").ToString() : string.Empty;
-                proj.TeamContactMobilephone = diProject.get("TeamContactMobilephone") != null ? diProject.get("TeamContactMobilephone").ToString() : string.Empty;
-                proj.TeamContactAddress = diProject.get("TeamContactAddress") != null ? diProject.get("TeamContactAddress").ToString() : string.Empty;
-                proj.UnitName = diProject.get("UnitName") != null ? diProject.get("UnitName").ToString() : string.Empty;
-                proj.UnitRealName = diProject.get("UnitRealName") != null ? diProject.get("UnitRealName").ToString() : string.Empty;
-                proj.UnitAddress = diProject.get("UnitAddress") != null ? diProject.get("UnitAddress").ToString() : string.Empty;
-                proj.UnitType2 = diProject.get("UnitType2") != null ? diProject.get("UnitType2").ToString() : string.Empty;
-                proj.UnitContact = diProject.get("UnitContact") != null ? diProject.get("UnitContact").ToString() : string.Empty;
-                proj.UnitContactJob = diProject.get("UnitContactJob") != null ? diProject.get("UnitContactJob").ToString() : string.Empty;
-                proj.UnitContactPhone = diProject.get("UnitContactPhone") != null ? diProject.get("UnitContactPhone").ToString() : string.Empty;
-                proj.TotalTime = diProject.get("TotalTime") != null ? int.Parse(diProject.get("TotalTime").ToString()) : 0;
-                proj.TotalMoney = diProject.get("TotalMoney") != null ? decimal.Parse(diProject.get("TotalMoney").ToString()) : 0;
-                proj.RequestTime = diProject.get("RequestTime") != null ? DateTime.Parse(diProject.get("RequestTime").ToString()) : DateTime.Now;
+                try
+                {
+                    proj.ProjectTopic = diProject.get("ProjectTopic") != null ? diProject.get("ProjectTopic").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectDirection = diProject.get("ProjectDirection") != null ? diProject.get("ProjectDirection").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectSecretLevel = diProject.get("ProjectSecretLevel") != null ? diProject.get("ProjectSecretLevel").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectMasterName = diProject.get("ProjectMasterName") != null ? diProject.get("ProjectMasterName").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectMasterSex = diProject.get("ProjectMasterSex") != null ? diProject.get("ProjectMasterSex").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectMasterBirthday = diProject.get("ProjectMasterBirthday") != null ? DateTime.Parse(diProject.get("ProjectMasterBirthday").ToString()) : DateTime.Now;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectMasterJob = diProject.get("ProjectMasterJob") != null ? diProject.get("ProjectMasterJob").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectMasterTelephone = diProject.get("ProjectMasterTelephone") != null ? diProject.get("ProjectMasterTelephone").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.ProjectMasterMobilephone = diProject.get("ProjectMasterMobilephone") != null ? diProject.get("ProjectMasterMobilephone").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TeamContactName = diProject.get("TeamContactName") != null ? diProject.get("TeamContactName").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TeamContactSex = diProject.get("TeamContactSex") != null ? diProject.get("TeamContactSex").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TeamContactBirthday = diProject.get("TeamContactBirthday") != null ? DateTime.Parse(diProject.get("TeamContactBirthday").ToString()) : DateTime.Now;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TeamContactJob = diProject.get("TeamContactJob") != null ? diProject.get("TeamContactJob").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TeamContactTelephone = diProject.get("TeamContactTelephone") != null ? diProject.get("TeamContactTelephone").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TeamContactMobilephone = diProject.get("TeamContactMobilephone") != null ? diProject.get("TeamContactMobilephone").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TeamContactAddress = diProject.get("TeamContactAddress") != null ? diProject.get("TeamContactAddress").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.UnitName = diProject.get("UnitName") != null ? diProject.get("UnitName").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.UnitRealName = diProject.get("UnitRealName") != null ? diProject.get("UnitRealName").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.UnitAddress = diProject.get("UnitAddress") != null ? diProject.get("UnitAddress").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.UnitType2 = diProject.get("UnitType2") != null ? diProject.get("UnitType2").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.UnitContact = diProject.get("UnitContact") != null ? diProject.get("UnitContact").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.UnitContactJob = diProject.get("UnitContactJob") != null ? diProject.get("UnitContactJob").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.UnitContactPhone = diProject.get("UnitContactPhone") != null ? diProject.get("UnitContactPhone").ToString() : string.Empty;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TotalTime = diProject.get("TotalTime") != null ? int.Parse(diProject.get("TotalTime").ToString()) : 0;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.TotalMoney = diProject.get("TotalMoney") != null ? decimal.Parse(diProject.get("TotalMoney").ToString()) : 0;
+                }
+                catch (Exception ex) { }
+
+                try
+                {
+                    proj.RequestTime = diProject.get("RequestTime") != null ? DateTime.Parse(diProject.get("RequestTime").ToString()) : DateTime.Now;
+                }
+                catch (Exception ex) { }
                 
                 proj.copyTo(ConnectionManager.Context.table("Project")).insert();
                 #endregion
