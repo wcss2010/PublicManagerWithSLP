@@ -236,98 +236,11 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                     //生成内容
                     foreach (Catalog c in catalogList)
                     {
-                        List<object> cells = new List<object>();
-
                         //项目信息
                         Project p = ConnectionManager.Context.table("Project").where("CatalogID = '" + c.CatalogID + "'").select("*").getItem<Project>(new Project());
 
-                        if (p == null || string.IsNullOrEmpty(p.ProjectName) || string.IsNullOrEmpty(p.ProjectMasterName) || string.IsNullOrEmpty(p.UnitName))
-                        {
-                            continue;
-                        }
-
-                        //项目名称
-                        cells.Add(p.ProjectName);
-
-                        //项目主题
-                        cells.Add(p.ProjectTopic);
-
-                        //项目方向
-                        cells.Add(p.ProjectDirection);
-
-                        //保密等级
-                        cells.Add(getSecretLevelString(p.ProjectSecretLevel));
-
-                        //项目负责人
-                        cells.Add(p.ProjectMasterName);
-
-                        //项目负责人性  别
-                        cells.Add(p.ProjectMasterSex);
-
-                        //项目负责人出生年月
-                        cells.Add((p.ProjectMasterBirthday != null ? p.ProjectMasterBirthday : DateTime.Now).ToString("yyyy年MM月dd日"));
-
-                        //项目负责人职务职称
-                        cells.Add(p.ProjectMasterJob);
-
-                        //项目负责人座  机
-                        cells.Add(p.ProjectMasterTelephone);
-
-                        //项目负责人手  机
-                        cells.Add(p.ProjectMasterMobilephone);
-
-                        //项目组联系人
-                        cells.Add(p.TeamContactName);
-
-                        //项目组联系人性  别
-                        cells.Add(p.TeamContactSex);
-
-                        //项目组联系人出生年月
-                        cells.Add((p.TeamContactBirthday != null ? p.TeamContactBirthday : DateTime.Now).ToString("yyyy年MM月dd日"));
-
-                        //项目组联系人职务职称
-                        cells.Add(p.TeamContactJob);
-
-                        //项目组联系人座  机
-                        cells.Add(p.TeamContactTelephone);
-
-                        //项目组联系人手  机
-                        cells.Add(p.TeamContactMobilephone);
-
-                        //项目组联系人通信地址
-                        cells.Add(getAddressString(p.TeamContactAddress));
-
-                        //责任单位名称
-                        cells.Add(p.UnitName);
-
-                        //责任单位常用名称
-                        cells.Add(p.UnitRealName);
-
-                        //责任单位通信地址
-                        cells.Add(getAddressString(p.UnitAddress));
-
-                        //责任单位所属大单位
-                        cells.Add(p.UnitType2);
-
-                        //责任单位联系人
-                        cells.Add(p.UnitContact);
-
-                        //责任单位联系人职务
-                        cells.Add(p.UnitContactJob);
-
-                        //责任单位联系人电话
-                        cells.Add(p.UnitContactPhone);
-
-                        //总时间
-                        cells.Add(p.TotalTime);
-
-                        //总经费
-                        cells.Add(p.TotalMoney);
-
-                        //申报日期
-                        cells.Add((p.RequestTime != null ? p.RequestTime : DateTime.Now).ToString("yyyy年MM月dd日"));
-
-                        dtBase.Rows.Add(cells.ToArray());
+                        //打印项目数据
+                        printProjectToDataTable(dtBase, p);
                     }
                     #endregion
 
@@ -425,6 +338,105 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                     MessageBox.Show("导出完成！");
                 }
             }
+        }
+
+        /// <summary>
+        /// 打印项目数据
+        /// </summary>
+        /// <param name="dtData"></param>
+        /// <param name="projObj"></param>
+        public static void printProjectToDataTable(DataTable dtData, Project projObj)
+        {
+            if (dtData == null || projObj == null || string.IsNullOrEmpty(projObj.ProjectName) || string.IsNullOrEmpty(projObj.ProjectMasterName) || string.IsNullOrEmpty(projObj.UnitName))
+            {
+                return;
+            }
+
+            List<object> cells = new List<object>();
+
+            //项目名称
+            cells.Add(projObj.ProjectName);
+
+            //项目主题
+            cells.Add(projObj.ProjectTopic);
+
+            //项目方向
+            cells.Add(projObj.ProjectDirection);
+
+            //保密等级
+            cells.Add(ReporterModuleController.getSecretLevelString(projObj.ProjectSecretLevel));
+
+            //项目负责人
+            cells.Add(projObj.ProjectMasterName);
+
+            //项目负责人性  别
+            cells.Add(projObj.ProjectMasterSex);
+
+            //项目负责人出生年月
+            cells.Add((projObj.ProjectMasterBirthday != null ? projObj.ProjectMasterBirthday : DateTime.Now).ToString("yyyy年MM月dd日"));
+
+            //项目负责人职务职称
+            cells.Add(projObj.ProjectMasterJob);
+
+            //项目负责人座  机
+            cells.Add(projObj.ProjectMasterTelephone);
+
+            //项目负责人手  机
+            cells.Add(projObj.ProjectMasterMobilephone);
+
+            //项目组联系人
+            cells.Add(projObj.TeamContactName);
+
+            //项目组联系人性  别
+            cells.Add(projObj.TeamContactSex);
+
+            //项目组联系人出生年月
+            cells.Add((projObj.TeamContactBirthday != null ? projObj.TeamContactBirthday : DateTime.Now).ToString("yyyy年MM月dd日"));
+
+            //项目组联系人职务职称
+            cells.Add(projObj.TeamContactJob);
+
+            //项目组联系人座  机
+            cells.Add(projObj.TeamContactTelephone);
+
+            //项目组联系人手  机
+            cells.Add(projObj.TeamContactMobilephone);
+
+            //项目组联系人通信地址
+            cells.Add(ReporterModuleController.getAddressString(projObj.TeamContactAddress));
+
+            //责任单位名称
+            cells.Add(projObj.UnitName);
+
+            //责任单位常用名称
+            cells.Add(projObj.UnitRealName);
+
+            //责任单位通信地址
+            cells.Add(ReporterModuleController.getAddressString(projObj.UnitAddress));
+
+            //责任单位所属大单位
+            cells.Add(projObj.UnitType2);
+
+            //责任单位联系人
+            cells.Add(projObj.UnitContact);
+
+            //责任单位联系人职务
+            cells.Add(projObj.UnitContactJob);
+
+            //责任单位联系人电话
+            cells.Add(projObj.UnitContactPhone);
+
+            //总时间
+            cells.Add(projObj.TotalTime);
+
+            //总经费
+            cells.Add(projObj.TotalMoney);
+
+            //申报日期
+            cells.Add((projObj.RequestTime != null ? projObj.RequestTime : DateTime.Now).ToString("yyyy年MM月dd日"));
+
+            //添加进表格
+            dtData.Rows.Add(cells.ToArray());
         }
     }
 }
