@@ -45,6 +45,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
             unitList = DataHelper.getUnitList();
             subjectDict = DataHelper.getSubjectList();
             tvUnitAndProject.ContentTreeView.AfterSelect += ContentTreeView_AfterSelect;
@@ -89,25 +90,32 @@ namespace PublicManager.Modules.Module_A.PkgImporter
                 if (nodeDict.ContainsKey(proj.ProjectTopic))
                 {
                     //正常主题
-                    if (subjectDict[proj.ProjectTopic].Contains(proj.ProjectDirection))
+                    if (subjectDict.ContainsKey(proj.ProjectTopic))
                     {
-                        topicNode = nodeDict[proj.ProjectTopic];
-                        directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                        if (subjectDict[proj.ProjectTopic].Contains(proj.ProjectDirection))
+                        {
+                            topicNode = nodeDict[proj.ProjectTopic];
+                            directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                        }
+                        else
+                        {
+                            //其它主题
+                            topicNode = nodeDict["其它"];
+                            directionKey = "其它" + "****" + proj.ProjectDirection;
+                        }
                     }
                     else
                     {
                         //其它主题
-                        proj.ProjectTopic = "其它";
-                        topicNode = nodeDict[proj.ProjectTopic];
-                        directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                        topicNode = nodeDict["其它"];
+                        directionKey = "其它" + "****" + proj.ProjectDirection;
                     }
                 }
                 else
                 {
                     //其它主题
-                    proj.ProjectTopic = "其它";
-                    topicNode = nodeDict[proj.ProjectTopic];
-                    directionKey = proj.ProjectTopic + "****" + proj.ProjectDirection;
+                    topicNode = nodeDict["其它"];
+                    directionKey = "其它" + "****" + proj.ProjectDirection;
                 }
 
                 if (nodeDict.ContainsKey(directionKey))
@@ -327,6 +335,16 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             {
                 needDeleteCatalogList.Add(((Project)parentNode.Tag));
             }
+        }
+
+        private void btnRefreshUnitList_Click(object sender, EventArgs e)
+        {
+            updateUnitTreeView();
+        }
+
+        private void btnRefreshSubjectList_Click(object sender, EventArgs e)
+        {
+            updateSubjectTreeView();
         }
     }
 }

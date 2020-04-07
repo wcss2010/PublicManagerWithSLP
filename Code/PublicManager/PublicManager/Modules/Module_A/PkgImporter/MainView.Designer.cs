@@ -33,6 +33,7 @@
             this.plContent = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblHint = new System.Windows.Forms.Label();
+            this.btnDelAll = new System.Windows.Forms.Button();
             this.btnExportExcelForUnit = new System.Windows.Forms.Button();
             this.scUnitPage2 = new System.Windows.Forms.SplitContainer();
             this.tvUnitAndProject2 = new PublicManager.Modules.TreeViewWithSearch();
@@ -43,7 +44,8 @@
             this.xtcPages = new DevExpress.XtraTab.XtraTabControl();
             this.tpUnitPage = new DevExpress.XtraTab.XtraTabPage();
             this.tpSubjectAndDirectionPage = new DevExpress.XtraTab.XtraTabPage();
-            this.btnDelAll = new System.Windows.Forms.Button();
+            this.btnRefreshUnitList = new System.Windows.Forms.Button();
+            this.btnRefreshSubjectList = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.scUnitPage)).BeginInit();
             this.scUnitPage.Panel1.SuspendLayout();
             this.scUnitPage.Panel2.SuspendLayout();
@@ -99,6 +101,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.lblHint);
+            this.panel3.Controls.Add(this.btnRefreshUnitList);
             this.panel3.Controls.Add(this.btnDelAll);
             this.panel3.Controls.Add(this.btnExportExcelForUnit);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -114,9 +117,20 @@
             this.lblHint.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHint.Location = new System.Drawing.Point(0, 0);
             this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(872, 30);
+            this.lblHint.Size = new System.Drawing.Size(797, 30);
             this.lblHint.TabIndex = 1;
             this.lblHint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnDelAll
+            // 
+            this.btnDelAll.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnDelAll.Location = new System.Drawing.Point(872, 0);
+            this.btnDelAll.Name = "btnDelAll";
+            this.btnDelAll.Size = new System.Drawing.Size(75, 30);
+            this.btnDelAll.TabIndex = 3;
+            this.btnDelAll.Text = "删除项目";
+            this.btnDelAll.UseVisualStyleBackColor = true;
+            this.btnDelAll.Click += new System.EventHandler(this.btnDelAll_Click);
             // 
             // btnExportExcelForUnit
             // 
@@ -167,8 +181,9 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.btnExportExcelForSubject);
             this.panel4.Controls.Add(this.lblHint2);
+            this.panel4.Controls.Add(this.btnRefreshSubjectList);
+            this.panel4.Controls.Add(this.btnExportExcelForSubject);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
@@ -193,7 +208,7 @@
             this.lblHint2.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHint2.Location = new System.Drawing.Point(0, 0);
             this.lblHint2.Name = "lblHint2";
-            this.lblHint2.Size = new System.Drawing.Size(1022, 30);
+            this.lblHint2.Size = new System.Drawing.Size(872, 30);
             this.lblHint2.TabIndex = 1;
             this.lblHint2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -223,16 +238,27 @@
             this.tpSubjectAndDirectionPage.Size = new System.Drawing.Size(1270, 655);
             this.tpSubjectAndDirectionPage.Text = "主题方向与项目列表";
             // 
-            // btnDelAll
+            // btnRefreshUnitList
             // 
-            this.btnDelAll.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDelAll.Location = new System.Drawing.Point(872, 0);
-            this.btnDelAll.Name = "btnDelAll";
-            this.btnDelAll.Size = new System.Drawing.Size(75, 30);
-            this.btnDelAll.TabIndex = 3;
-            this.btnDelAll.Text = "删除项目";
-            this.btnDelAll.UseVisualStyleBackColor = true;
-            this.btnDelAll.Click += new System.EventHandler(this.btnDelAll_Click);
+            this.btnRefreshUnitList.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnRefreshUnitList.Location = new System.Drawing.Point(797, 0);
+            this.btnRefreshUnitList.Name = "btnRefreshUnitList";
+            this.btnRefreshUnitList.Size = new System.Drawing.Size(75, 30);
+            this.btnRefreshUnitList.TabIndex = 4;
+            this.btnRefreshUnitList.Text = "刷新列表";
+            this.btnRefreshUnitList.UseVisualStyleBackColor = true;
+            this.btnRefreshUnitList.Click += new System.EventHandler(this.btnRefreshUnitList_Click);
+            // 
+            // btnRefreshSubjectList
+            // 
+            this.btnRefreshSubjectList.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnRefreshSubjectList.Location = new System.Drawing.Point(872, 0);
+            this.btnRefreshSubjectList.Name = "btnRefreshSubjectList";
+            this.btnRefreshSubjectList.Size = new System.Drawing.Size(75, 30);
+            this.btnRefreshSubjectList.TabIndex = 5;
+            this.btnRefreshSubjectList.Text = "刷新列表";
+            this.btnRefreshSubjectList.UseVisualStyleBackColor = true;
+            this.btnRefreshSubjectList.Click += new System.EventHandler(this.btnRefreshSubjectList_Click);
             // 
             // MainView
             // 
@@ -277,6 +303,8 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnExportExcelForSubject;
         private System.Windows.Forms.Button btnDelAll;
+        private System.Windows.Forms.Button btnRefreshUnitList;
+        private System.Windows.Forms.Button btnRefreshSubjectList;
 
 
 
