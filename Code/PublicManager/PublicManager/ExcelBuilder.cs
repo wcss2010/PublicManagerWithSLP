@@ -381,7 +381,15 @@ namespace PublicManager
             {
                 IWorkbook workbook = WorkbookFactory.Create(fileStream);
 
-                IFormulaEvaluator evaluator = new HSSFFormulaEvaluator(workbook);
+                IFormulaEvaluator evaluator = null;
+                if (workbook is HSSFWorkbook)
+                {
+                    evaluator = new HSSFFormulaEvaluator(workbook);
+                }
+                else
+                {
+                    evaluator = new XSSFFormulaEvaluator(workbook);
+                }
 
                 ISheet sheet = workbook.GetSheet(sheetName);
 
@@ -393,7 +401,7 @@ namespace PublicManager
         {
             if (firstRowAsHeader)
             {
-                return excelToDataTableFirstRowAsHeader(sheet, evaluator);
+                return excelToDataTableFirstRowAsHeader(sheet, evaluator, 0, 1);
             }
             else
             {
@@ -401,11 +409,11 @@ namespace PublicManager
             }
         }
 
-        private static DataTable excelToDataTableFirstRowAsHeader(ISheet sheet, IFormulaEvaluator evaluator)
+        private static DataTable excelToDataTableFirstRowAsHeader(ISheet sheet, IFormulaEvaluator evaluator, int headerIndex, int dataIndex)
         {
             using (DataTable dt = new DataTable())
             {
-                IRow firstRow = sheet.GetRow(0);
+                IRow firstRow = sheet.GetRow(headerIndex);
                 int cellCount = getCellCount(sheet);
 
                 for (int i = 0; i < cellCount; i++)
@@ -423,12 +431,10 @@ namespace PublicManager
                     }
                 }
 
-                for (int i = 1; i <= sheet.LastRowNum; i++)
+                for (int i = dataIndex; i <= sheet.LastRowNum; i++)
                 {
                     IRow row = sheet.GetRow(i);
-                    DataRow dr = dt.NewRow();
-                    fillDataRowByRow(row, evaluator, ref dr);
-                    dt.Rows.Add(dr);
+                    checkAndFillDataRow(i, row, evaluator, dt);
                 }
 
                 dt.TableName = sheet.SheetName;
@@ -458,9 +464,7 @@ namespace PublicManager
                     for (int i = sheet.FirstRowNum; i <= sheet.LastRowNum; i++)
                     {
                         IRow row = sheet.GetRow(i);
-                        DataRow dr = dt.NewRow();
-                        fillDataRowByRow(row, evaluator, ref dr);
-                        dt.Rows.Add(dr);
+                        checkAndFillDataRow(i, row, evaluator, dt);
                     }
                 }
 
@@ -469,67 +473,100 @@ namespace PublicManager
             }
         }
 
-        /// <summary>
-        /// 填充数据
-        /// </summary>
-        /// <param name="row"></param>
-        /// <param name="evaluator"></param>
-        /// <param name="dr"></param>
-        private static void fillDataRowByRow(IRow row, IFormulaEvaluator evaluator, ref DataRow dr)
+        private static void checkAndFillDataRow(int rowIndex, IRow rowObj, IFormulaEvaluator evaluator, DataTable dt)
         {
-            if (row != null)
+            if (rowObj != null)
             {
-                for (int j = 0; j < dr.Table.Columns.Count; j++)
-                {
-                    ICell cell = row.GetCell(j);
+                bool hasValue = false;
+                List<object> cells = new List<object>();
 
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    object objValue = null;
+                    ICell cell = rowObj.GetCell(j);
                     if (cell != null)
                     {
-                        switch (cell.CellType)
+                        if (cell is HSSFCell)
                         {
-                            case CellType.Blank:
-                                {
-                                    dr[j] = DBNull.Value;
-                                    break;
-                                }
-                            case CellType.Boolean:
-                                {
-                                    dr[j] = cell.BooleanCellValue;
-                                    break;
-                                }
-                            case CellType.Numeric:
-                                {
-                                    if (DateUtil.IsCellDateFormatted(cell))
-                                    {
-                                        dr[j] = cell.DateCellValue;
-                                    }
-                                    else
-                                    {
-                                        dr[j] = cell.NumericCellValue;
-                                    }
-                                    break;
-                                }
-                            case CellType.String:
-                                {
-                                    dr[j] = cell.StringCellValue;
-                                    break;
-                                }
-                            case CellType.Error:
-                                {
-                                    dr[j] = cell.ErrorCellValue;
-                                    break;
-                                }
-                            case CellType.Formula:
-                                {
-                                    cell = evaluator.EvaluateInCell(cell) as HSSFCell;
-                                    dr[j] = cell.ToString();
-                                    break;
-                                }
-                            default:
-                                throw new NotSupportedException(string.Format("Unsupported format type:{0}", cell.CellType));
+                            objValue = getValueTypeForXLS((HSSFCell)cell);
+                        }
+                        else if (cell is XSSFCell)
+                        {
+                            objValue = getValueTypeForXLSX((XSSFCell)cell);
                         }
                     }
+
+                    cells.Add(objValue != null ? objValue.ToString().Trim() : string.Empty);
+
+                    if (objValue != null && !string.IsNullOrEmpty(objValue.ToString().Trim()))
+                    {
+                        hasValue = true;
+                    }
                 }
+
+                if (hasValue)
+                {
+                    dt.Rows.Add(cells.ToArray());
+                }
+            }
+        }
+
+        private static object getValueTypeForXLSX(XSSFCell cell)
+        {
+            if (cell == null)
+                return null;
+            switch (cell.CellType)
+            {
+                case CellType.Blank: //BLANK:
+                    return null;
+                case CellType.Boolean: //BOOLEAN:
+                    return cell.BooleanCellValue;
+                case CellType.Numeric: //NUMERIC:
+                    return cell.NumericCellValue;
+                case CellType.String: //STRING:
+                    return cell.StringCellValue;
+                case CellType.Error: //ERROR:
+                    return cell.ErrorCellValue;
+                case CellType.Formula: //FORMULA:
+                    if (cell.CachedFormulaResultType == CellType.Numeric)
+                    {
+                        return cell.NumericCellValue;
+                    }
+                    else
+                    {
+                        return cell.StringCellValue;
+                    }
+                default:
+                    return "=" + cell.CellFormula;
+            }
+        }
+
+        private static object getValueTypeForXLS(HSSFCell cell)
+        {
+            if (cell == null)
+                return null;
+            switch (cell.CellType)
+            {
+                case CellType.Blank: //BLANK:  
+                    return null;
+                case CellType.Boolean: //BOOLEAN:  
+                    return cell.BooleanCellValue;
+                case CellType.Numeric: //NUMERIC:  
+                    if (HSSFDateUtil.IsCellDateFormatted(cell))
+                    {
+                        return cell.DateCellValue;
+                    }
+                    else
+                    {
+                        return cell.NumericCellValue;
+                    }
+                case CellType.String: //STRING:  
+                    return cell.StringCellValue;
+                case CellType.Error: //ERROR:  
+                    return cell.ErrorCellValue;
+                case CellType.Formula: //FORMULA:  
+                default:
+                    return "=" + cell.CellFormula;
             }
         }
 
